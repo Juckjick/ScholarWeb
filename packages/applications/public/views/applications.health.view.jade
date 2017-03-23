@@ -1,0 +1,104 @@
+div(data-ng-controller='ScholarshipsHealthController as healthCtrl')
+  accordion-heading
+    i.fa.fa-ambulance
+    | &nbsp;สุขภาพ
+    span(data-ng-if='(healthCtrl.form.$valid && healthCtrl.form.$pristine) || healthCtrl.isSaved') &nbsp;
+      i.fa.fa-check-circle-o.text-success
+    i.pull-right.fa(ng-class='{"fa-angle-down": fifth.open, "fa-angle-right": !fifth.open}')
+      
+  alert(data-ng-if='healthCtrl.isSuccess', type='success')
+    i.fa.fa-check-circle-o
+    | &nbsp;ระบบทำการบันทึกข้อมูลเสร็จสิ้น
+  alert(data-ng-if='healthCtrl.isError', type='danger')
+    i.fa.fa-warning
+    | &nbsp;ระบบไม่สามารถบันทึกข้อมูล กรุณารอสักครู่ และทดลองใหม่อีกครั้ง
+  form(role='form', name='healthCtrl.form', method='post')
+    .row
+      .form-group.col-sm-6
+        label ข้าพเจ้าเคยเจ็บป่วยครั้งสุดท้ายเมื่อปี
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-calendar
+          input.form-control(name='health-lastYear', type='number', placeholder='ปี', min='0', max='9999', data-ng-model='healthCtrl.health.lastYear', validator='number', message-id='health-lastYear', number-error-message='กรุณากรอกปี พ.ศ. ให้ถูกต้อง')
+          .required-icon
+            .text *
+        span#health-lastYear
+      .form-group.col-sm-6
+        label ด้วยโรค
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-file-text
+          input.form-control(name='health-lastDisease', type='text', placeholder='ชื่อโรค', maxlength='50', data-ng-model='healthCtrl.health.lastDisease', validator='required', message-id='health-lastDisease')
+          .required-icon
+            .text *
+        span#health-lastDisease
+    .row
+      .form-group.col-sm-6
+        label รวมระยะเวลาที่ต้องรักษา
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-calendar
+          input.form-control(name='health-lastDay', type='number', placeholder='ระยะเวลา...วัน', min='0', data-ng-model='healthCtrl.health.lastDay', validator='number', message-id='health-lastDay')
+          .required-icon
+            .text *
+        span#health-lastDay
+      .form-group.col-sm-6
+        label โรคที่ข้าพเจ้าเจ็บป่วยบ่อยที่สุด
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-medkit
+          input.form-control(name='health-frequentlySick', type='text', placeholder='ชื่อโรค', max='50', data-ng-model='healthCtrl.health.frequentlySick', validator='required', message-id='health-frequentlySick')
+          .required-icon
+            .text *
+        span#health-frequentlySick
+
+    .row
+      .form-group.col-sm-12
+        label ข้าพเจ้าเคยรับการรักษาและต้องอยู่โรงพยาบาล 
+        .checkbox
+          label.checkbox-inline
+            input(type='checkbox', name='is-admit', data-ng-model='healthCtrl.isAdmit', data-ng-click='healthCtrl.sanitizeHealth()')
+            | พักรักษาที่โรงพยาบาล
+    div(data-ng-if='healthCtrl.isAdmit')
+      .row
+        .form-group.col-sm-6
+          label เมื่อปี
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-calendar
+            input.form-control(name='health-admitYear', type='number', placeholder='ปี', min='0', max='9999', data-ng-model='healthCtrl.health.admitYear', validator='number', message-id='health-admitYear', number-error-message='กรุณากรอกปี พ.ศ. ให้ถูกต้อง')
+            .required-icon
+              .text *
+          span#health-admitYear
+        .form-group.col-sm-6
+          label ด้วยโรค
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-file-text
+            input.form-control(name='health-admitDisease', type='text', placeholder='ชื่อโรค', malength='50', data-ng-model='healthCtrl.health.admitDisease', validator='required', message-id='health-admitDisease')
+            .required-icon
+              .text *
+          span#health-admitDisease
+      .row
+        .form-group.col-sm-6
+          label รวมระยะเวลาที่ต้องรักษา
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-calendar
+            input.form-control(name='health-admitDay', type='number', placeholder='ระยะเวลา...วัน', min='0', data-ng-model='healthCtrl.health.admitDay', validator='number', message-id='health-admitDay')
+            .required-icon
+              .text *
+          span#health-admitDay
+        .form-group.col-sm-6
+          label ค่าใช้จ่ายในการรักษา
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-money
+            input.form-control(name='health-admitMoney', type='number', placeholder='ค่าใช้จ่าย...บาท', min='0', data-ng-model='healthCtrl.health.admitMoney', validator='number', message-id='health-admitMoney')
+            .required-icon
+              .text *
+          span#health-admitMoney
+
+    button.btn.btn-primary.pull-right(data-ng-click='healthCtrl.upsertHealth()', validation-submit='healthCtrl.form',  data-ng-disabled='healthCtrl.isSubmit')
+      i.fa.fa-save
+      | &nbsp;บันทึกข้อมูล

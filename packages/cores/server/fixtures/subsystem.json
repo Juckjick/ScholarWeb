@@ -1,0 +1,282 @@
+[
+	{
+	    "model": "SubSystem",
+	    "data": {
+	    	"id": 1,
+	        "name": "เพิ่มผู้ใช้งาน",
+	        "description": "เพิ่มผู้ใช้งานระบบ",
+	        "link": "systems/users/create",
+	        "icon": "fa fa-plus-square-o",
+	        "SystemId": 1 
+	    }
+	},
+
+	{
+	    "model": "SubSystem",
+	    "data": {
+	    	"id": 2,
+	        "name": "แก้ไขผู้ใช้งาน",
+	        "description": "แก้ไขผู้ใช้งานระบบ",
+	        "link": "systems/users/list",
+	        "icon": "fa fa-pencil-square-o",
+	        "SystemId": 1
+	    }
+	},
+
+	{
+	    "model": "SubSystem",
+	    "data": {
+	    	"id": 3,
+	        "name": "เพิ่มสิทธิ",
+	        "description": "เพิ่มสิทธิผู้ใช้งานระบบ",
+	        "link": "systems/roles/create",
+	        "icon": "fa fa-plus-square-o",
+	        "SystemId": 1
+	    }
+	},
+	
+	{
+	    "model": "SubSystem",
+	    "data": {
+	    	"id": 4,
+	        "name": "แก้ไขสิทธิ",
+	        "description": "แก้ไขสิทธิผู้ใช้งานระบบ",
+	        "link": "systems/roles/list",
+	        "icon": "fa fa-pencil-square-o",
+	        "SystemId": 1
+	    }
+	},
+	
+	{
+	    "model": "SubSystem",
+	    "data": {
+	    	"id": 5,
+	        "name": "สมัครทุนการศึกษา",
+	        "description": "ระบบสมัครทุนการศึกษาสำหรับนิสิตที่มีความประสงค์ในการขอทุน",
+	        "link": "scholarships/apply",
+	        "icon": "fa fa-pencil",
+	        "SystemId": 2
+	    }
+	}
+,
+
+	{
+	    "model": "SubSystem",
+	    "data": {
+	    	"id": 6,
+	        "name": "แก้ไขใบสมัคร",
+	        "description": "ระบบแก้ไขใบสมัครทุนการศึกษา เพื่อให้ผู้ดูแลสามารถแก้ไขใบสมัครหลังจากที่นิสิตส่งใบสมัครเสร็จสิ้น",
+	        "link": "scholarships/edit/list",
+	        "icon": "fa fa-edit",
+	        "SystemId": 2
+	    }
+	}
+,
+	
+	{
+	    "model": "SubSystem",
+	    "data": {
+	    	"id": 7,
+	        "name": "สัมภาษณ์ทุนการศึกษา",
+	        "description": "ระบบสัมภาษณ์ทุนการศึกษา โดยคณะกรรมการสัมภาษณ์ทุน",
+	        "link": "scholarships/interview/evaluation/list",
+	        "icon": "fa fa-file-o",
+	        "SystemId": 2
+	    }
+	}
+,
+
+	{
+	    "model": "SubSystem",
+	    "data": {
+	    	"id": 8,
+	        "name": "สรุปผลทุนการศึกษา",
+	        "description": "ระบบสรุปผลทุนการศึกษา โดยอาจารย์ผู้ตัดสินใจ",
+	        "link": "scholarships/interview/summary/list",
+	        "icon": "fa fa-file-text-o",
+	        "SystemId": 2
+	    }
+	}
+,
+	
+	{
+	    "model": "SubSystem",
+	    "data": {
+	    	"id": 9,
+	        "name": "ตั้งค่าระบบ",
+	        "description": "ตั้งค่าต่างๆให้แก่ระบบทุนการศึกษา",
+	        "link": "scholarships/setting",
+	        "icon": "fa fa-gear",
+	        "SystemId": 2
+	    }
+	}
+,
+	
+	{
+	    "model": "SubSystem",
+	    "data": {
+	    	"id": 10,
+	        "name": "เพิ่มประเภทเงินทุนหลัก",
+	        "description": "ระบบเพิ่มประเภทเงินทุนหลัก",
+	        "link": "budgets/main/create",
+	        "icon": "fa fa-plus-square-o",
+	        "SystemId": 3
+	    }
+	}
+,
+	
+	{
+	    "model": "SubSystem",
+	    "data": {
+	    	"id": 11,
+	        "name": "แก้ไขประเภทเงินทุนหลัก",
+	        "description": "ระบบแก้ไขประเภทเงินทุนหลัก",
+	        "link": "budgets/main/list",
+	        "icon": "fa fa-pencil-square-o",
+	        "SystemId": 3
+	    }
+	}
+,
+
+	{
+	    "model": "SubSystem",
+	    "data": {
+	    	"id": 12,
+	        "name": "เพิ่มประเภทเงินทุนย่อย",
+	        "description": "ระบบเพิ่มประเภทเงินทุนย่อย",
+	        "link": "budgets/sub/create",
+	        "icon": "fa fa-plus-square-o",
+	        "SystemId": 3
+	    }
+	}
+,
+	
+	{
+	    "model": "SubSystem",
+	    "data": {
+	    	"id": 13,
+	        "name": "แก้ไขประเภทเงินทุนย่อย",
+	        "description": "ระบบแก้ไขประเภทเงินทุนย่อย",
+	        "link": "budgets/sub/list",
+	        "icon": "fa fa-pencil-square-o",
+	        "SystemId": 3
+	    }
+	}
+,
+	{
+	    "model": "SubSystem",
+	    "data": {
+	    	"id": 14,
+	        "name": "เพิ่ม / ลด งบประมาณ",
+	        "description": "ระบบเพิ่ม / ลด งบประมาณเงินทุน",
+	        "link": "budgets/transactions/edit",
+	        "icon": "fa fa-edit",
+	        "SystemId": 3
+	    }
+	}
+,
+	
+	{
+	    "model": "SubSystem",
+	    "data": {
+	    	"id": 15,
+	        "name": "แผนภาพเงินทุน",
+	        "description": "ระบบแสดงแผนภาพเงินทุนในรูปแบบกราฟิค",
+	        "link": "budgets/graphs/chart",
+	        "icon": "fa fa-pie-chart",
+	        "SystemId": 3
+	    }
+	}
+,
+	
+	{
+	    "model": "SubSystem",
+	    "data": {
+	    	"id": 16,
+	        "name": "ตารางเงินทุน",
+	        "description": "ระบบแสดงตารางเงินทุน",
+	        "link": "budgets/graphs/table",
+	        "icon": "fa fa-table",
+	        "SystemId": 3
+	    }
+	}
+,
+	
+	{
+	    "model": "SubSystem",
+	    "data": {
+	    	"id": 17,
+	        "name": "รายงานข้อมูลนิสิต",
+	        "description": "รายงานข้อมูลนิสิตที่ได้ทำการสมัครทุนการศึกษา",
+	        "link": "reports/student",
+	        "icon": "fa fa-child",
+	        "SystemId": 4
+	    }
+	}
+,
+	
+	{
+	    "model": "SubSystem",
+	    "data": {
+	    	"id": 18,
+	        "name": "รายงานเงินกู้ยืมรัฐบาล",
+	        "description": "รายงานเงินกู้ยืมรัฐบาล ส่งส่วนกลาง",
+	        "link": "reports/loan",
+	        "icon": "fa fa-money",
+	        "SystemId": 4
+	    }
+	}
+,
+	
+	{
+	    "model": "SubSystem",
+	    "data": {
+	    	"id": 19,
+	        "name": "รายงานทุนอุดหนุน",
+	        "description": "รายงานทุนอุดหนุน ส่งส่วนกลาง",
+	        "link": "reports/scholarship",
+	        "icon": "fa fa-money",
+	        "SystemId": 4
+	    }
+	}
+,
+
+	{
+	    "model": "SubSystem",
+	    "data": {
+	    	"id": 20,
+	        "name": "รายงานสรุปรวมทุน",
+	        "description": "รายงานสรุปรวมทุน ส่งส่วนกลาง",
+	        "link": "reports/result",
+	        "icon": "fa fa-file-text",
+	        "SystemId": 4
+	    }
+	}
+,
+	
+
+	{
+	    "model": "SubSystem",
+	    "data": {
+	    	"id": 21,
+	        "name": "เพิ่มปีการศึกษา",
+	        "description": "ระบบเพิ่มเติมปีการศึกษา",
+	        "link": "settings/academicyear/create",
+	        "icon": "fa fa-download",
+	        "SystemId": 5
+	    }
+	},
+
+	{
+	    "model": "SubSystem",
+	    "data": {
+	    	"id": 22,
+	        "name": "แก้ไขปีการศึกษา",
+	        "description": "ระบบแก้ไขปีการศึกษา",
+	        "link": "settings/academicyear/list",
+	        "icon": "fa fa-download",
+	        "SystemId": 5
+	    }
+	}
+
+]

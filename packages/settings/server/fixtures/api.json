@@ -1,0 +1,37 @@
+[
+  {
+    "model": "Api",
+    "data": {
+      "link": "/settings/academicyear/create",
+      "ApisSubSystems": [21]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/settings/academicyear/list",
+      "ApisSubSystems": [22]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/settings/academicyear/load",
+      "ApisSubSystems": [21]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/settings/academicyear/upsert",
+      "ApisSubSystems": [21]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/settings/academicyear/delete",
+      "ApisSubSystems": [21]
+    }
+  }
+]

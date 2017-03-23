@@ -1,0 +1,204 @@
+div(data-ng-controller='ScholarshipsProfileController as profileCtrl')
+  accordion-heading
+    i.fa.fa-child
+    | &nbsp;ประวัติส่วนตัวผู้สมัครขอรับทุน
+    span(data-ng-if='(profileCtrl.form.$valid && profileCtrl.form.$pristine) || profileCtrl.isSaved') &nbsp;
+      i.fa.fa-check-circle-o.text-success
+    i.pull-right.fa(ng-class='{"fa-angle-down": first.open, "fa-angle-right": !first.open}')
+
+  alert(data-ng-if='profileCtrl.isSuccess', type='success')
+    i.fa.fa-check-circle-o
+    | &nbsp;ระบบทำการบันทึกข้อมูลเสร็จสิ้น
+  alert(data-ng-if='profileCtrl.isError', type='danger')
+    i.fa.fa-warning
+    | &nbsp;ระบบไม่สามารถบันทึกข้อมูล กรุณารอสักครู่ และทดลองใหม่อีกครั้ง
+  form(role='form', name='profileCtrl.form', method='post')
+    .row
+      .form-group.col-sm-12
+        label คำนำหน้าชื่อ
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-venus-mars
+          select.form-control(name='title', data-ng-model='profileCtrl.profile.TitleId', data-ng-options='title.id as (title.nameTh + "/" + title.nameEn) for title in profileCtrl.titles', validator='required', message-id='title')
+          .required-icon
+            .text *
+        span#title
+    .row
+      .form-group.col-sm-6
+        label ชื่อ (ภาษาไทย)
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-child
+          input.form-control(type='text', name="firstnameTh" placeholder='ชื่อ', data-ng-model='profileCtrl.profile.firstnameTh', maxlength='20', validator='required', message-id='firstnameTh')
+          .required-icon
+            .text *
+        span#firstnameTh
+      .form-group.col-sm-6
+        label นามสกุล (ภาษาไทย)
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-child
+          input.form-control(type='text', name="lastnameTh" placeholder='นามสกุล', data-ng-model='profileCtrl.profile.lastnameTh', maxlength='50', validator='required', message-id='lastnameTh')
+          .required-icon
+            .text *
+        span#lastnameTh
+    .row
+      .form-group.col-sm-6
+        label ชื่อ (ภาษาอังกฤษ)
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-child
+          input.form-control(type='text', name="firstnameEn" placeholder='ชื่อ', data-ng-model='profileCtrl.profile.firstnameEn', maxlength='20', validator='required', message-id='firstnameEn')
+          .required-icon
+            .text *
+        span#firstnameEn
+      .form-group.col-sm-6
+        label นามสกุล (ภาษาอังกฤษ)
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-child
+          input.form-control(type='text', name="lastnameEn" placeholder='นามสกุล', data-ng-model='profileCtrl.profile.lastnameEn', maxlength='50', validator='required', message-id='lastnameEn')
+          .required-icon
+            .text *
+        span#lastnameEn
+    .row
+      .form-group.col-sm-6
+        label เลขที่บัตรประจำตัวประชาชน
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-child
+          input.form-control(type='text', name='identityCard', placeholder='เลขที่บัตรประจำตัวประชาชน', min='1000000000000', max='9999999999999', data-ng-model='profileCtrl.profile.identityCard', validator='number', message-id='identityCard')
+          .required-icon
+            .text *
+        span#identityCard
+      .form-group.col-sm-6
+        label รหัสประจำตัวนิสิต
+        .input-group.required-field-block
+          span.input-group-addon Id
+          input.form-control(type='text', name='studentId', placeholder='รหัสประจำตัวนิสิต', min='1000000000', max='9999999999', data-ng-model='profileCtrl.profile.studentId', validator='number', message-id='studentId')
+          .required-icon
+            .text *
+        span#studentId
+    .row
+      .form-group.col-sm-6
+        label วัน เดือน ปี เกิด
+        .input-group.required-field-block
+          input.form-control(type='text', name='birthday', datepicker-popup='dd/MM/yyyy', is-open='profileCtrl.openedBirthDate', current-text='วันนี้', clear-text='ลบ', close-text='ปิด', data-ng-model='profileCtrl.profile.birthday', message-id='birthday', disabled)
+          span.input-group-btn
+            button.btn.btn-default.btn-not-responsive(type='button', ng-click='profileCtrl.openBirthDate($event)')
+              i.fa.fa-calendar
+          .required-icon
+            .text *
+        span#birthday
+      .form-group.col-sm-6
+        label นับถือศาสนา
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-sun-o
+          input.form-control(type='text', name='religion' placeholder='ศาสนา', data-ng-model='profileCtrl.profile.religion', maxlength='20', validator='required', message-id='religion')
+          .required-icon
+            .text *
+        span#religion
+    .row
+      .form-group.col-sm-6
+        label อีเมลล์
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-envelope
+          input.form-control(name='email', type='email', maxlength='150', placeholder='อีเมลล์', data-ng-model='profileCtrl.profile.email', validator='email', message-id='email')
+          .required-icon
+            .text *
+        span#email
+    hr
+    .row
+      .form-group.col-sm-12
+        label ภูมิลำเนาเดิม
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-home
+          textarea.form-control(name='oldAddress', placeholder='ภูมิลำเนาเดิม (บ้านเลขที่, หมู่ที่, ซอย, ถนน, แขวง/ตำบล, เขต/อำเภอ)', maxlength='255' data-ng-model='profileCtrl.oldAddress.address', validator='required', message-id='oldAddress')
+          .required-icon
+            .text *
+        span#oldAddress
+    .row
+      .form-group.col-sm-6
+        label จังหวัด
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-anchor
+          select.form-control(name='oldProvince', data-ng-model='profileCtrl.oldAddress.ProvinceId', data-ng-options='province.id as province.name for province in profileCtrl.provinces', validator='required', message-id='oldProvince')
+          .required-icon
+            .text *
+        span#oldProvince
+      .form-group.col-sm-6
+        label รหัสไปรษณีย์
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-at
+          input.form-control(name='oldZipcode', type='text', placeholder='รหัสไปรณีย์', min='10000', max='19999', step='10', data-ng-model='profileCtrl.oldAddress.zipcode', validator='number', message-id='oldZipcode')
+          .required-icon
+            .text *
+        span#oldZipcode
+    .row
+      .form-group.col-sm-6
+        label โทรศัพท์
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-phone
+          input.form-control(name='oldTelephone', type='text', placeholder='โทรศัพท์', maxlength='15', data-ng-model='profileCtrl.oldAddress.telephone', validator='number', message-id='oldTelephone')
+          .required-icon
+            .text *
+        span#oldTelephone
+      .form-group.col-sm-6
+        label โทรศัพท์มือถือ
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-mobile-phone
+          input.form-control(name='oldMobile', type='text', placeholder='โทรศัพท์', maxlength='15', data-ng-model='profileCtrl.profile.mobile', validator='number', message-id='oldMobile')
+          .required-icon
+            .text *
+        span#oldMobile
+    hr
+    .row
+      .form-group.col-sm-12
+        label ที่อยู่ปัจจุบัน
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-home
+          textarea.form-control(name='newAddress', placeholder='ภูมิลำเนาเดิม (บ้านเลขที่, หมู่ที่, ซอย, ถนน, แขวง/ตำบล, เขต/อำเภอ)',  maxlength='255', data-ng-model='profileCtrl.newAddress.address', validator='required', message-id='newAddress')
+          .required-icon
+            .text *
+        span#newAddress
+    .row
+      .form-group.col-sm-6
+        label จังหวัด
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-anchor
+          select.form-control(name='newProvince', data-ng-model='profileCtrl.newAddress.ProvinceId', data-ng-options='province.id as province.name for province in profileCtrl.provinces',validator='required', message-id='newProvince')
+          .required-icon
+            .text *
+        span#newProvince
+      .form-group.col-sm-6
+        label รหัสไปรษณีย์
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-at
+          input.form-control(name='newZipcode', type='text', placeholder='รหัสไปรณีย์', min='10000', max='19999', step='10', data-ng-model='profileCtrl.newAddress.zipcode', validator='number', message-id='newZipcode')
+          .required-icon
+            .text *
+        span#newZipcode
+    .row
+      .form-group.col-sm-6
+        label โทรศัพท์
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-phone
+          input.form-control(name='newTelephone', type='text', placeholder='โทรศัพท์', maxlength='15', data-ng-model='profileCtrl.newAddress.telephone', validator='number', message-id='newTelephone')
+          .required-icon
+            .text *
+        span#newTelephone
+    .clearfix
+    button.btn.btn-primary.pull-right(data-ng-click='profileCtrl.upsertProfile()', validation-submit='profileCtrl.form',  data-ng-disabled='profileCtrl.isSubmit')
+      i.fa.fa-save
+      | &nbsp;บันทึกข้อมูล

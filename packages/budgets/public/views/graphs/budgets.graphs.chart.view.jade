@@ -1,0 +1,24 @@
+extends layouts/budgets.graphs.default
+
+block variable
+  - var controller = 'BudgetsGraphController as graphCtrl'
+  - var controllerAs = 'graphCtrl'
+
+
+block title
+  i.fa.fa-pie-chart
+  | &nbsp;แผนภาพเงินทุน
+
+block graphs
+  .row
+    .form-group.col-sm-3
+      label ประเภทของกราฟ:
+      select.form-control(name='graph-type', data-ng-model='#{controllerAs}.filter.graphType', data-ng-options='graph.type as graph.name for graph in #{controllerAs}.graphs')
+  div.col-md-12
+    div.panel.panel-default
+      div.panel-heading
+        h3.panel-title
+          strong งบประมาณเงินทุน
+      div.panel-body
+        div.col-xs-12
+          div.chart(data-ac-chart='graphCtrl.filter.graphType', data-ac-data='graphCtrl.graphInfo', data-ac-config='graphCtrl.graphConfig')

@@ -1,0 +1,29 @@
+[
+	{
+	    "model": "FamilyStatus",
+	    "data": {
+	        "name": "บิดาและมารดา อยู่ร่วมกัน"
+	    }
+	},
+
+	{
+	    "model": "FamilyStatus",
+	    "data": {
+	        "name": "แยกกันอยู่ชั่วคราว"
+	    }
+	},
+
+	{
+	    "model": "FamilyStatus",
+	    "data": {
+	        "name": "หย่าร้าง"
+	    }
+	},
+	
+	{
+	    "model": "FamilyStatus",
+	    "data": {
+	        "name": "อื่นๆ"
+	    }
+	}
+]

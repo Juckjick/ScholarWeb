@@ -1,0 +1,36 @@
+extends ../../../cores/public/views/layouts/cores.table.view.jade
+
+block variable
+  - var controller = 'InterviewsEditController as editCtrl'
+  - var controllerAs = 'editCtrl'
+  - var stTable = 'editCtrl.displayedStudents'
+  - var stSafeSrc = 'editCtrl.students'
+  - var stSearch = 'firstnameTh'
+
+block title
+  i.fa.fa-file-edit
+  | &nbsp;แก้ไขใบสมัครทุนการศึกษานิสิต
+
+block searchField
+  input.form-control.input-sm(type='search', placeholder='รหัสนิสิต', st-search='"studentId"')
+
+
+block table
+  table.table.table-striped.table-bordered.table-hover.table-responsive.dataTable.no-footer
+    thead
+      tr(role='row')
+        th.vtop #
+        th.vtop.st-sortable(st-sort='studentId') รหัสนิสิต
+        th.vtop ชื่อ
+        th.vtop นามสกุล
+        th.vtop แก้ไขใบสมัครทุนนิสิต
+    tbody
+      tr(data-ng-repeat='student in editCtrl.displayedStudents track by $index')
+        td {{ editCtrl.startPage + $index }}
+        td {{ student.studentId }}
+        td {{ student.firstnameTh }}
+        td {{ student.lastnameTh }}
+        td.center
+          button.btn.btn-warning.btn-xs.btn-responsive(data-ng-click='editCtrl.editApplication(student.UserId, student.AcademicYearId)')
+            i.fa.fa-edit
+            | &nbsp;แก้ไขใบสมัคร

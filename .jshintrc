@@ -1,0 +1,24 @@
+{
+   "strict"         : false,  //false: Don't requires all functions run in ES5 Strict Mode
+   "globalstrict"   : true,   // true: Allow global "use strict" (also enables 'strict')
+    // Custom Globals
+    "globals": {
+      "angular"     : true,
+      "define"      : false,
+      "jasmine"     : false,
+      "require"     : false,
+      "exports"     : false,
+      "module"      : false,
+      "describe"    : false,
+      "before"      : false,
+      "beforeEach"  : false,
+      "after"       : false,
+      "afterEach"   : false,
+      "it"          : false,
+      "inject"      : false,
+      "expect"      : false,
+      "spyOn"       : false,
+      "pdfMake": false,
+      "console": false
+    }
+}

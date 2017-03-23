@@ -1,0 +1,45 @@
+[
+	{
+	    "model": "User",
+	    "data": {
+	    	"id": 1,
+	        "fullname": "Administrator",
+	        "email": "admin@sms.local",
+	        "username": "admin",
+	        "provider": "local",
+	        "hashedPassword" : "lfY58/4ffDL7jXbjVpN//6D0pkgmSoN4rnZA6e9FlgBwMMWwf8Rtrxk5z+cLelPL7tnzQe3cFy0UCZuupqPy5g==",
+	        "salt": "oFFVFsImXEqT5/j3Z+Y++A==",
+	        "UserRoles": [1]
+	    }
+	},
+	{
+	    "model": "User",
+	    "data": {
+	    	"id": 2,
+	        "fullname": "John Doe",
+	        "email": "john.doe@sms.local",
+	        "username": "john",
+	        "startDate": "2014-12-17",
+	        "endDate": "2015-12-17",
+	        "provider": "local",
+	        "hashedPassword" : "lfY58/4ffDL7jXbjVpN//6D0pkgmSoN4rnZA6e9FlgBwMMWwf8Rtrxk5z+cLelPL7tnzQe3cFy0UCZuupqPy5g==",
+	        "salt": "oFFVFsImXEqT5/j3Z+Y++A==",
+	        "UserRoles": [2]
+	    }
+	},
+	{
+	    "model": "User",
+	    "data": {
+	    	"id": 3,
+	        "fullname": "Jane Doe",
+	        "email": "jane.doe@sms.local",
+	        "username": "jane",
+	        "startDate": "2014-12-17",
+	        "endDate": "2015-12-17",
+	        "provider": "local",
+	        "hashedPassword" : "lfY58/4ffDL7jXbjVpN//6D0pkgmSoN4rnZA6e9FlgBwMMWwf8Rtrxk5z+cLelPL7tnzQe3cFy0UCZuupqPy5g==",
+	        "salt": "oFFVFsImXEqT5/j3Z+Y++A==",
+	        "UserRoles": [3]
+	    }
+	}
+]

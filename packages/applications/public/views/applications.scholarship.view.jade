@@ -1,0 +1,196 @@
+div(data-ng-controller='ScholarshipsScholarshipController as scholarshipCtrl')
+  accordion-heading
+    i.fa.fa-graduation-cap
+    | &nbsp;ประวัติการศึกษาและการรับทุนการศึกษา
+    span(data-ng-if='(scholarshipCtrl.form.$valid && scholarshipCtrl.form.$pristine) || scholarshipCtrl.isSaved') &nbsp;
+      i.fa.fa-check-circle-o.text-success
+    i.pull-right.fa(ng-class='{"fa-angle-down": second.open, "fa-angle-right": !second.open}')
+
+  alert(data-ng-show='scholarshipCtrl.isSuccess', type='success')
+    i.fa.fa-check-circle-o
+    | &nbsp;ระบบทำการบันทึกข้อมูลเสร็จสิ้น
+  alert(data-ng-show='scholarshipCtrl.isError', type='danger')
+    i.fa.fa-warning
+    | &nbsp;ระบบไม่สามารถบันทึกข้อมูล กรุณารอสักครู่ และทดลองใหม่อีกครั้ง
+  form(role='form', name='scholarshipCtrl.form', method='post')
+    .row
+      .form-group.col-sm-12
+        label นิสิตใหม่ / ปัจจุบัน
+        .checkbox
+          label.checkbox-inline
+            input(type='checkbox', data-ng-model='scholarshipCtrl.profile.isNewStudent', data-ng-click='scholarshipCtrl.sanitizeProfile()')
+            | เป็นนิสิตใหม่
+    .row
+      .form-group.col-sm-6
+        label ผู้สมัครผ่านการสอบคัดเลือกเข้าศึกษาในคณะ
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-university
+          select.form-control(name='FacultyId', data-ng-model='scholarshipCtrl.profile.FacultyId', data-ng-options='faculty.id as faculty.name for faculty in scholarshipCtrl.faculties',validator='required', message-id='FacultyId')
+          .required-icon
+            .text *
+        span#FacultyId
+      .form-group.col-sm-6
+        label ภาควิชา
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-anchor
+          select.form-control(name='DepartmentId', data-ng-model='scholarshipCtrl.profile.DepartmentId', data-ng-options='department.id as department.name for department in scholarshipCtrl.departments',validator='required', message-id='DepartmentId')
+          .required-icon
+            .text *
+        span#DepartmentId
+
+    //- In case of a new comming student (Freshman)
+    div(data-ng-if='scholarshipCtrl.profile.isNewStudent')
+      .row
+        .form-group.col-sm-6
+          label ผลการเรียนระดับมัธยมปลาย เกรดเฉลี่ยสะสม
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-file-archive-o
+            input.form-control(name='gradeAvg', type='number', placeholder='เกรดเฉลี่ยสะสม', min='0', max='4', step='0.01', data-ng-model='scholarshipCtrl.profile.gradeAvg',validator='decimal', message-id='gradeAvg', decimal-error-message='กรุณากรอกเลขทศนิยม 2 ตำแหน่ง (0.00 - 4.00)')
+            .required-icon
+              .text *
+          span#gradeAvg
+        .form-group.col-sm-6
+          label สายการศึกษา
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-gear
+            input.form-control(name='major', type='text', placeholder='วิทย์, คณิต, ศิลป์', maxlength='255', data-ng-model='scholarshipCtrl.profile.major',validator='required', message-id='major')
+            .required-icon
+              .text *
+          span#major
+      .row
+        .form-group.col-sm-6
+          label หน่วยกิตที่ลงทะเบียนจนถึงขณะนี้รวม
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-gear
+            input.form-control(name='credit', type='number', placeholder='รวม...หน่วยกิต', min='0', data-ng-model='scholarshipCtrl.profile.credit',validator='number', message-id='credit')
+            .required-icon
+              .text *
+          span#credit            
+
+    //- Not a freshman
+    div(data-ng-if='!scholarshipCtrl.profile.isNewStudent')
+      .row
+        //.form-group.col-sm-6
+          label สาขาวิชา
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-gear
+            select.form-control(name='major', data-ng-model='scholarshipCtrl.profile.MajorId', data-ng-options='major.id as major.name for major in scholarshipCtrl.majors',validator='required', message-id='major')
+            .required-icon
+              .text *
+          span#major
+        .form-group.col-sm-6
+          label อาจารย์ที่ปรึกษา
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-male
+            input.form-control(name='advisor', type='text', placeholder='อาจารย์ที่ปรึกษา', maxlength='255', data-ng-model='scholarshipCtrl.profile.advisor', validator='required', message-id='advisor')
+            .required-icon
+              .text *
+          span(id='advisor')
+      .row
+        .form-group.col-sm-6
+          label ผลการเรียนภาคการศึกษา (GPA ปีล่าสุด)
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-calendar
+            input.form-control(name='gpa', type='number', placeholder='GPA', min='0', max='4', step='0.01', data-ng-model='scholarshipCtrl.profile.gpa', validator='decimal', message-id='gpa', decimal-error-message='กรุณากรอกเลขทศนิยม 2 ตำแหน่ง (0.00 - 4.00)')
+            .required-icon
+              .text *
+          span(id='gpa')            
+        .form-group.col-sm-6
+          label ปีการศึกษา
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-calendar
+            input.form-control(name='academicYear', type='number', placeholder='ปีการศึกษา', min='2557', max='3000', data-ng-model='scholarshipCtrl.profile.academicYear', validator='number', message-id='academicYear', number-error-message='กรุณากรอกปี พ.ศ. ให้ถูกต้อง')
+            .required-icon
+              .text *
+          span(id='academicYear')
+      .row
+        .form-group.col-sm-6
+          label เกรดเฉลี่ยสะสม
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-file-archive-o
+            input.form-control(name='gradeAvg', type='number', placeholder='เกรดเฉลี่ยสะสม', min='0', max='4', step='0.01', data-ng-model='scholarshipCtrl.profile.gradeAvg',validator='decimal', message-id='gradeAvg', decimal-error-message='กรุณากรอกเลขทศนิยม 2 ตำแหน่ง (0.00 - 4.00)')
+            .required-icon
+              .text *
+          span#gradeAvg
+
+        .form-group.col-sm-6
+          label หน่วยกิตที่ลงทะเบียนจนถึงขณะนี้รวม
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-gear
+            input.form-control(name='credit', type='number', placeholder='รวม...หน่วยกิต', min='0', data-ng-model='scholarshipCtrl.profile.credit',validator='number', message-id='credit')
+            .required-icon
+              .text *
+          span#credit
+        .clearfix
+    hr
+    .row
+      .form-group.col-sm-12
+        label ทุนการศึกษา (ทุกปีการศึกษา)
+        .radio
+          label.radio-inline
+            input(type='radio', name='scholarship', data-ng-value='true', data-ng-model='scholarshipCtrl.profile.hasScholarship', data-ng-click='scholarshipCtrl.sanitizeScholarship()')
+            | เคยได้รับทุนการศึกษา
+          label.radio-inline
+            input(type='radio', name='scholarship', data-ng-value='false', data-ng-model='scholarshipCtrl.profile.hasScholarship', data-ng-click='scholarshipCtrl.sanitizeScholarship()')
+            | ไม่เคยได้รับทุนการศึกษา
+        a.btn.btn-default.btn-xs(data-ng-if='scholarshipCtrl.profile.hasScholarship', data-ng-click='scholarshipCtrl.addScholarship()') 
+          i.fa.fa-plus-square
+          | &nbsp;เพิ่มทุนการศึกษา    
+    div(data-ng-repeat='scholarship in scholarshipCtrl.scholarships')
+      .row
+        a.btn.btn-danger.btn-xs.pull-right(data-ng-click='scholarshipCtrl.deleteScholarship($index)', style='margin-right: 15px;') 
+          i.fa.fa-minus-square
+          | &nbsp;ลบทุนการศึกษา        
+      .row
+        .form-group.col-sm-6
+          label ปีการศึกษา
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-calendar
+            input.form-control(name='scholarshipAcademicYear{{$index}}', type='text', placeholder='ปีการศึกษา', min='2557', max='3000', data-ng-model='scholarship.academicYear', validator='number', message-id='scholarshipAcademicYear{{$index}}', number-error-message='กรุณากรอกปี พ.ศ. ให้ถูกต้อง')
+            .required-icon
+              .text *
+          span(id='scholarshipAcademicYear{{$index}}')
+        .form-group.col-sm-6
+          label ประเภท
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-file
+            input.form-control(name='scholarshipType{{$index}}', type='text', placeholder='ประเภท', maxlength='50', data-ng-model='scholarship.type', validator='required', message-id='scholarshipType{{$index}}')
+            .required-icon
+              .text *
+          span(id='scholarshipType{{$index}}')
+      .row
+        .form-group.col-sm-6
+          label ชื่อทุนการศึกษา
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-file
+            input.form-control(name='scholarshipName{{$index}}', type='text', placeholder='ชื่อทุนการศึกษา', maxlength='50', data-ng-model='scholarship.name', validator='required', message-id='scholarshipName{{$index}}')
+            .required-icon
+              .text *
+          span(id='scholarshipName{{$index}}')
+        .form-group.col-sm-6
+          label จำนวนเงิน
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-money
+            input.form-control(name='scholarshipTotal{{$index}}', type='number', placeholder='จำนวนเงิน...บาท', min='0', data-ng-model='scholarship.total',validator='number', message-id='scholarshipTotal{{$index}}')
+            .required-icon
+              .text *
+          span(id='scholarshipTotal{{$index}}')
+      .clearfix
+    button.btn.btn-primary.pull-right(data-ng-click='scholarshipCtrl.upsertOldScholarship()', validation-submit='scholarshipCtrl.form',  data-ng-disabled='scholarshipCtrl.isSubmit')
+      i.fa.fa-save
+      | &nbsp;บันทึกข้อมูล

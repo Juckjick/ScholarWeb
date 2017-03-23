@@ -1,0 +1,83 @@
+div(data-ng-controller='ScholarshipsContactController as contactCtrl')
+  accordion-heading
+    i.fa.fa-users
+    | &nbsp;นิสิตหรืออาจารย์ผู้อื่นที่ไม่ใช่อาจารย์ที่ปรึกษาที่ทางคณะกรรมการฯ สามารถสอบถามได้ (อย่างน้อย 2 คน)
+    span(data-ng-if='(contactCtrl.form.$valid && contactCtrl.form.$pristine && contactCtrl.contacts && contactCtrl.contacts.length >= 2) || (contactCtrl.isSaved && contactCtrl.contacts && contactCtrl.contacts.length >= 2)') &nbsp;
+      i.fa.fa-check-circle-o.text-success
+    i.pull-right.fa(ng-class='{"fa-angle-down": seventh.open, "fa-angle-right": !seventh.open}')
+
+  alert(data-ng-if='contactCtrl.isSuccess', type='success')
+    i.fa.fa-check-circle-o
+    | &nbsp;ระบบทำการบันทึกข้อมูลเสร็จสิ้น
+  alert(data-ng-if='contactCtrl.isError', type='danger')
+    i.fa.fa-warning
+    | &nbsp;ระบบไม่สามารถบันทึกข้อมูล กรุณารอสักครู่ และทดลองใหม่อีกครั้ง
+  a.btn.btn-default.btn-xs(data-ng-click='contactCtrl.addContact()')
+    i.fa.fa-plus-square
+    | &nbsp;เพิ่มผู้ติดต่อ
+  form(role='form', name='contactCtrl.form', method='post')
+    div(data-ng-repeat='contact in contactCtrl.contacts')
+      a.btn.btn-danger.btn-xs.pull-right(data-ng-click='contactCtrl.deleteContact($index)', style='margin-right: 15px;')
+        i.fa.fa-minus-square
+        | &nbsp;ลบผู้ติดต่อ
+      .form-group.col-sm-12
+        label ผู้ติดต่อ
+        .radio
+          label.radio-inline
+            input(type='radio', value='1', data-ng-model='contact.typeId')
+            | อาจารย์
+          label.radio-inline
+            input(type='radio', value='2', data-ng-model='contact.typeId')
+            | นิสิต
+      .row
+        .form-group.col-sm-6
+          label ชื่อ/สกุล
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-child
+            input.form-control(name='contact-fullname{{$index}}', type='text', placeholder='ชื่อนามสกุล', maxlength='100',data-ng-model='contact.fullname', validator='required', message-id='contact-fullname{{$index}}')
+            .required-icon
+              .text *
+          span(id='contact-fullname{{$index}}')
+        .form-group.col-sm-6(data-ng-if='contact.typeId === "2"')
+          label ปีที่
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-child
+            input.form-control(name='contact-academicYear{{$index}}', type='text', placeholder='ปีที่', data-ng-model='contact.academicYear', min='2557', max='3000', validator='number', message-id='contact-academicYear{{$index}}', number-error-message='กรุณากรอกปี พ.ศ. ให้ถูกต้อง')
+            .required-icon
+              .text *
+          span(id='contact-academicYear{{$index}}')
+      .row
+        .form-group.col-sm-6
+          label คณะ
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-university
+            input.form-control(name='contact-faculty{{$index}}', type='text', placeholder='คณะ', maxlength='50', data-ng-model='contact.faculty', validator='required', message-id='contact-faculty{{$index}}')
+            .required-icon
+              .text *
+          span(id='contact-faculty{{$index}}')
+        .form-group.col-sm-6
+          label ภาควิชา
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-anchor
+            input.form-control(name='contact-department{{$index}}', type='text', placeholder='ภาควิชา', maxlength='50', data-ng-model='contact.department', validator='required', message-id='contact-department{{$index}}')
+            .required-icon
+              .text *
+          span(id='contact-department{{$index}}')
+      .row
+        .form-group.col-sm-12
+          label ที่อยู่และเบอร์โทรศัพท์
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-home
+            textarea.form-control(name='contact-address{{$index}}', placeholder='ที่อยู่ และเบอร์โทรศัพท์', maxlength='255', data-ng-model='contact.address', validator='required', message-id='contact-address{{$index}}')
+            .required-icon
+              .text *
+          span(id='contact-address{{$index}}')
+    .clearfix
+    button.btn.btn-primary.pull-right(data-ng-click='contactCtrl.upsertContact()', validation-submit='contactCtrl.form',  data-ng-disabled='contactCtrl.isSubmit')
+      i.fa.fa-save
+      | &nbsp;บันทึกข้อมูล

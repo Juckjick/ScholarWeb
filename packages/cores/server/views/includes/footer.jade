@@ -1,0 +1,24 @@
+//- Pace.js 
+script(type='text/javascript').
+  paceOptions = {
+    ajax: {
+      trackMethods: ['GET', 'POST', 'PUT', 'DELETE']
+    }
+  };
+
+//- Production environment, load minified files
+if (process.env.NODE_ENV === 'production')
+  script(type='text/javascript', src='/dist/js/lib.min.js')
+  script(type='text/javascript', src='/dist/js/sms.min.js')
+  
+//- Development environment, load all files
+if (process.env.NODE_ENV === 'development')
+  
+  each jsLibPath in jsLibFiles
+    script(type='text/javascript', src='/#{jsLibPath}')
+
+  each jsSmsPath in jsSmsFiles
+    script(type='text/javascript', src='/#{jsSmsPath}')
+
+  //- Livereload script rendered 
+  script(type='text/javascript', src='http://localhost:35729/livereload.js')

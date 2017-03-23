@@ -1,0 +1,56 @@
+section(data-ng-controller='BudgetsController')
+  h2
+    i.fa.fa-pencil-square-o
+    | รายชื่อประเภทเงินทุน
+  hr
+  table.table.table-hover
+    thead
+      tr
+        th #
+        th ชื่อของเงินทุน
+        th งบประมาณเงินทุน
+        th แก้ไข/ลบ
+    tbody
+      tr
+        td 1
+        td ทุนประเภทที่ 1
+        td 500,000
+        td
+          a.btn.btn-warning(data-ng-click='openEditModal()')
+            span
+              i.fa.fa-pencil-square
+            | &nbsp;แก้ไข
+          &nbsp;            
+          a.btn.btn-danger(href='#')
+            span
+              i.fa.fa-trash
+            | &nbsp;ลบ
+      tr
+        td 2
+        td ทุนประเภทที่ 1
+        td 500,000
+        td
+          a.btn.btn-warning(href='#')
+            span
+              i.fa.fa-pencil-square
+            | &nbsp;แก้ไข
+          &nbsp;
+          a.btn.btn-danger(href='#')
+            span
+              i.fa.fa-trash
+            | &nbsp;ลบ
+      tr
+        td 3
+        td ทุนประเภทที่ 1
+        td 500,000
+        td
+          a.btn.btn-warning(href='#')
+            span
+              i.fa.fa-pencil-square
+            | &nbsp;แก้ไข
+          &nbsp;            
+          a.btn.btn-danger(href='#')
+            span
+              i.fa.fa-trash
+            | &nbsp;ลบ
+  

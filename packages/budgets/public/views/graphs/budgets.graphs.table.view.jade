@@ -1,0 +1,39 @@
+extends layouts/budgets.graphs.default
+
+block variable
+  - var controller = 'BudgetsTableController as tableCtrl'
+  - var controllerAs = 'tableCtrl'
+
+block formField
+  .row
+    .form-group.col-sm-4
+      label ปีการศึกษา
+      select.form-control(name='graph-AcademicYear', data-ng-model='#{controllerAs}.filter.AcademicYear', data-ng-options='AcademicYear as AcademicYear.name for AcademicYear in #{controllerAs}.AcademicYears')
+    .form-group.col-sm-4
+      label วันเริ่มต้น
+      .input-group
+        input.form-control(type='text', datepicker-popup='MM/yyyy', datepicker-options='{minMode: "month"}', datepicker-mode="'month'", data-ng-model='#{controllerAs}.filter.startDate', is-open='#{controllerAs}.openedStartDate', min-date='#{controllerAs}.minDate', current-text='วันนี้', clear-text='ลบ', close-text='ปิด', disabled)
+        span.input-group-btn
+          button.btn.btn-default.btn-not-responsive(type='button', ng-click='#{controllerAs}.openStartDate($event)')
+            i.fa.fa-calendar
+    .form-group.col-sm-4
+      label วันสิ้นสุด
+      .input-group
+        input.form-control(type='text', datepicker-popup='MM/yyyy', datepicker-options='{minMode: "month"}', datepicker-mode="'month'", data-ng-model='#{controllerAs}.filter.endDate', is-open='#{controllerAs}.openedEndDate', min-date='#{controllerAs}.minDate', current-text='วันนี้', clear-text='ลบ', close-text='ปิด', disabled)
+        span.input-group-btn
+          button.btn.btn-default.btn-not-responsive(type='button', ng-click='#{controllerAs}.openEndDate($event)')
+            i.fa.fa-calendar
+
+block title
+  i.fa.fa-pie-chart
+  | &nbsp;ตารางเงินทุน 
+
+block graphs
+  div.col-md-12(data-ng-if='tableCtrl.grid.data')
+    div.panel.panel-default
+      div.panel-heading
+        h3.panel-title
+          strong งบประมาณเงินทุนระหว่าง {{ tableCtrl.filter.startDate | buddhistYear | date: 'MMMM yyyy' }} - {{ tableCtrl.filter.endDate | buddhistYear | date: 'MMMM yyyy' }}
+      div.panel-body
+        div.col-sm-12(ui-i18n='"en"')
+          div(ui-grid='tableCtrl.grid', ui-grid-pagination)

@@ -1,0 +1,38 @@
+extends layouts/reports.default.view
+
+block variable
+  - var controller = 'ReportsLoanController as loanCtrl'
+  - var controllerAs = 'loanCtrl'
+
+block title
+  i.fa.fa-money
+  | &nbsp;รายงานเงินกู้ยืมรัฐบาล
+
+block body
+
+  .row(data-ng-if='loanCtrl.results.length')
+    div.table-responsive.col-sm-12
+      table.table.table-hover
+        thead
+          tr
+            th ลำดับที่
+            th รหัสประจำตัวนิสิต
+            th ชื่อ - นามสกุล
+            th เลขที่บัตรประชาชน
+            th ผลการเรียน (GPX)
+            th เบอร์ติดต่อ
+            th วันที่สมัคร
+
+        tbody
+          tr(data-ng-repeat='result in loanCtrl.results')
+            td {{ $index + 1 }}
+            td {{ result.StudentId }}
+            td {{ result.firstNameTh }} {{ result.lastNameTh }}
+            td {{ result.identityCard }}
+            td {{ result.gradeAvg }}
+            td {{ result.mobile }}
+            td {{ result.updatedAt | buddhistYear | date: 'd MMMM yyyy'}}
+
+    button.btn.btn-primary.pull-right(data-ng-click='loanCtrl.exportToExcel()')
+      i.fa.fa-file-excel-o
+      | &nbsp;นำออกรายงาน

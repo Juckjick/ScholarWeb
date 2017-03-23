@@ -1,0 +1,108 @@
+[
+  {
+    "model": "Api",
+    "data": {
+      "link": "/reports/student",
+      "ApisSubSystems": [17]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/reports/loan",
+      "ApisSubSystems": [18]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/reports/scholarship",
+      "ApisSubSystems": [19]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/reports/result",
+      "ApisSubSystems": [20]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/reports/load/all-students",
+      "ApisSubSystems": [17]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/reports/load/student-profiles",
+      "ApisSubSystems": [17]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/reports/save/studentid-academicyearid",
+      "ApisSubSystems": [
+        5,
+        8,
+        17
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/reports/load/results",
+      "ApisSubSystems": [20]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/reports/load/loans",
+      "ApisSubSystems": [20]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/reports/load/scholarships",
+      "ApisSubSystems": [20]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/reports/application.pdf",
+      "ApisSubSystems": [
+        5,
+        8,
+        17
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/reports/result",
+      "ApisSubSystems": [20]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/reports/loan",
+      "ApisSubSystems": [20]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/reports/scholarship",
+      "ApisSubSystems": [20]
+    }
+  }
+]

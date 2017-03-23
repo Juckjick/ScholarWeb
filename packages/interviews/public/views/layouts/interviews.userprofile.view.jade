@@ -1,0 +1,102 @@
+accordion-heading
+  i.fa.fa-child
+  | &nbsp;ประวัติส่วนตัวผู้สมัครขอรับทุน
+  i.pull-right.fa(ng-class='{"fa-angle-down": first.open, "fa-angle-right": !first.open}')
+.row
+  .col-sm-12
+    img(ng-src="data:{{ #{controllerAs}.file.mimetype }};base64,{{ #{controllerAs}.file.data }}" style='max-width:120px;max-height:200px;border: 1px solid #ccc; margin-bottom:5px;')
+  .col-sm-6
+    label.col-sm-4 ชื่อ - นามสกุล
+    span.col-sm-8 {{ #{controllerAs}.profile.firstnameTh }} {{ #{controllerAs}.profile.lastnameTh }}
+  .col-sm-6
+    label.col-sm-4 รหัสนิสิต
+    span.col-sm-8 {{ #{controllerAs}.profile.studentId }}
+  .col-sm-6
+    label.col-sm-4 คณะ
+    span.col-sm-8 {{ #{controllerAs}.profile.Faculty.name }}
+  .col-sm-6
+    label.col-sm-4 ภาควิชา
+    span.col-sm-8 {{ #{controllerAs}.profile.Department.name }}
+  .col-sm-6
+    label.col-sm-4 บัตรประจำตัวประชาชน
+    span.col-sm-8 {{ #{controllerAs}.profile.identityCard }}
+  .col-sm-6
+    label.col-sm-4 ศาสนา
+    span.col-sm-8 {{ #{controllerAs}.profile.religion }}
+  .col-sm-6
+    label.col-sm-4 วันเกิด
+    span.col-sm-8 {{ #{controllerAs}.profile.birthday | buddhistYear | date: 'd MMMM yyyy' }}
+  .col-sm-6
+    label.col-sm-4 ภูมิลำเนา
+    span.col-sm-8 {{ #{controllerAs}.oldAddress.address }} {{ #{controllerAs}.oldAddress.Province.name }} {{ #{controllerAs}.oldAddress.zipcode }}
+  .col-sm-6
+    label.col-sm-4 ที่พักขณะเรียน
+    span.col-sm-8 {{ #{controllerAs}.newAddress.address }} {{ #{controllerAs}.newAddress.Province.name }} {{ #{controllerAs}.newAddress.zipcode }}
+  .col-sm-6
+    label.col-sm-4 เบอร์โทรติดต่อ
+    span.col-sm-8 {{ #{controllerAs}.profile.mobile }}
+  .col-sm-6
+    label.col-sm-4 เกรดเฉลี่ยสะสม
+    span.col-sm-8 {{ #{controllerAs}.profile.gradeAvg }}
+  .col-sm-6
+    label.col-sm-4 อาจารย์ที่ปรึกษา
+    span.col-sm-8 {{ #{controllerAs}.profile.advisor }}
+hr
+.row
+  div(data-ng-if='!_.isEmpty(#{controllerAs}.father)')
+    .col-sm-6
+      label.col-sm-4 ชื่อ/ สกุล บิดา
+      span.col-sm-8 {{ #{controllerAs}.father.fullname }}
+    .col-sm-6
+      label.col-sm-4 อาชีพ
+      span.col-sm-8 {{ #{controllerAs}.father.job }}
+    .col-sm-6
+      label.col-sm-4 รายได้ต่อเดือน
+      span.col-sm-8 {{ #{controllerAs}.father.revenue | currency: '' }} บาท
+    .clearfix
+  div(data-ng-if='!_.isEmpty(#{controllerAs}.mother)')
+    .col-sm-6
+      label.col-sm-4 ชื่อ/ สกุล มารดา
+      span.col-sm-8 {{ #{controllerAs}.mother.fullname }}
+    .col-sm-6
+      label.col-sm-4 อาชีพ
+      span.col-sm-8 {{ #{controllerAs}.mother.job }}
+    .col-sm-6
+      label.col-sm-4 รายได้ต่อเดือน
+      span.col-sm-8 {{ #{controllerAs}.mother.revenue | currency: '' }} บาท
+    .clearfix
+  div(data-ng-if='!_.isEmpty(#{controllerAs}.adopter)')
+    .col-sm-6
+      label.col-sm-4 ชื่อ/ สกุล ผู้อุปการะ
+      span.col-sm-8 {{ #{controllerAs}.adopter.fullname }}
+    .col-sm-6
+      label.col-sm-4 อาชีพ
+      span.col-sm-8 {{ #{controllerAs}.adopter.job }}
+    .col-sm-6
+      label.col-sm-4 รายได้ต่อเดือน
+      span.col-sm-8 {{ #{controllerAs}.adopter.revenue | currency: '' }} บาท
+    .clearfix
+  .col-sm-6
+    label.col-sm-4 สถานภาพ
+    span.col-sm-8 {{ #{controllerAs}.profile.FamilyStatus.name }}
+  .col-sm-6
+    label.col-sm-4 บุตร และบุคคลในอุปการะ
+    span.col-sm-8 {{ #{controllerAs}.adoption.person }} 
+hr
+.row
+  .col-sm-12
+    label.col-sm-12 ความจำเป็นหรือเหตุผลสำคัญ
+    p.col-sm-12 {{ #{controllerAs}.reason.reason }} 
+hr
+.row
+  .col-sm-12
+    label.col-sm-12 ทุนการศึกษาในปีที่ผ่านมา (ข้อมูลจากใบสมัคร)
+    p.col-sm-12(data-ng-repeat='scholarship in #{controllerAs}.scholarships') - {{ scholarship.name }} จำนวน {{scholarship.total | currency: ''}} บาท
+    p.col-sm-12(data-ng-if='!#{controllerAs}.scholarships.length') - ไม่ได้ระบุ
+  .col-sm-12
+    label.col-sm-12 ทุนการศึกษาในปีที่ผ่านมา (ข้อมูลจากระบบ)
+    p.col-sm-12(data-ng-repeat='summary in #{controllerAs}.summaries') - {{ summary.BudgetTransaction.SubBudget.Budget.name }}/{{ summary.BudgetTransaction.SubBudget.name }} จำนวน {{summary.BudgetTransaction.amount | currency: ''}} บาท
+    p.col-sm-12(data-ng-if='!#{controllerAs}.summaries.length') - ไม่ได้ระบุ
+
+
+  

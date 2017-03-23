@@ -1,0 +1,71 @@
+section(data-ng-controller='BudgetsTransactionController as transactionCtrl')
+  alert(data-ng-show='transactionCtrl.isSuccess', type='success')
+    i.fa.fa-check-circle-o
+    | &nbsp;ระบบทำการบันทึกข้อมูลเสร็จสิ้น
+  alert(data-ng-show='transactionCtrl.isError', type='danger')
+    i.fa.fa-warning
+    | &nbsp;ระบบไม่สามารถบันทึกข้อมูล กรุณาตรวจสอบจำนวนเงินให้ถูกต้อง (จำนวนเงินที่ระบุอาจทำให้งบประมาณมีค่าติดลบ)    
+
+  h2
+    i.fa.fa-pencil-square-o
+    | &nbsp;เพิ่ม / ลด งบประมาณ
+  hr
+
+  form(role='form', name='transactionCtrl.form')
+    .form-group.col-sm-6
+      label ปีการศึกษา
+      .input-group.required-field-block
+        span.input-group-addon
+          i.fa.fa-university
+        select.form-control(name='trasaction-AcademicYearId', data-ng-model='transactionCtrl.result.AcademicYearId', data-ng-options='AcademicYear.id as AcademicYear.name for AcademicYear in transactionCtrl.AcademicYears', validator='required', message-id='trasaction-AcademicYearId')
+        .required-icon
+          .text *
+      span#trasaction-AcademicYearId    
+    .form-group.col-sm-6
+      label ประเภททุนการศึกษา:
+      .input-group.required-field-block
+        span.input-group-addon
+          i.fa.fa-bank
+        select.form-control(name='transaction-add-budgetid', data-ng-model='transactionCtrl.result.Budget', data-ng-change='transactionCtrl.filterSubBudgets()', data-ng-options='budget as budget.name for budget in transactionCtrl.budgets | filter: {AcademicYearId: transactionCtrl.result.AcademicYearId}', validator='required', message-id='transaction-add-budgetid')
+        .required-icon
+          .text *
+      span#transaction-add-budgetid
+    .form-group.col-sm-6
+      label ประเภททุนการศึกษาย่อย:
+      .input-group.required-field-block
+        span.input-group-addon
+          i.fa.fa-bitcoin
+        select.form-control(name='transaction-subbudgetid', data-ng-model='transactionCtrl.result.SubBudget', data-ng-options='subBudget as subBudget.name for subBudget in transactionCtrl.subBudgets',  validator='required', message-id='transaction-add-subbudgetid')
+        .required-icon
+          .text *
+      span#transaction-add-subbudgetid
+    .form-group.col-sm-6
+      label เพิ่ม/ลด งบประมาณเงินทุน
+      .input-group.required-field-block
+        span.input-group-addon
+          i.fa.fa-archive
+        select.form-control(name='transaction-isincome', data-ng-model='transactionCtrl.result.isIncome', data-ng-options='incomeOption.value as incomeOption.name for incomeOption in transactionCtrl.incomeOptions', validator='boolean', message-id='transaction-add-isincome')
+        .required-icon
+          .text *
+      span#transaction-add-isincome
+    .form-group.col-sm-6
+      label จำนวนเงิน (บาท)
+      .input-group.required-field-block
+        span.input-group-addon
+          i.fa.fa-money
+        input.form-control(name='budget-transaction-add-amount', type='number', placeholder='งบประมาณเงินทุน', min='1', step='0.1', data-ng-model='transactionCtrl.result.amount', validator='decimal', message-id='budget-transaction-add-amount')
+        .required-icon
+          .text *
+      span#budget-transaction-add-amount
+    .form-group.col-sm-6
+      label หมายเหตุ
+      .input-group.required-field-block
+        span.input-group-addon
+          i.fa.fa-list-alt
+        input.form-control(name='budget-transaction-add-description', type='text', placeholder='รายละเอียดของเงินทุน', maxlength='255', data-ng-model='transactionCtrl.result.description', validator='required', message-id='budget-transaction-add-description')
+        .required-icon
+          .text *
+      span#budget-transaction-add-description
+    button.btn.btn-primary.pull-right(type='submit', data-ng-click='transactionCtrl.save()', data-ng-disabled='transactionCtrl.isSubmit', validation-submit='transactionCtrl.form')
+      i.fa.fa-save
+      | &nbsp;บันทึกงบประมาณ

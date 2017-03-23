@@ -1,0 +1,474 @@
+[
+  {
+    "model": "Api",
+    "data": {
+      "link": "/scholarships/apply",
+      "ApisSubSystems": [5]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/scholarships/apply/complete",
+      "ApisSubSystems": [5]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/scholarships/edit/application/:StudentId/:AcademicYearId",
+      "ApisSubSystems": [6]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/scholarships/edit/list",
+      "ApisSubSystems": [6]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/scholarships/setting",
+      "ApisSubSystems": [9]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/scholarships/load/titles",
+      "ApisSubSystems": [
+        5,
+        6,
+        7,
+        8,
+        17
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/scholarships/load/provinces",
+      "ApisSubSystems": [
+        5,
+        6,
+        7,
+        8,
+        17
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/scholarships/load/profile",
+      "ApisSubSystems": [
+        5,
+        6,
+        7,
+        8,
+        17
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/scholarships/load/addresses",
+      "ApisSubSystems": [
+        5,
+        6,
+        7,
+        8,
+        17
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/scholarships/load/faculties-departments",
+      "ApisSubSystems": [
+        5,
+        6,
+        7,
+        8,
+        17
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/scholarships/load/majors",
+      "ApisSubSystems": [
+        5,
+        6,
+        7,
+        8,
+        17
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/scholarships/load/scholarships",
+      "ApisSubSystems": [
+        5,
+        6,
+        7,
+        8,
+        17
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/scholarships/load/families",
+      "ApisSubSystems": [
+        5,
+        6,
+        7,
+        8,
+        17
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/scholarships/load/adoption",
+      "ApisSubSystems": [
+        5,
+        6,
+        7,
+        8,
+        17
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/scholarships/load/cashes",
+      "ApisSubSystems": [
+        5,
+        6,
+        7,
+        8,
+        17
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/scholarships/load/health",
+      "ApisSubSystems": [
+        5,
+        6,
+        7,
+        8,
+        17
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/scholarships/load/activity",
+      "ApisSubSystems": [
+        5,
+        6,
+        7,
+        8,
+        17
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/scholarships/load/contacts",
+      "ApisSubSystems": [
+        5,
+        6,
+        7,
+        8,
+        17
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/scholarships/load/reason",
+      "ApisSubSystems": [
+        5,
+        6,
+        7,
+        8,
+        17
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/scholarships/load/jobs",
+      "ApisSubSystems": [
+        5,
+        6,
+        7,
+        8,
+        17
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/scholarships/load/loans",
+      "ApisSubSystems": [
+        5,
+        6,
+        7,
+        8,
+        17
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/scholarships/load/files",
+      "ApisSubSystems": [
+        5,
+        6,
+        7,
+        8,
+        17
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/scholarships/load/uploaded-files",
+      "ApisSubSystems": [
+        5,
+        6,
+        7,
+        8,
+        17
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/scholarships/load/max-academicyearid",
+      "ApisSubSystems": [
+        5,
+        6,
+        7,
+        8,
+        17
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/scholarships/upsert/profile",
+      "ApisSubSystems": [
+        5,
+        6
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/scholarships/upsert/old-scholarships",
+      "ApisSubSystems": [
+        5,
+        6
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/scholarships/upsert/families",
+      "ApisSubSystems": [
+        5,
+        6
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/scholarships/upsert/cashes",
+      "ApisSubSystems": [
+        5,
+        6
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/scholarships/upsert/health",
+      "ApisSubSystems": [
+        5,
+        6
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/scholarships/upsert/activity",
+      "ApisSubSystems": [
+        5,
+        6
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/scholarships/upsert/contacts",
+      "ApisSubSystems": [
+        5,
+        6
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/scholarships/upsert/reason",
+      "ApisSubSystems": [
+        5,
+        6
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/scholarships/upsert/job",
+      "ApisSubSystems": [
+        5,
+        6
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/scholarships/upsert/loan",
+      "ApisSubSystems": [
+        5,
+        6
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/scholarships/upsert/file",
+      "ApisSubSystems": [
+        5,
+        6
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/scholarships/copy/ancient-to-current",
+      "ApisSubSystems": [
+        5,
+        6
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/scholarships/delete/file",
+      "ApisSubSystems": [
+        5,
+        6
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/scholarship/delete/all-data",
+      "ApisSubSystems": [
+        5,
+        6
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/scholarships/send/application",
+      "ApisSubSystems": [5]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/scholarships/load/setting",
+      "ApisSubSystems": [
+        5,
+        9
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/scholarships/upsert/setting",
+      "ApisSubSystems": [9]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/scholarships/save/primarykeyid",
+      "ApisSubSystems": [
+        5,
+        6,
+        7,
+        8,
+        17
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/scholarships/export/:name",
+      "ApisSubSystems": [
+        5,
+        6,
+        7,
+        8,
+        17
+      ]
+    }
+  }
+]

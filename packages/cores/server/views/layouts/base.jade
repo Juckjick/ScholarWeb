@@ -1,0 +1,9 @@
+doctype html
+html(lang='en')
+  include ../includes/header.jade
+  - var bodyClass = '';
+  block vars
+  body(class='#{bodyClass}')
+    block body
+    include ../includes/footer.jade
+

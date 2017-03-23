@@ -1,0 +1,58 @@
+extends layouts/reports.default.view
+
+block variable
+  - var controller = 'ReportsScholarshipController as scholarshipCtrl'
+  - var controllerAs = 'scholarshipCtrl'
+
+block title
+  i.fa.fa-money
+  | &nbsp;รายงานทุนอุดหนุน
+
+block body
+
+  .row(data-ng-if='scholarshipCtrl.results.length')
+    div.col-sm-12.table-xscroll
+      table.table.table-hover.table-bordered
+        thead
+          tr
+            th.center(rowspan='2') ลำดับที่
+            th.center(rowspan='2') เลขประจำตัว
+            th.center(rowspan='2') ชื่อ
+            th.center(rowspan='2') นามสกุล
+            th.center(rowspan='2') ภาควิชา
+            th.center(rowspan='2') ผลการเรียน (GPX)
+            th.center(rowspan='2') ภูมิลำเนา
+            th.center(colspan='2') อาชีพ 
+            th.center(rowspan='2') ประเภททุนที่ได้รับ
+            th.center(rowspan='2') จำนวน (บาท)
+            th.center(colspan='2') สถานภาพผู้ปกครอง (เสียชีวิต)
+            th.center(rowspan='2') ที่อยู่ของนิสิตที่สามารถติดต่อได้
+          tr
+            th.center บิดา
+            th.center มารดา
+            th.center บิดา
+            th.center มารดา
+
+        tbody
+          tr(data-ng-repeat='result in scholarshipCtrl.results')
+            td.vcenter {{ $index + 1 }}
+            td.vcenter {{ result.StudentId }}
+            td.vcenter {{ result.firstNameTh }} 
+            td.vcenter {{ result.lastNameTh }}
+            td.vcenter {{ result.department }}
+            td.vcenter {{ result.gradeAvg }}
+            td.vcenter {{ result.oldAddress }} {{ result.oldZipcode }}
+            td.vcenter {{ result.fatherJob }}
+            td.vcenter {{ result.motherJob }}
+            td.vcenter {{ result.scholarship }}
+            td.vcenter {{ result.amount }}
+            //- Swap value between 0 and 1
+            td(data-ng-if='result.fatherIsAlive').vcenter {{ 1 - result.fatherIsAlive }} 
+            td(data-ng-if='!result.fatherIsAlive').vcenter 
+            td(data-ng-if='result.motherIsAlive').vcenter {{ 1 - result.motherIsAlive }}
+            td(data-ng-if='!result.motherIsAlive').vcenter 
+            td.vcenter {{ result.newAddress }} {{ result.newZipcode }}
+
+    button.btn.btn-primary.pull-right(data-ng-click='scholarshipCtrl.exportToExcel()')
+      i.fa.fa-file-excel-o
+      | &nbsp;นำออกรายงาน

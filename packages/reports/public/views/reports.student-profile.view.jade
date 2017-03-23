@@ -1,0 +1,51 @@
+.modal-header
+  h3.modal-title 
+    i.fa.fa-child
+    | &nbsp;ภาพรวมข้อมูลนิสิต
+.modal-body
+  .row
+    .col-sm-6
+      label ชื่อ - นามสกุล
+      p {{ studentCtrl.profiles[0].firstnameTh }} {{ studentCtrl.profiles[0].lastnameTh }}
+    .col-sm-6
+      label รหัสนิสิต
+      p {{ studentCtrl.profiles[0].studentId }}
+    .col-sm-6
+      label คณะ
+      p {{ studentCtrl.profiles[0].Faculty.name }}
+    .col-sm-6
+      label ภาควิชา
+      p {{ studentCtrl.profiles[0].Department.name }}
+    .col-sm-6
+      label บัตรประจำตัวประชาชน
+      p {{ studentCtrl.profiles[0].identityCard }}
+    .col-sm-6
+      label ศาสนา
+      p {{ studentCtrl.profiles[0].religion }}
+    .col-sm-6
+      label วันเกิด
+      p {{ studentCtrl.profiles[0].birthday | buddhistYear | date: 'd MMMM yyyy' }}
+    .col-sm-6
+      label วันทีสมัครทุนครั้งล่าสุด
+      p {{ studentCtrl.profiles[0].updatedAt | buddhistYear | date: 'd MMMM yyyy' }}
+
+  .row
+    form(role='form', name='studentCtrl.form')
+      .form-group.col-sm-12
+        label ปีการศึกษา
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-history
+          select.form-control(name='AcademicYearId', data-ng-model='studentCtrl.AcademicYearId', data-ng-options='AcademicYear.id as AcademicYear.name for AcademicYear in studentCtrl.AcademicYears',validator='required', message-id='AcademicYearId')
+          .required-icon
+            .text *
+        span#AcademicYearId
+
+.modal-footer
+  button.btn.btn-primary(data-ng-click='studentCtrl.exportPdf()', validation-submit='studentCtrl.form')
+    i.fa.fa-upload
+    | &nbsp;นำออกข้อมูล
+  button.btn.btn-warning(data-ng-click='studentCtrl.cancelDetailModal()')
+    i.fa.fa-reply
+    | &nbsp;ยกเลิก
+

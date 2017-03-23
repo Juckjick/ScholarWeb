@@ -1,0 +1,56 @@
+block variable
+
+section(data-ng-controller=controller)
+  h2
+    block title
+  hr
+
+  //- Header
+  .table-responsive(st-table=stTable, st-safe-src=stSafeSrc)
+    .form-inline(role='grid')
+
+      //- Normal screen size
+      .row.hidden-xs
+        .col-sm-4
+          label
+            select.form-control.input-sm(data-ng-model='#{controllerAs}.itemsByPage', data-ng-change='#{controllerAs}.calculateStartEndPage(1)')
+              option(value='10') 10
+              option(value='25') 25
+              option(value='50') 50
+              option(value='100') 100
+            | &nbsp;จำนวนแถวต่อหน้า
+        .col-sm-8.text-right
+          label
+            | ค้นหา
+            block searchField
+            .input-group
+              input.form-control.input-sm(type='search', placeholder='ชื่อ', st-search='"#{stSearch}"')
+              span.input-group-addon
+                i.fa.fa-search.fa-rotate-90
+
+      //- xs screen size
+      .row.visible-xs-block
+        .col-xs-12
+          label
+            | &nbsp;จำนวนแถวต่อหน้า
+            select.form-control.input-sm(data-ng-model='#{controllerAs}.itemsByPage', data-ng-change='#{controllerAs}.calculateStartEndPage(1)')
+              option(value='10') 10
+              option(value='25') 25
+              option(value='50') 50
+              option(value='100') 100
+        .col-xs-12
+          label
+            | ค้นหา
+            block searchField
+            .input-group
+              input.form-control.input-sm(type='search', placeholder='ชื่อ', st-search='"fullname"')
+              span.input-group-addon
+                i.fa.fa-search.fa-rotate-90
+      block table
+
+      //- Footer
+      .row
+        .col-sm-6
+          span แสดง {{ #{stSafeSrc}.length ? (#{controllerAs}.startPage + '-' + #{controllerAs}.endPage) : '0' }} จากทั้งหมด {{ #{stSafeSrc}.length }} รายการ
+        .col-sm-6
+          div(st-pagination='', st-items-by-page='#{controllerAs}.itemsByPage', st-displayed-pages='7', st-page-change='#{controllerAs}.calculateStartEndPage(newPage)')

@@ -1,0 +1,14 @@
+// Variables and mixins
+@import 'variables';
+
+// Import original boostrap
+@import '../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap';
+
+// Custom styles
+@import 'layout/header';
+@import 'layout/auth';
+@import 'layout/sidebar';
+@import 'layout/main';
+@import 'layout/footer';
+@import 'custom';
+

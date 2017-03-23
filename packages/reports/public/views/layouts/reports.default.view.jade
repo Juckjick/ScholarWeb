@@ -1,0 +1,33 @@
+block variable
+
+section(data-ng-controller=controller)
+  h2
+    block title
+  hr
+  .row
+    .col-md-12
+      form(role='form', name='form', method='post')
+          .form-group.col-sm-4
+            label ปีการศึกษา
+            select.form-control(name='AcademicYear', data-ng-model='#{controllerAs}.filter.AcademicYear', data-ng-options='AcademicYear as AcademicYear.name for AcademicYear in #{controllerAs}.AcademicYears')
+          .form-group.col-sm-4
+            label วันเริ่มต้น
+            .input-group
+              input.form-control(type='text', datepicker-popup='MM/yyyy', datepicker-options='{minMode: "month"}', datepicker-mode="'month'", data-ng-model='#{controllerAs}.filter.startDate', is-open='#{controllerAs}.openedStartDate', min-date='#{controllerAs}.minDate', current-text='วันนี้', clear-text='ลบ', close-text='ปิด', disabled)
+              span.input-group-btn
+                button.btn.btn-default.btn-not-responsive(type='button', data-ng-click='#{controllerAs}.openStartDate($event)')
+                  i.fa.fa-calendar
+          .form-group.col-sm-4
+            label วันสิ้นสุด
+            .input-group
+              input.form-control(type='text', datepicker-popup='MM/yyyy', datepicker-options='{minMode: "month"}', datepicker-mode="'month'", data-ng-model='#{controllerAs}.filter.endDate', is-open='#{controllerAs}.openedEndDate', min-date='#{controllerAs}.minDate', current-text='วันนี้', clear-text='ลบ', close-text='ปิด', disabled)
+              span.input-group-btn
+                button.btn.btn-default.btn-not-responsive(type='button', data-ng-click='#{controllerAs}.openEndDate($event)')
+                  i.fa.fa-calendar
+        button.btn.btn-primary.pull-right(type='submit', data-ng-click='#{controllerAs}.find()', data-ng-disabled='#{controllerAs}.isSubmit', validation-submit='form')
+          i.fa.fa-search
+          | &nbsp;ค้นหาข้อมูล
+
+      .clearfix          
+      hr
+  block body

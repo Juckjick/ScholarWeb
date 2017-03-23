@@ -1,0 +1,33 @@
+div(data-ng-controller='ScholarshipsJobController as jobCtrl')
+  accordion-heading
+    i.fa.fa-suitcase
+    | &nbsp;หากสำเร็จการศึกษาแล้ว ข้าพเจ้ามีความตั้งใจจะประกอบอาชีพ
+    span(data-ng-if='jobCtrl.hasIndatabase || jobCtrl.isSaved') &nbsp;
+      i.fa.fa-check-circle-o.text-success
+    i.pull-right.fa(ng-class='{"fa-angle-down": ninth.open, "fa-angle-right": !ninth.open}')
+      
+  alert(data-ng-if='jobCtrl.isSuccess', type='success')
+    i.fa.fa-check-circle-o
+    | &nbsp;ระบบทำการบันทึกข้อมูลเสร็จสิ้น
+  alert(data-ng-if='jobCtrl.isError', type='danger')
+    jobCtrl.i.fa.fa-warning
+    | &nbsp;ระบบไม่สามารถบันทึกข้อมูล กรุณารอสักครู่ และทดลองใหม่อีกครั้ง
+  form(role='form', name='jobCtrl.form' method='post')
+    .form-group.col-sm-12
+      label หากสำเร็จการศึกษาแล้ว ข้าพเจ้ามีความตั้งใจจะประกอบอาชีพ
+      .radio
+        label.radio-inline(data-ng-repeat='job in jobCtrl.jobs')
+          input(type='radio', name='job', data-ng-value='job.id', data-ng-model='jobCtrl.profile.JobId', data-ng-click='jobCtrl.sanitizeJob(job.id)')
+          | {{ job.name }}
+
+    .form-group.col-sm-12(data-ng-if='jobCtrl.profile.JobId===6')
+      .input-group.required-field-block
+        span.input-group-addon
+          i.fa.fa-file-text      
+        input.form-control(name='job-profile-jobNote', type='text', placeholder='โปรดระบุ', maxlength='50', data-ng-model='jobCtrl.profile.JobNote', validator='required', message-id='job-profile-jobNote')
+        .required-icon
+          .text *        
+      span#job-profile-jobNote
+    button.btn.btn-primary.pull-right(data-ng-click='jobCtrl.upsertJob()', validation-submit='jobCtrl.form',  data-ng-disabled='jobCtrl.isSubmit')
+      i.fa.fa-save
+      | &nbsp;บันทึกข้อมูล

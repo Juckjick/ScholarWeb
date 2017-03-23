@@ -1,0 +1,14 @@
+extends ../../layouts/base
+
+block body
+  .container
+    .row
+      .col-md-12
+      .error
+        img.img-responsive(src="/img/cu_logo.png")
+        block message
+        .error-nav
+          a.btn.btn-primary.btn-lg(href="/")
+            .i.fa.fa-home  กลับไปหน้าหลัก
+          a.btn.btn-primary.btn-lg(href="#")
+            .i.fa.fa-envelope  ติดต่อเรา

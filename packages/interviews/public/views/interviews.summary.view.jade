@@ -1,0 +1,156 @@
+section
+  alert#top(data-ng-if='vm.isSuccess', type='success')
+    i.fa.fa-check-circle-o
+    | &nbsp;ระบบทำการบันทึกข้อมูลเสร็จสิ้น
+  alert#top(data-ng-if='vm.isError', type='danger')
+    i.fa.fa-warning
+    | &nbsp;ระบบไม่สามารถบันทึกข้อมูล กรุณาตรวจสอบจำนวนเงินให้ถูกต้อง (จำนวนเงินที่ระบุอาจทำให้งบประมาณมีค่าติดลบ)    
+  h2
+    i.fa.fa-file-text
+    | &nbsp;สรุปผลทุนการศึกษา
+  hr
+  h4 พิจารณาทุนการศึกษาให้แก่: {{ vm.profile.firstnameTh }} {{ vm.profile.lastnameTh }} หรัสประจำตัวนิสิต: {{ vm.profile.studentId }}
+
+  accordion(close-others='true')
+    accordion-group(is-open='first.open')
+      - var controllerAs = 'vm'
+      include layouts/interviews.userprofile.view.jade
+
+    accordion-group(is-open='second.open')
+      accordion-heading
+        i.fa.fa-file-pdf-o
+        | &nbsp;เอกสารต่างๆ
+        i.pull-right.fa(ng-class='{"fa-angle-down": second.open, "fa-angle-right": !second.open}')
+      .table-responsive.col-sm-12
+        table.table.table-hover
+          thead
+            tr
+              th #
+              th(width='30%') ชื่อเอกสาร
+              th ประเภท
+              th วันที่อัพโหลด
+              th ดาวน์โหลด
+          tbody
+            tr(data-ng-repeat='file in vm.files')
+              td {{ $index + 1 }}
+              td {{ file.File.name }}
+              td {{ file.mimetype }}
+              td {{ file.createdAt | date}}
+              td
+                a.btn.btn-primary.btn-sm(data-ng-click='vm.exportFile(file)')
+                  span
+                    i.fa.fa-download
+                  | &nbsp;โหลดเอกสาร                           
+      button.btn.btn-default(data-ng-click='vm.exportPdf()')
+        i.fa.fa-download
+        | &nbsp;ดาวน์โหลดใบสมัคร    
+
+    accordion-group(is-open='thrid.open')
+      accordion-heading
+        i.fa.fa-money
+        | &nbsp;รายละเอียดเงินทุน
+        i.pull-right.fa(ng-class='{"fa-angle-down": thrid.open, "fa-angle-right": !thrid.open}')
+
+      table.table.table-hover.table-responsive
+        thead
+          tr
+            th ประเภทเงินทุน
+            th งบประมาณคงเหลือ (บาท)
+        tbody(data-ng-repeat='main in vm.budgets')
+          tr.active
+            td {{ main.name }}
+            td
+          tr(data-ng-repeat='sub in main.SubBudgets')
+            td - {{ sub.name }}
+            td {{ sub.balance | currency:'' }}
+
+    accordion-group(is-open='fourth.open')
+      accordion-heading
+        i.fa.fa-file-o
+        | &nbsp;ผลการประเมินทุนการศึกษา
+        i.pull-right.fa(ng-class='{"fa-angle-down": fourth.open, "fa-angle-right": !fourth.open}')
+      div.col-sm-12.table-xscroll
+        table.table.table-hover.table-borderred
+          thead
+            tr
+              th.center ผู้ประเมิน
+              th.center ผลการตัดสิน
+              th.center ทุนการศึกษา
+              th.center ความขาดแคลน
+              th.center ความกระตือรือร้น
+              th.center การวางแผนการใช้จ่าย
+              th.center การมีจิตอาสา
+              th.center รายจ่ายกรณีพิเศษที่จำเป็น
+              th.center รวม
+          tbody
+            tr(data-ng-repeat='evaluation in vm.evaluations')
+              td.center {{ evaluation.Evaluator.fullname }}
+              td.center {{ evaluation.getScholarship? 'ให้' : 'ไม่ให้' }}
+              td.center {{ evaluation.SubBudget? (evaluation.SubBudget.Budget.name + '/' + evaluation.SubBudget.name)  : '-'}}
+              td.center {{ evaluation.score1 }}
+              td.center {{ evaluation.score2 }}
+              td.center {{ evaluation.score3 }}
+              td.center {{ evaluation.score4 }}
+              td.center {{ evaluation.score5 }}
+              td.center {{ evaluation.score1 + evaluation.score2 + evaluation.score3 + evaluation.score4 + evaluation.score5 }}
+            tr.active
+              td.center ค่าเฉลี่ย
+              td.center {{ vm.gotScholarship }}
+              td.center -
+              td.center {{ vm.avgScore1 }}
+              td.center {{ vm.avgScore2 }}
+              td.center {{ vm.avgScore3 }}
+              td.center {{ vm.avgScore4 }}
+              td.center {{ vm.avgScore5 }}
+              td.center {{ vm.avgAllScore }}
+
+
+  div.row
+    div.col-sm-12
+      form(role='form', name='form', method='post')
+        .row
+          .form-group.col-sm-12
+            label พิจารณาแล้วสมควร:
+            label.checkbox-inline
+              input(type='radio', data-ng-value='true', data-ng-model='vm.summary.getScholarship')
+              | &nbsp;ให้ทุน
+            label.checkbox-inline
+              input(type='radio', data-ng-value='false', data-ng-model='vm.summary.getScholarship', data-ng-click='vm.giveScholarships=[]')
+              | &nbsp;ไม่ให้ทุน
+        .div(data-ng-if='vm.summary.getScholarship')
+          a.btn.btn-default.btn-xs(data-ng-click='vm.addGiveScholarship()')
+            i.fa.fa-plus-square
+            | &nbsp;เพิ่มทุนการศึกษา
+        .div(data-ng-repeat='scholarship in vm.giveScholarships track by $index')
+          .row
+            a.btn.btn-danger.btn-xs.pull-right(data-ng-click='vm.deleteGiveScholarship($index)', style='margin-right: 15px;')
+              i.fa.fa-minus-square
+              | &nbsp;ลบทุนการศึกษา
+          .row
+            .form-group.col-sm-6
+              label ประเภททุนการศึกษา:
+              .required-field-block
+                select.form-control(name='evaluation-budgetid{{$index}}', data-ng-model='scholarship.BudgetId', data-ng-change='vm.filterSubBudgets(scholarship)', data-ng-options='budget.id as budget.name for budget in vm.budgets', validator='required', message-id='evaluation-budgetid{{$index}}')
+                .required-icon
+                  .text *
+              span(id='evaluation-budgetid{{$index}}')
+            .form-group.col-sm-6
+              label ประเภททุนการศึกษาย่อย:
+              .required-field-block
+                select.form-control(name='evaluation-subbudgetid{{$index}}', data-ng-model='scholarship.SubBudgetId', data-ng-options='subBudget.id as subBudget.name for subBudget in scholarship.subBudgets',  validator='required', message-id='evaluation-subbudgetid{{$index}}')
+                .required-icon
+                  .text *
+              span(id='evaluation-subbudgetid{{$index}}')
+          .row
+            .form-group.col-sm-6
+              label จำนวนเงิน (บาท)
+              .input-group.required-field-block
+                span.input-group-addon
+                  i.fa.fa-money
+                input.form-control(name='evaulation-amount{{$index}}', type='number', placeholder='จำนวนเงิน...บาท', min='1', step='0.1', data-ng-model='scholarship.amount', validator='decimal', message-id='evaulation-amount{{$index}}')
+                .required-icon
+                  .text *
+              span(id='evaulation-amount{{$index}}')
+        button.btn.btn-primary.pull-right(type='submit', validation-submit='form', data-ng-click='vm.upsertSummary()', data-ng-disabled='vm.isSubmit')
+          i.fa.fa-save
+          | &nbsp;บันทึก

@@ -1,0 +1,12 @@
+div(data-ng-controller='SidebarController')
+  ul.nav.nav-sidebar(data-ng-repeat='subMenu in subMenus')
+    li.group
+      a(class='submenu-header')
+        span
+          i(data-ng-class='subMenu.groupIcon')
+        | &nbsp;{{ subMenu.groupName }}
+    li(data-ng-repeat='subMenuItem in subMenu.menus', ui-route='/{{ subMenuItem.link }}', data-ng-class='{active: $uiRoute}')
+      a(href='#!/{{ subMenuItem.link }}')
+        span
+          i(data-ng-class='subMenuItem.icon')
+        | &nbsp;{{ subMenuItem.title }}

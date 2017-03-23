@@ -1,0 +1,9 @@
+extends base
+
+block body
+  .navbar.navbar-default.navbar-fixed-top(data-ng-include="'partials/cores/public/views/cores.header.view'", data-role="navigation")
+  section.container-fluid
+    div.row
+      .col-sm-3.col-md-2.sidebar(data-ng-include="'partials/cores/public/views/cores.sidebar.view'", data-role="sidebar")
+      .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+        block content

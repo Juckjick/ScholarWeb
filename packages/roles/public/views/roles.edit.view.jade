@@ -1,0 +1,59 @@
+.modal-header#top
+  h3.modal-title 
+    i.fa.fa-pencil-square-o
+    | &nbsp;แก้ไขผู้ใช้งาน
+
+.modal-body
+  alert(data-ng-show='roleCtrl.isSuccess', type='success')
+    i.fa.fa-check-circle-o
+    | &nbsp;ระบบทำการแก้ไขสิทธิเสร็จสิ้น
+  alert(data-ng-show='roleCtrl.isError', type='danger')
+    i.fa.fa-warning
+    | &nbsp;ระบบไม่สามารถแก้ไขสิทธิ่ได้ กรุณารอสักครู่ และทดลองใหม่อีกครั้ง
+  form(role='form', name='roleCtrl.form')
+    .form-group
+      label ชื่อสิทธิของผู้ใช้งาน
+      .input-group.required-field-block
+        span.input-group-addon
+          i.fa.fa-child
+        input.form-control(name='role-name', type='text', data-ng-model='roleCtrl.editRole.name', maxlength='100', placeholder='ชื่อสิทธิของผู้ใช้งาน', validator='required', message-id='role-name')
+        .required-icon
+          .text *
+      span#role-name
+    .form-group
+      label รายละเอียด
+      .input-group.required-field-block
+        span.input-group-addon
+          i.fa.fa-list-alt
+        input.form-control(name='role-description', type='text', data-ng-model='roleCtrl.editRole.description', maxlength='255', placeholder='รายละเอียด', validator='required', message-id='role-description')
+        .required-icon
+          .text *
+      span#role-description
+
+    .clearfix
+    hr
+    .form-group
+      div
+        label ระบบที่สามารถเข้าถึงได้
+      table.table.table-hover
+        thead
+          tr
+            th ชื่อระบบ
+            th เข้าถึงข้อมูล
+
+        //- Loop through systems and sub-systems in order to generate a list 
+        tbody(data-ng-repeat='system in roleCtrl.systems')
+          tr.active
+            td {{ system.name }}
+            td
+          tr(data-ng-repeat='subSystem in system.SubSystems')
+            td(style='padding-left: 30px') - {{ subSystem.name }}
+            td 
+              input(type='checkbox', data-ng-click='roleCtrl.toggleRight(roleCtrl.editRole, subSystem.id)', data-ng-checked='roleCtrl.editRole.subSystems.indexOf(subSystem.id) !== -1')
+.modal-footer
+  button.btn.btn-primary(data-ng-click='roleCtrl.edit()', validation-submit='roleCtrl.form', data-ng-disabled='roleCtrl.isSubmit')
+    i.fa.fa-save
+    | &nbsp;บันทึก
+  button.btn.btn-warning(data-ng-click='roleCtrl.cancelEdit()')
+    i.fa.fa-reply
+    | &nbsp;ยกเลิก

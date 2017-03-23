@@ -1,0 +1,45 @@
+section(data-ng-controller='BudgetsMainController as mainCtrl')
+  alert(data-ng-show='mainCtrl.isSuccess', type='success')
+    i.fa.fa-check-circle-o
+    | &nbsp;ระบบทำการบันทึกข้อมูลเสร็จสิ้น
+  alert(data-ng-show='mainCtrl.isError', type='danger')
+    i.fa.fa-warning
+    | &nbsp;ระบบไม่สามารถบันทึกข้อมูล กรุณารอสักครู่ และทดลองใหม่อีกครั้ง
+
+  h2
+    i.fa.fa-plus-square-o
+    | &nbsp;เพิ่มประเภทของเงินทุนหลัก
+  hr
+  form(role='form', name='mainCtrl.form')
+    .row
+      .form-group.col-sm-6
+        label ชื่อประเภทเงินทุน
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-bank
+          input.form-control(name='budget-main-name', type='text', placeholder='ชื่อเงินทุน', maxlength='255', data-ng-model='mainCtrl.newBudget.name' validator='required', message-id='budget-main-name')
+          .required-icon
+            .text *
+        span#budget-main-name
+      .form-group.col-sm-6
+        label อยู่ในปีการศึกษา
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-calendar
+          select.form-control(name='budget-main-AcademicYearId', data-ng-model='mainCtrl.newBudget.AcademicYearId', data-ng-options='AcademicYear.id as AcademicYear.name for AcademicYear in mainCtrl.AcademicYears', validator='required', message-id='budget-main-AcademicYearId')
+          .required-icon
+            .text *
+        span#budget-main-AcademicYearId
+    .row
+      .form-group.col-sm-12
+        label รายละเอียด
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-list-alt
+          input.form-control(name='budget-main-description', type='text', placeholder='รายละเอียดของเงินทุน', maxlength='255', data-ng-model='mainCtrl.newBudget.description', validator='required', message-id='budget-main-description')
+          .required-icon
+            .text *
+        span#budget-main-description
+    button.btn.btn-primary.pull-right(type='submit', data-ng-click='mainCtrl.create()', data-ng-disabled='mainCtrl.isSubmit', validation-submit='mainCtrl.form')
+      i.fa.fa-plus-square-o
+      | &nbsp;เพิ่มประเภทเงินทุน

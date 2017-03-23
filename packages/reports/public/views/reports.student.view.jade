@@ -1,0 +1,35 @@
+extends ../../../cores/public/views/layouts/cores.table.view.jade
+
+block variable
+  - var controller = 'ReportsStudentController as studentCtrl'
+  - var controllerAs = 'studentCtrl'
+  - var stTable = 'studentCtrl.displayedStudents'
+  - var stSafeSrc = 'studentCtrl.students'
+  - var stSearch = 'firstnameTh'
+
+block title
+  i.fa.fa-file-text
+  | &nbsp;รายงานข้อมูลนิสิต
+
+block searchField
+  input.form-control.input-sm(type='search',  placeholder='รหัสนิสิต', st-search='"studentId"')
+
+block table
+  table.table.table-striped.table-bordered.table-hover.table-responsive.dataTable.no-footer
+    thead
+      tr(role='row')
+        th.vtop #
+        th.vtop.st-sortable(st-sort='studentId') รหัสนิสิต
+        th.vtop ชื่อ
+        th.vtop นามสกุล
+        th.vtop รายละเอียด
+    tbody
+      tr(data-ng-repeat='student in studentCtrl.displayedStudents track by $index')
+        td {{ studentCtrl.startPage + $index }}
+        td {{ student.studentId }}
+        td {{ student.firstnameTh }}
+        td {{ student.lastnameTh }}
+        td.center
+          button.btn.btn-warning.btn-xs.btn-responsive(data-ng-click='studentCtrl.openDetailModal(student.UserId)')
+            i.fa.fa-upload
+            | &nbsp;ดูรายละเอียด

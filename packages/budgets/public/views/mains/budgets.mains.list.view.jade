@@ -1,0 +1,37 @@
+extends ../../../../cores/public/views/layouts/cores.table.view.jade
+
+block variable
+  - var controller = 'BudgetsMainController as mainCtrl'
+  - var controllerAs = 'mainCtrl'
+  - var stTable = 'mainCtrl.displayedBudgets'
+  - var stSafeSrc = 'mainCtrl.budgets'
+  - var stSearch = 'name'
+
+block title
+  i.fa.fa-pencil-square-o
+  | รายชื่อประเภทเงินทุน
+
+block table
+  table.table.table-striped.table-bordered.table-hover.table-responsive.dataTable.no-footer
+    thead
+      tr(role='row')
+        th.vtop #
+        th.vtop.st-sortable(st-sort='AcademicYear.name') ปีการศึกษา
+        th.vtop ชื่อของเงินทุน
+        th.vtop รายละเอียดเงินทุน
+        th.vtop แก้ไข / ลบ
+    tbody
+      tr(data-ng-repeat='budget in mainCtrl.displayedBudgets track by $index')
+        td {{ mainCtrl.startPage + $index }}
+        td {{ budget.AcademicYear.name }}
+        td {{ budget.name }}
+        td {{ budget.description }}
+        td
+          a.btn-space.btn.btn-warning.btn-responsive(data-ng-click='mainCtrl.openEditModal(budget)')
+            span
+              i.fa.fa-pencil-square
+            | &nbsp;แก้ไข
+          a.btn-space.btn.btn-danger.btn-responsive(data-ng-click='mainCtrl.openDeleteModal(budget)')
+            span
+              i.fa.fa-trash
+            | &nbsp;ลบ&nbsp;&nbsp;

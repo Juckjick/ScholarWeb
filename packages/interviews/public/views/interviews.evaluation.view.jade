@@ -1,0 +1,61 @@
+section
+  alert#top(data-ng-if='evaluationCtrl.isSuccess', type='success')
+    i.fa.fa-check-circle-o
+    | &nbsp;ระบบทำการบันทึกข้อมูลเสร็จสิ้น
+  alert#top(data-ng-if='evaluationCtrl.isError', type='danger')
+    i.fa.fa-warning
+    | &nbsp;ระบบไม่สามารถบันทึกข้อมูล กรุณารอสักครู่ และทดลองใหม่อีกครั้ง
+  h2
+    i.fa.fa-file-o
+    | &nbsp;สัมภาษณ์ทุนการศึกษา
+  hr
+  h4 พิจารณาทุนการศึกษาให้แก่: {{ evaluationCtrl.profile.firstnameTh }} {{ evaluationCtrl.profile.lastnameTh }} หรัสประจำตัวนิสิต: {{ evaluationCtrl.profile.studentId }}
+
+  accordion(close-others='true')
+    accordion-group(is-open='first.open')
+      - var controllerAs = 'evaluationCtrl'
+      include layouts/interviews.userprofile.view.jade
+  .row
+    .col-sm-12
+      form(role='form', name='form', method='post')
+        table.table.table-hover.table-striped.table-bordered.table-responsive
+          thead
+            tr
+              th.center(rowspan='2', style='width: 50%;') หัวข้อในการประเมิน
+              th.center(colspan='11') ระดับ 
+            tr
+              th.center(data-ng-repeat='score in _.range(0,11)')  {{ $index }}
+          tbody
+            tr(data-ng-repeat='criteria in evaluationCtrl.criteria')
+              td {{ ($index+ 1).toString() + '. ' + criteria.name }} 
+              td.center(data-ng-repeat='score in _.range(0,11)')
+                input(type='radio' data-ng-value='score', data-ng-model='evaluationCtrl.result["score" + criteria.id]')
+        div.control-label.has-error(data-ng-if='evaluationCtrl.scoreRequired', style='margin-top: -25px') กรุณาเลือกให้คะแนนนิสิตในทุกหัวข้อในการประเมิน
+        .form-group.col-sm-12
+          label พิจารณาแล้วสมควร:
+          label.checkbox-inline
+            input(type='radio', data-ng-value='true', data-ng-model='evaluationCtrl.result.getScholarship') 
+            | &nbsp;ให้ทุน
+          label.checkbox-inline
+            input(type='radio', data-ng-value='false' data-ng-model='evaluationCtrl.result.getScholarship') 
+            | &nbsp;ไม่ให้ทุน 
+        div(data-ng-if='evaluationCtrl.result.getScholarship')
+          .form-group.col-sm-6
+            label ประเภททุนการศึกษา:
+            .required-field-block
+              select.form-control(name='evaluation-budgetid', data-ng-model='evaluationCtrl.BudgetId', data-ng-change='evaluationCtrl.filterSubBudgets()', data-ng-options='budget.id as budget.name for budget in evaluationCtrl.budgets', validator='required', message-id='evaluation-budgetid')
+              .required-icon
+                .text *
+            span#evaluation-budgetid
+          .form-group.col-sm-6
+            label ประเภททุนการศึกษาย่อย:
+            .required-field-block
+              select.form-control(name='evaluation-subbudgetid', data-ng-model='evaluationCtrl.result.SubBudgetId', data-ng-options='subBudget.id as subBudget.name for subBudget in evaluationCtrl.subBudgets',  validator='required', message-id='evaluation-subbudgetid')
+              .required-icon
+                .text *
+            span#evaluation-subbudgetid
+        button.btn.btn-primary.pull-right(type='submit', validation-submit='form', data-ng-click='evaluationCtrl.upsertEvaluation()', data-ng-disabled='evaluationCtrl.isSubmit')
+          i.fa.fa-save
+          | &nbsp;บันทึก
+
+        .clearfix

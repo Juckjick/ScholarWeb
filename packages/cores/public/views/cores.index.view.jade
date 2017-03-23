@@ -1,0 +1,7 @@
+section(data-ng-controller='IndexController as indexCtrl')
+  h2(data-ng-if='indexCtrl.currentMainMenu')
+    i(data-ng-class='indexCtrl.currentMainMenu.icon')
+      | &nbsp;ระบบการจัดการ{{ indexCtrl.currentMainMenu.title }}
+  h2(data-ng-if='!indexCtrl.currentMainMenu')
+    | ระบบจัดการทุนการศึกษา ฝ่ายกิจการนิสิต
+  hr

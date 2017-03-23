@@ -1,0 +1,14 @@
+extends auth
+
+block auth
+  form.signin(action="/users/session", method="post")
+    .form-group
+      label(for='username') ชื่อผู้ใช้งาน
+      input.form-control#username(type='text', name="username", placeholder='ชื่อผู้ใช้งาน')
+
+    .form-group
+      label(for='password') รหัสผ่าน
+      input.form-control#password(type='password', name="password", placeholder='รหัสผ่าน')
+
+    button.btn.btn-primary.pull-left(type='submit') เข้าสู่ระบบ
+  a.pull-right(href='/register') สมัครสมาชิก

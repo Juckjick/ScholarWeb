@@ -1,0 +1,55 @@
+section(data-ng-controller='BudgetsSubController as subCtrl')
+  alert(data-ng-show='subCtrl.isSuccess', type='success')
+    i.fa.fa-check-circle-o
+    | &nbsp;ระบบทำการบันทึกข้อมูลเสร็จสิ้น
+  alert(data-ng-show='subCtrl.isError', type='danger')
+    i.fa.fa-warning
+    | &nbsp;ระบบไม่สามารถบันทึกข้อมูล กรุณารอสักครู่ และทดลองใหม่อีกครั้ง
+
+  h2
+    i.fa.fa-plus-square-o
+    | &nbsp;เพิ่มประเภทของเงินทุนย่อย
+  hr
+  form(role='form', name='subCtrl.form')
+    .row
+      .form-group.col-sm-12
+        label ชื่อประเภทเงินทุน
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-bitcoin
+          input.form-control(name='budget-sub-name', type='text', placeholder='ชื่อเงินทุน', maxlength='255', data-ng-model='subCtrl.newBudget.name' validator='required', message-id='budget-sub-name')
+          .required-icon
+            .text *
+        span#budget-sub-name
+    .row
+      .form-group.col-sm-6
+        label อยู่ในปีการศึกษา
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-calendar
+          select.form-control(name='budget-sub-AcademicYearId', data-ng-model='subCtrl.newBudget.AcademicYearId', data-ng-options='AcademicYear.id as AcademicYear.name for AcademicYear in subCtrl.AcademicYears', validator='required', message-id='budget-sub-AcademicYearId')
+          .required-icon
+            .text *
+        span#budget-sub-AcademicYearId
+      .form-group.col-sm-6
+        label อยู่ในระบบเงินทุนหลัก
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-university
+          select.form-control(name='budget-sub-BudgetId', data-ng-model='subCtrl.newBudget.BudgetId', data-ng-options='mainBudget.id as mainBudget.name for mainBudget in subCtrl.mainBudgets | filter: {AcademicYearId:subCtrl.newBudget.AcademicYearId}', validator='required', message-id='budget-sub-BudgetId')
+          .required-icon
+            .text *
+        span#budget-sub-BudgetId
+    .row
+      .form-group.col-sm-12
+        label รายละเอียด
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-list-alt
+          input.form-control(name='budget-sub-description', type='text', placeholder='รายละเอียดของเงินทุน', maxlength='255', data-ng-model='subCtrl.newBudget.description', validator='required', message-id='budget-sub-description')
+          .required-icon
+            .text *
+        span#budget-sub-description
+    button.btn.btn-primary.pull-right(type='submit', data-ng-click='subCtrl.create()', data-ng-disabled='subCtrl.isSubmit', validation-submit='subCtrl.form')
+      i.fa.fa-plus-square-o
+      | &nbsp;เพิ่มประเภทเงินทุน

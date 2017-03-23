@@ -1,0 +1,90 @@
+.modal-header#top
+  h3.modal-title 
+    i.fa.fa-pencil-square-o
+    | &nbsp;แก้ไขผู้ใช้งาน
+.modal-body
+  alert(data-ng-if='userCtrl.isSuccess', type='success')
+    i.fa.fa-check-circle-o
+    | &nbsp;ระบบทำการแก้ไขผู้ใช้งานเสร็จสิ้น
+  alert(data-ng-if='userCtrl.isError', type='danger')
+    i.fa.fa-warning
+    | ระบบไม่สามารถแก้ไขผู้ใช้งานได้ กรุณารอสักครู่ และทดลองใหม่อีกครั้ง
+  form(role='form', name='userCtrl.form', method='post')
+    .row
+      .form-group.col-sm-12
+        label ชื่อ-นามสกุล
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-male
+          input.form-control(name='edit-user-fullname', maxlength='150', type='text', placeholder='ชื่อ - นามสกุล', data-ng-model='userCtrl.editUser.fullname', validator='required', message-id='edit-user-fullname')
+          .required-icon
+            .text *        
+        span#edit-user-fullname 
+    .row
+      .form-group.col-sm-6
+        label อีเมลล์
+        .input-group
+          span.input-group-addon
+            i.fa.fa-envelope
+          input.form-control(name='edit-user-email', type='text', maxlength='150', placeholder='อีเมลล์', data-ng-model='userCtrl.editUser.email')
+      .form-group.col-sm-6
+        label ชื่อผู้ใช้งาน
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-tag
+          input.form-control(name='edit-user-username', type='text', maxlength='20', placeholder='ชื่อผู้ใช้งาน', data-ng-model='userCtrl.editUser.username', validator='username', message-id='edit-user-username')
+          .required-icon
+            .text *        
+        span#edit-user-username   
+    .row
+      .form-group.col-sm-12
+        label เปลี่ยนแปลงรหัสผ่าน
+        .checkbox
+          label.checkbox-inline
+            input(type='checkbox', name='is-change-password', data-ng-model='userCtrl.isChangePassword')
+            | เปลี่ยน
+    .row(data-ng-if='userCtrl.isChangePassword')
+      .form-group.col-sm-6
+        label รหัสผู้ใข้งาน
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-key
+          input.form-control(name='edit-user-password', type='password', placeholder='รหัสผู้ใข้งาน', minlength='8', maxlength='150', data-ng-model='userCtrl.editUser.password', validator='password', message-id='edit-user-password')
+          .required-icon
+            .text *        
+        span#edit-user-password   
+      .form-group.col-sm-6
+        label ระบุรหัสผ่านอีกครั้ง
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-key
+          input.form-control(name='edit-user-password-confirm', type='password', placeholder='ระบุรหัสผ่านอีกครั้ง', maxlength='150', data-ng-model='userCtrl.editUser.passwordConfirm', validator='identical', identical-with='{{ userCtrl.editUser.password }}', message-id='edit-user-password-confirm', identical-error-message='กรุณากรอกรหัสผ่านให้ตรงกัน')
+          .required-icon
+            .text *        
+        span#edit-user-password-confirm   
+    .row
+      .form-group.col-sm-12
+        label สิทธิของผู้ใช้งาน
+        select.form-control(multiple='', data-ng-model='userCtrl.editUser.Roles', data-ng-options='role.name for role in userCtrl.roles track by role.id')
+    .row
+      .form-group.col-sm-6
+        label วันเริ่มต้นการใช้งาน
+        .input-group
+          input.form-control(name='edit-user-startDate', type='text', datepicker-popup='dd/MM/yyyy', data-ng-model='userCtrl.editUser.startDate', is-open='userCtrl.openedStartDate',current-text='วันนี้', clear-text='ลบ', close-text='ปิด', disabled)
+          span.input-group-btn
+            button.btn.btn-default.btn-not-responsive(type='button', ng-click='userCtrl.openStartDate($event)')
+              i.fa.fa-calendar
+      .form-group.col-sm-6
+        label วันสิ้นสุดการใช้งาน
+        .input-group
+          input.form-control(name='edit-user-endDate', type='text', datepicker-popup='dd/MM/yyyy', data-ng-model='userCtrl.editUser.endDate', is-open='userCtrl.openedEndDate', min-date='userCtrl.editUser.startDate', current-text='วันนี้', clear-text='ลบ', close-text='ปิด', disabled)
+          span.input-group-btn
+            button.btn.btn-default.btn-not-responsive(type='button', ng-click='userCtrl.openEndDate($event)')
+              i.fa.fa-calendar
+.modal-footer
+  button.btn.btn-primary(data-ng-click='userCtrl.edit()', validation-submit='userCtrl.form',  data-ng-disabled='userCtrl.isSubmit')
+    i.fa.fa-save
+    | &nbsp;บันทึก
+  button.btn.btn-warning(data-ng-click='userCtrl.cancelEdit()')
+    i.fa.fa-reply
+    | &nbsp;ยกเลิก

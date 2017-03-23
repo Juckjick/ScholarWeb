@@ -1,0 +1,23 @@
+[
+	{
+	    "model": "ChildCare",
+	    "data": {
+	        "name": "บิดาส่งเสีย"
+	    }
+	},
+
+	{
+	    "model": "ChildCare",
+	    "data": {
+	        "name": "มารดาส่งเสีย"
+	    }
+	},
+
+	{
+	    "model": "ChildCare",
+	    "data": {
+	        "name": "บิดาและมารดาไม่ได้ส่งเสีย"
+	    }
+	}
+	
+]

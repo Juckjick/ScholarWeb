@@ -1,0 +1,86 @@
+extends auth
+
+block auth
+  section(data-ng-controller='UsersController as userCtrl')
+    alert#top(data-ng-if='userCtrl.isSuccess', type='success')
+      i.fa.fa-check-circle-o
+      | &nbsp;ระบบทำการสร้างผู้ใช้งานใหม่เสร็จสิ้น
+    alert#top(data-ng-if='userCtrl.isError', type='danger')
+      i.&nbsp;fa.fa-warning
+      | ระบบไม่สามารถเพิ่มผู้ใช้งานได้ กรุณารอสักครู่ และทดลองใหม่อีกครั้ง
+    h2
+      i.fa.fa-user
+      | &nbsp;สมัครสมาชิก
+    hr
+    .row
+      .col-sm-12
+        form(role='form', name='userCtrl.form', method='post')
+          .row
+            .form-group.col-sm-12
+              label ชื่อ-นามสกุล
+              .input-group.required-field-block
+                span.input-group-addon
+                  i.fa.fa-male
+                input.form-control(name='create-user-fullname', maxlength='150', type='text', placeholder='ชื่อ - นามสกุล', data-ng-model='userCtrl.newUser.fullname', validator='required', message-id='create-user-fullname')
+                .required-icon
+                  .text *        
+              span#create-user-fullname 
+          .row
+            .form-group.col-sm-6
+              label อีเมลล์
+              .input-group
+                span.input-group-addon
+                  i.fa.fa-envelope
+                input.form-control(name='create-user-email', type='text', maxlength='150', placeholder='อีเมลล์', data-ng-model='userCtrl.newUser.email')
+            .form-group.col-sm-6
+              label เลขรบัตรประชาชนผู้ใช้งาน
+              .input-group.required-field-block
+                span.input-group-addon
+                  i.fa.fa-tag
+                input.form-control(name='create-user-username', type='text', maxlength='20', placeholder='เลขรบัตรประชาชนผู้ใช้งาน', data-ng-model='userCtrl.newUser.username', validator='username', message-id='create-user-username')
+                .required-icon
+                  .text *        
+              span#create-user-username   
+          .row
+            .form-group.col-sm-6
+              label รหัสผู้ใข้งาน
+              .input-group.required-field-block
+                span.input-group-addon
+                  i.fa.fa-key
+                input.form-control(name='create-user-password', type='password', placeholder='รหัสผู้ใข้งาน', minlength='8', maxlength='150', data-ng-model='userCtrl.newUser.password', validator='password', message-id='create-user-password')
+                .required-icon
+                  .text *        
+              span#create-user-password   
+            .form-group.col-sm-6
+              label ระบุรหัสผ่านอีกครั้ง
+              .input-group.required-field-block
+                span.input-group-addon
+                  i.fa.fa-key
+                input.form-control(name='create-user-password-confirm', type='password', placeholder='ระบุรหัสผ่านอีกครั้ง', maxlength='150', data-ng-model='userCtrl.newUser.passwordConfirm', validator='identical', identical-with='{{ userCtrl.newUser.password }}', message-id='create-user-password-confirm', identical-error-message='กรุณากรอกรหัสผ่านให้ตรงกัน')
+                .required-icon
+                  .text *        
+              span#create-user-password-confirm
+          input(type="hidden", data-ng-model='userCtrl.newUser.roles',data-ng-init="userCtrl.newUser.roles = 3")
+          //- .row
+            .form-group.col-sm-12
+              label สิทธิของผู้ใช้งาน
+              select.form-control(multiple='', data-ng-model='userCtrl.newUser.roles', data-ng-options='role.name for role in userCtrl.roles track by role.id')
+          //- .row
+            .form-group.col-sm-6
+              label วันเริ่มต้นการใช้งาน
+              .input-group
+                input.form-control(name='create-user-startDate', type='text', datepicker-popup='dd/MM/yyyy', data-ng-model='userCtrl.newUser.startDate', is-open='userCtrl.openedStartDate', current-text='วันนี้', clear-text='ลบ', close-text='ปิด', disabled)
+                span.input-group-btn
+                  button.btn.btn-default.btn-not-responsive(type='button', ng-click='userCtrl.openStartDate($event)')
+                    i.fa.fa-calendar
+            .form-group.col-sm-6
+              label วันสิ้นสุดการใช้งาน
+              .input-group
+                input.form-control(name='create-user-endDate', type='text', datepicker-popup='dd/MM/yyyy', data-ng-model='userCtrl.newUser.endDate', is-open='userCtrl.openedEndDate', min-date='userCtrl.newUser.startDate', current-text='วันนี้', clear-text='ลบ', close-text='ปิด', disabled)
+                span.input-group-btn
+                  button.btn.btn-default.btn-not-responsive(type='button', ng-click='userCtrl.openEndDate($event)')
+                    i.fa.fa-calendar
+
+          button.btn.btn-primary.pull-right(type='submit', data-ng-click='userCtrl.create()',  validation-submit='userCtrl.form',  data-ng-disabled='userCtrl.isSubmit')
+            i.fa.fa-user
+            | &nbsp;สมัครสมาชิก

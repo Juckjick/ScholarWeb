@@ -1,0 +1,34 @@
+body {
+  &.auth {
+    background-color: $auth-default-bg;
+  }
+
+  .header {
+    display: table;
+
+    > div {
+      float: none;
+      display: table-cell;
+      vertical-align: middle;
+    }
+  }
+}
+
+// Apply this media with md screen
+@media screen and (max-width: 992px) {
+  body {
+    .header {
+      display: block;
+
+      > div {
+        float: inherit;
+        display: inherit;
+      }
+
+      img {
+        max-width: 150px;
+        margin: 0 auto;
+      }
+    }
+  }
+}

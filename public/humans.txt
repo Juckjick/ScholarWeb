@@ -1,0 +1,17 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Varayut Lerdkanlayanawat -- Full-Stack Web developer -- l.varayut@gmail.com 
+
+# THANKS
+
+    <name>
+
+# TECHNOLOGY COLOPHON
+
+    HTML5, CSS3
+    jQuery, Modernizr
+    Angular.js, Node.js,
+    Express.js, MySQL

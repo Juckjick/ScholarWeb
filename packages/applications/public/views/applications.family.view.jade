@@ -1,0 +1,629 @@
+div(data-ng-controller='ScholarshipsFamilyController as familyCtrl')
+  accordion-heading
+    i.fa.fa-users
+    | &nbsp;ครอบครัว / ผู้อุปการะ
+    span(data-ng-if='(familyCtrl.form.$valid && familyCtrl.form.$pristine) || familyCtrl.isSaved') &nbsp;
+      i.fa.fa-check-circle-o.text-success
+    i.pull-right.fa(ng-class='{"fa-angle-down": third.open, "fa-angle-right": !third.open}')
+
+  alert(data-ng-if='familyCtrl.isSuccess', type='success')
+    i.fa.fa-check-circle-o
+    | &nbsp;ระบบทำการบันทึกข้อมูลเสร็จสิ้น
+  alert(data-ng-if='familyCtrl.isError', type='danger')
+    i.fa.fa-warning
+    | &nbsp;ระบบไม่สามารถบันทึกข้อมูล กรุณารอสักครู่ และทดลองใหม่อีกครั้ง
+  form(role='form', name='familyCtrl.form', method='post')
+    .row
+      .form-group.col-sm-12
+        label สมาชิกในครอบครัว (กรุณาเลือกเฉพาะผู้ที่อยู่กับนิสิต)
+        .checkbox
+          label.checkbox-inline
+            input(type='checkbox', name='member', data-ng-model='familyCtrl.hasMember.father', data-ng-click='familyCtrl.sanitizeMember("father")')
+            | บิดา
+          label.checkbox-inline
+            input(type='checkbox', name='member', data-ng-model='familyCtrl.hasMember.mother', data-ng-click='familyCtrl.sanitizeMember("mother")')
+            | มารดา
+          label.checkbox-inline
+            input(type='checkbox', name='member', data-ng-model='familyCtrl.hasMember.adopter', data-ng-click='familyCtrl.sanitizeMember("adopter")')
+            | ผู้อุปการะ
+    div(data-ng-if='familyCtrl.hasMember.father')
+      .row
+        .form-group.col-sm-6
+          label ชื่อ/สกุล บิดา
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-male
+            input.form-control(name='father-fullname', type='text', placeholder='ชื่อ / สกุล บิดา', max-length='100', data-ng-model='familyCtrl.father.fullname', validator='required', message-id='father-fullname')
+            .required-icon
+              .text *
+          span#father-fullname
+        .col-sm-6
+          .form-group.col-sm-6
+            label สถานะ
+            .radio
+              label.radio-inline
+                input(type='radio', name='father-status', data-ng-value='true', data-ng-model='familyCtrl.father.isAlive')
+                | มีชีวิตอยู่
+              label.radio-inline
+                input(type='radio', name='father-status', data-ng-value='false', data-ng-model='familyCtrl.father.isAlive')
+                | ถึงแก่กรรม
+          .form-group.col-sm-6(data-ng-if='familyCtrl.father.isAlive')
+            label อายุ
+            .input-group.required-field-block
+              input.form-control(name='father-age', type='number', placeholder='อายุ', min='0', max='150', data-ng-model='familyCtrl.father.age', validator='number', message-id='father-age', number-error-message='กรุณากรอกอายุให้ถูกต้อง')
+              .required-icon
+                .text *
+            span#father-age
+      .clearfix
+      .row
+        .form-group.col-sm-6
+          label วุฒิการศึกษาสูงสุด
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-university
+            input.form-control(name='father-education', type='text', placeholder='วุฒิการศึกษาสูงสุด', maxlength='50', data-ng-model='familyCtrl.father.education', validator='required', message-id='father-education')
+            .required-icon
+              .text *
+          span#father-education
+        .form-group.col-sm-6
+          label อาชีพของบิดา (โปรดระบุรายละเอียดลักษณะอาชีพ)
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-suitcase
+            input.form-control(name='father-job', type='text', placeholder='อาชีพของบิดา', maxlength='50', data-ng-model='familyCtrl.father.job', validator='required', message-id='father-job')
+            .required-icon
+              .text *
+          span#father-job
+      .row
+        .form-group.col-sm-6
+          label สถานที่ทำงานของบิดา
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-home
+            input.form-control(name='father-place', type='text', placeholder='สถานที่ทำงานของบิดา', maxlength='255', data-ng-model='familyCtrl.father.place', validator='required', message-id='father-place')
+            .required-icon
+              .text *
+          span#father-place
+        .form-group.col-sm-6
+          label โทรศัพท์
+          .input-group
+            span.input-group-addon
+              i.fa.fa-phone
+            input.form-control(name='father-phone', type='text', placeholder='โทรศัพท์', data-ng-model='familyCtrl.father.phone')
+      .row
+        .form-group.col-sm-6
+          label โทรศัพท์มือถือ
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-mobile-phone
+            input.form-control(name='father-mobile', type='text', placeholder='โทรศัพท์', maxlength='15', data-ng-model='familyCtrl.father.mobile', validator='number', message-id='father-mobile')
+            .required-icon
+              .text *
+          span#father-mobile
+        .form-group.col-sm-6
+          label รายได้ต่อเดือน (ยังไม่หักค่าใช้จ่าย)
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-money
+            input.form-control(name='father-revenue', type='number', placeholder='รายได้ต่อเดือน', min='0', data-ng-model='familyCtrl.father.revenue', validator='number', message-id='father-revenue')
+            .required-icon
+              .text *
+          span#father-revenue
+      .row
+        .form-group.col-sm-6
+          label รวมรายได้ประมาณปีละ
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-money
+            input.form-control(name='father-revenueYear', type='number', placeholder='รวมรายได้ประมาณปีละ...บาท', min='0', data-ng-model='familyCtrl.father.revenueYear', validator='number', message-id='father-revenueYear')
+            .required-icon
+              .text *
+          span#father-revenueYear
+        .form-group.col-sm-6
+          label รายได้พิเศษต่อเดือน (ถ้ามี)
+          .input-group
+            span.input-group-addon
+              i.fa.fa-money
+            input.form-control(type='number', placeholder='รายได้พิเศษต่อเดือน...บาท', data-ng-model='familyCtrl.father.revenueExtra')
+      .row
+        .form-group.col-sm-6
+          label รายได้ทั้งหมดประมาณปีละ
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-money
+            input.form-control(name='father-revenueNet', type='number', placeholder='รายได้ทั้งหมดประมาณปีละ...บาทต่อปี', min='0', data-ng-model='familyCtrl.father.revenueNet', validator='number', message-id='father-revenueNet')
+            .required-icon
+              .text *
+          span#father-revenueNet
+      .clearfix
+      hr
+    div(data-ng-if='familyCtrl.hasMember.mother')
+      .row
+        .form-group.col-sm-6
+          label ชื่อมารดา และสกุลเดิม
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-female
+            input.form-control(name='mother-fullname', type='text', placeholder='ชื่อ / สกุล มารดา', maxlength='100', data-ng-model='familyCtrl.mother.fullname', validator='required', message-id='mother-fullname')
+            .required-icon
+              .text *
+          span#mother-fullname
+        .col-sm-6
+          .form-group.col-sm-6
+            label สถานะ
+            .radio
+              label.radio-inline
+                input(type='radio', name='mother-status', data-ng-value='true', data-ng-model='familyCtrl.mother.isAlive')
+                | มีชีวิตอยู่
+              label.radio-inline
+                input(type='radio', name='mother-status', data-ng-value='false', data-ng-model='familyCtrl.mother.isAlive')
+                | ถึงแก่กรรม
+          .form-group.col-sm-6(data-ng-if='familyCtrl.mother.isAlive')
+            label อายุ
+            .input-group.required-field-block
+              input.form-control(name='mother-age', type='number', placeholder='อายุ', min='0', max='150', data-ng-model='familyCtrl.mother.age', validator='required', message-id='mother-age', number-error-message='กรุณากรอกอายุให้ถูกต้อง')
+              .required-icon
+                .text *
+            span#mother-age
+      .clearfix
+      .row
+        .form-group.col-sm-6
+          label วุฒิการศึกษาสูงสุด
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-university
+            input.form-control(name='mother-education', type='text', placeholder='วุฒิการศึกษาสูงสุด', maxlength='50', data-ng-model='familyCtrl.mother.education', validator='required', message-id='mother-education')
+            .required-icon
+              .text *
+          span#mother-education
+        .form-group.col-sm-6
+          label อาชีพของมารดา (โปรดระบุรายละเอียดลักษณะอาชีพ)
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-suitcase
+            input.form-control(name='mother-job', type='text', placeholder='อาชีพของมารดา', maxlength='50', data-ng-model='familyCtrl.mother.job', validator='required', message-id='mother-job')
+            .required-icon
+              .text *
+          span#mother-job
+      .row
+        .form-group.col-sm-6
+          label สถานที่ทำงานของมารดา
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-home
+            input.form-control(name='mother-place', type='text', placeholder='สถานที่ทำงานของมารดา', maxlength='255', data-ng-model='familyCtrl.mother.place', validator='required', message-id='mother-place')
+            .required-icon
+              .text *
+          span#mother-place
+        .form-group.col-sm-6
+          label โทรศัพท์
+          .input-group
+            span.input-group-addon
+              i.fa.fa-phone
+            input.form-control(name='mother-phone', type='text', placeholder='โทรศัพท์', data-ng-model='familyCtrl.mother.phone')
+      .row
+        .form-group.col-sm-6
+          label โทรศัพท์มือถือ
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-mobile-phone
+            input.form-control(name='mother-mobile', type='text', placeholder='โทรศัพท์', maxlength='50', data-ng-model='familyCtrl.mother.mobile', validator='number', message-id='mother-mobile')
+            .required-icon
+              .text *
+          span#mother-mobile
+        .form-group.col-sm-6
+          label รายได้ต่อเดือน (ยังไม่หักค่าใช้จ่าย)
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-money
+            input.form-control(name='mother-revenue', type='number', placeholder='รายได้ต่อเดือน', min='0', data-ng-model='familyCtrl.mother.revenue', validator='number', message-id='mother-revenue')
+            .required-icon
+              .text *
+          span#mother-revenue
+      .row
+        .form-group.col-sm-6
+          label รวมรายได้ประมาณปีละ
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-money
+            input.form-control(name='mother-revenueYear', type='number', placeholder='รวมรายได้ประมาณปีละ...บาท', min='0', data-ng-model='familyCtrl.mother.revenueYear', validator='number', message-id='mother-revenueYear')
+            .required-icon
+              .text *
+          span#mother-revenueYear
+        .form-group.col-sm-6
+          label รายได้พิเศษต่อเดือน (ถ้ามี)
+          .input-group
+            span.input-group-addon
+              i.fa.fa-money
+            input.form-control(type='number', placeholder='รายได้พิเศษต่อเดือน...บาท', data-ng-model='familyCtrl.mother.revenueExtra')
+      .row
+        .form-group.col-sm-6
+          label รายได้ทั้งหมดประมาณปีละ
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-money
+            input.form-control(name='mother-revenueNet', type='number', placeholder='รายได้ทั้งหมดประมาณปีละ...บาทต่อปี', min='0', data-ng-model='familyCtrl.mother.revenueNet', validator='number', message-id='mother-revenueNet')
+            .required-icon
+              .text *
+          span#mother-revenueNet
+      .clearfix
+      hr
+    div(data-ng-if='familyCtrl.hasMember.adopter')
+      .row
+        .form-group.col-sm-6
+          label ชื่อ/สกุล ผู้อุปการะ (กรณีไม่มีบิดา/มารดา)
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-user
+            input.form-control(name='adopter-fullname', type='text', placeholder='ชื่อ / สกุล', maxlength='100', data-ng-model='familyCtrl.adopter.fullname', validator='required', message-id='adopter-fullname')
+            .required-icon
+              .text *  
+          span#adopter-fullname
+        .col-sm-6
+          .form-group.col-sm-6
+            label สถานะ
+            .radio
+              label.radio-inline
+                input(type='radio', name='other-status', data-ng-value='true', data-ng-model='familyCtrl.adopter.isAlive')
+                | มีชีวิตอยู่
+              label.radio-inline
+                input(type='radio', name='other-status', data-ng-value='false', data-ng-model='familyCtrl.adopter.isAlive')
+                | ถึงแก่กรรม
+          .form-group.col-sm-6(data-ng-if='familyCtrl.adopter.isAlive')
+            label อายุ
+            .input-group.required-field-block
+              input.form-control(name='adopter-age', type='number', min='0', max='150', placeholder='อายุ', data-ng-model='familyCtrl.adopter.age', validator='number', message-id='adopter-age', number-error-message='กรุณากรอกอายุให้ถูกต้อง')
+              .required-icon
+                .text *
+            span#adopter-age
+      .clearfix
+      .row
+        .form-group.col-sm-6
+          label วุฒิการศึกษาสูงสุด
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-university
+            input.form-control(name='adopter-education', type='text', placeholder='วุฒิการศึกษาสูงสุด', maxlength='50', data-ng-model='familyCtrl.adopter.education', validator='required', message-id='adopter-education')
+            .required-icon
+              .text *       
+          span#adopter-education       
+        .form-group.col-sm-6
+          label อาชีพของผู้อุปการะ
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-suitcase
+            input.form-control(name='adopter-job', type='text', placeholder='อาชีพของผู้อุปการะ', maxlength='50', data-ng-model='familyCtrl.adopter.job', validator='required', message-id='adopter-job')
+            .required-icon
+              .text *  
+          span#adopter-job            
+      .row
+        .form-group.col-sm-6
+          label สถานที่ทำงาน
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-home
+            input.form-control(name='adopter-place', type='text', placeholder='สถานที่ทำงานของบิดา', maxlength='255', data-ng-model='familyCtrl.adopter.place', validator='required', message-id='adopter-place')
+            .required-icon
+              .text *    
+          span#adopter-place          
+        .form-group.col-sm-6
+          label โทรศัพท์
+          .input-group
+            span.input-group-addon
+              i.fa.fa-phone
+            input.form-control(name='adopter-phone', type='text', placeholder='โทรศัพท์', data-ng-model='familyCtrl.adopter.phone')
+      .row
+        .form-group.col-sm-6
+          label โทรศัพท์มือถือ
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-mobile-phone
+            input.form-control(name='adopter-mobile', type='text', placeholder='โทรศัพท์', maxlength='15', data-ng-model='familyCtrl.adopter.mobile', validator='number', message-id='adopter-mobile')
+            .required-icon
+              .text *   
+          span#adopter-mobile           
+        .form-group.col-sm-6
+          label รายได้ต่อเดือน (ยังไม่หักค่าใช้จ่าย)
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-money
+            input.form-control(name='adopter-revenue', type='number', placeholder='รายได้ต่อเดือน', min='0', data-ng-model='familyCtrl.adopter.revenue', validator='number', message-id='adopter-revenue')
+            .required-icon
+              .text *     
+          span#adopter-revenue         
+      .row
+        .form-group.col-sm-6
+          label รวมรายได้ประมาณปีละ
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-money
+            input.form-control(name='adopter-revenueYear', type='number', placeholder='รวมรายได้ประมาณปีละ...บาท', min='0', data-ng-model='familyCtrl.adopter.revenueYear', validator='number', message-id='adopter-revenueYear')
+            .required-icon
+              .text * 
+          span#adopter-revenueYear           
+        .form-group.col-sm-6
+          label รายได้พิเศษต่อเดือน (ถ้ามี)
+          .input-group
+            span.input-group-addon
+              i.fa.fa-money
+            input.form-control(type='number', placeholder='รายได้พิเศษต่อเดือน...บาท', data-ng-model='familyCtrl.adopter.revenueExtra')
+      .row
+        .form-group.col-sm-6
+          label รายได้ทั้งหมดประมาณปีละ
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-money
+            input.form-control(name='adopter-revenueNet', type='number', placeholder='รายได้ทั้งหมดประมาณปีละ...บาทต่อปี', min='0', data-ng-model='familyCtrl.adopter.revenueNet', validator='number', message-id='adopter-revenueNet')
+            .required-icon
+              .text *   
+          span#adopter-revenueNet           
+      .clearfix
+      hr
+    .row
+      .col-sm-12
+        .form-group
+          label สถานภาพครอบครัว
+          .radio
+            label.radio-inline
+              input(type='radio', name='family-status', value='1', data-ng-model='familyCtrl.profile.FamilyStatusId')
+              | บิดา/มารดา อยู่ร่วมกัน
+            label.radio-inline
+              input(type='radio', name='family-status', value='2', data-ng-model='familyCtrl.profile.FamilyStatusId')
+              | แยกกันอยู่ชั่วคราว
+            label.radio-inline
+              input(type='radio', name='family-status', value='3', data-ng-model='familyCtrl.profile.FamilyStatusId')
+              | หย่าร้าง
+            label.radio-inline
+              input(type='radio', name='family-status', value='4', data-ng-model='familyCtrl.profile.FamilyStatusId')
+              | อื่นๆ (โปรดระบุ)
+
+        input.form-control(type='text', placeholder='โปรดระบุ', data-ng-model='familyCtrl.profile.familyStatusNote', data-ng-if='familyCtrl.profile.FamilyStatusId==4')
+        .form-group(data-ng-if='familyCtrl.profile.FamilyStatusId == 2 || familyCtrl.profile.FamilyStatusId == 3')
+          label ผู้ส่งเสีย
+          .radio
+            label.radio-inline
+              input(type='radio', name='givemoney', value='1', data-ng-model='familyCtrl.profile.ChildCareId')
+              | บิดาส่งเสีย
+            label.radio-inline
+              input(type='radio', name='givemoney', value='2', data-ng-model='familyCtrl.profile.ChildCareId')
+              | มารดาส่งเสีย
+            label.radio-inline
+              input(type='radio', name='givemoney', value='3', data-ng-model='familyCtrl.profile.ChildCareId')
+              | บิดา/มารดาไม่ได้ส่งเสีย
+    hr
+    //- UserFamily SUBSECTION, divorce
+    .row
+      .form-group.col-sm-12
+        label กรณีบิดา/มารดา มีครอบครัวใหม่ สามีใหม่/ภรรยาใหม่
+        .checkbox
+          label.checkbox-inline
+            input(type='checkbox', name='stepFamily', data-ng-model='familyCtrl.hasMember.stepFamily', data-ng-click='familyCtrl.sanitizeMember("stepFamily")')
+            | มีครอบครัวใหม่
+    div(data-ng-if='familyCtrl.hasMember.stepFamily')    
+      .row
+        .form-group.col-sm-6
+          label ชื่อ/สกุล
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-user
+            input.form-control(name='stepFamily-fullname', type='text', placeholder='ชื่อ-สกุล', maxlength='100', data-ng-model='familyCtrl.stepFamily.fullname', validator='required', message-id='stepFamily-fullname')
+            .required-icon
+              .text *
+          span#stepFamily-fullname
+        .form-group.col-sm-6
+          label อายุ
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-heart
+            input.form-control(name='stepFamily-age', type='number', placeholder='อายุ...ปี', min='0', max='150', data-ng-model='familyCtrl.stepFamily.age', validator='number', message-id='stepFamily-age')
+            .required-icon
+              .text *
+          span#stepFamily-age
+      .row
+        .form-group.col-sm-6
+          label อาชีพ
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-suitcase
+            input.form-control(name='stepFamily-job', type='text', placeholder='อาชีพ', maxlength='50', data-ng-model='familyCtrl.stepFamily.job', validator='required', message-id='stepFamily-job')
+            .required-icon
+              .text *
+          span#stepFamily-job
+        .form-group.col-sm-6
+          label รายได้ประมาณปีละ
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-money
+            input.form-control(name='stepFamily-revenueYear', type='number', placeholder='รายได้ประมาณปีละ...บาท', min='0', data-ng-model='familyCtrl.stepFamily.revenueYear', validator='number', message-id='stepFamily-revenueYear')
+            .required-icon
+              .text *
+          span#stepFamily-revenueYear
+      .row
+        .form-group.col-sm-12
+          label สถานที่ติดต่อ
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-home
+            textarea.form-control(name='stepFamily-place', type='text', maxlength='255', placeholder='สถานที่ติดต่อ', data-ng-model='familyCtrl.stepFamily.place', validator='required', message-id='stepFamily-place')
+            .required-icon
+              .text *
+          span#stepFamily-place
+        .form-group.col-sm-6
+          label โทรศัพท์
+          .input-group
+            span.input-group-addon
+              i.fa.fa-phone
+            input.form-control(name='stepFamily-phone', type='text', placeholder='โทรศัพท์', data-ng-model='familyCtrl.stepFamily.phone')
+      .clearfix
+    hr
+    //- UserFamily SUBSECTION, siblings
+    .row
+      .form-group.col-sm-6
+        label ข้าพเจ้ามีพี่น้อง (รวมทั้งผู้ขอทุน)
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-users
+          input.form-control(name='profile-numberSibling', type='number', placeholder='ข้าพเจ้ามีพี่น้อง...คน', min='1', max='15', data-ng-model='familyCtrl.profile.numberSibling', validator='number', message-id='profile-numberSibling', number-error-message='กรุณากรอกข้อมูลอย่างน้อย 1 คน')
+          .required-icon
+            .text *
+        span#profile-numberSibling
+      .form-group.col-sm-6
+        label ผู้ขอทุนเป็นบุตร-ธิดา คนที่
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-child
+          input.form-control(name='profile-birthOrder', type='number', placeholder='ผู้ขอทุนเป็นบุตร-ธิดาคนที่...', min='1', max='15', data-ng-model='familyCtrl.profile.birthOrder', validator='number', message-id='profile-birthOrder', number-error-message='กรุณากรอกข้อมูลอย่างน้อย 1 คน')
+          .required-icon
+            .text *
+        span#profile-birthOrder
+    .row
+      .form-group.col-sm-6
+        label พี่น้องร่วมบิดา มารดา ที่กำลังศึกษา / ที่สำเร็จการศึกษา (มีงานทำ / ไม่มีงานทำ)
+        a.btn.btn-default.btn-xs(data-ng-click='familyCtrl.addSibling()') 
+          i.fa.fa-plus-square
+          | &nbsp;เพิ่ม        
+      .col-sm-12(data-ng-repeat='sibling in familyCtrl.siblings')
+        a.btn.btn-danger.btn-xs.pull-right(data-ng-click='familyCtrl.deleteSibling($index)', style='margin-right: 15px;') 
+          i.fa.fa-minus-square
+          | &nbsp;ลบ        
+        .clearfix
+        .row
+          .form-group.col-sm-6
+            label ความสัมพันธ์
+            .input-group.required-field-block
+              span.input-group-addon
+                i.fa.fa-user
+              input.form-control(name='sibling{{$index}}-FamilyRelationNote', type='text', placeholder='ความสัมพันธ์', maxlength='50', data-ng-model='sibling.FamilyRelationNote', validator='required', message-id='sibling{{$index}}-FamilyRelationNote')
+              .required-icon
+                .text *
+            span(id='sibling{{$index}}-FamilyRelationNote')
+          .form-group.col-sm-6
+            label ชื่อ/สกุล
+            .input-group.required-field-block
+              span.input-group-addon
+                i.fa.fa-male
+              input.form-control(name='sibling{{$index}}-fullname', type='text', placeholder='ชื่อ / สกุล', max-length='100', data-ng-model='sibling.fullname', validator='required', message-id='sibling{{$index}}-fullname')
+              .required-icon
+                .text *
+            span(id='sibling{{$index}}-fullname')
+
+        .row
+          .form-group.col-sm-6
+            label อายุ
+            .input-group.required-field-block
+              span.input-group-addon
+                i.fa.fa-heart
+              input.form-control(name='sibling{{$index}}-age',type='text', placeholder='อายุ', min='0', max='150', data-ng-model='sibling.age', validator='number', message-id='sibling{{$index}}-age', number-error-message='กรุณากรอกอายุให้ถูกต้อง')
+              .required-icon
+                .text *
+            span(id='sibling{{$index}}-age')                
+          .form-group.col-sm-6
+            label วุฒิการศึกษาสูงสุด
+            .input-group.required-field-block
+              span.input-group-addon
+                i.fa.fa-university
+              input.form-control(name='sibling{{$index}}-education',type='text', placeholder='วุฒิการศึกษาสูงสุด', maxlength='50', data-ng-model='sibling.education', validator='required', message-id='sibling{{$index}}-education')
+              .required-icon
+                .text *
+            span(id='sibling{{$index}}-education')                
+        .row
+          .form-group.col-sm-6
+            label อาชีพ
+            .input-group.required-field-block
+              span.input-group-addon
+                i.fa.fa-suitcase
+              input.form-control(name='sibling{{$index}}-job',type='text', placeholder='อาชีพ', maxlength='50', data-ng-model='sibling.job', validator='required', message-id='sibling{{$index}}-job')
+              .required-icon
+                .text *
+            span(id='sibling{{$index}}-job')                
+          .form-group.col-sm-6
+            label ทำงาน/ศึกษาที่
+            .input-group.required-field-block
+              span.input-group-addon
+                i.fa.fa-home
+              input.form-control(name='sibling{{$index}}-place',type='text', placeholder='ทำงาน / ศึกษาที่', maxlength='255', data-ng-model='sibling.place', validator='required', message-id='sibling{{$index}}-place')
+              .required-icon
+                .text *
+            span(id='sibling{{$index}}-place')                
+        .row
+          .form-group.col-sm-6
+            label รวมรายได้
+            .input-group.required-field-block
+              span.input-group-addon
+                i.fa.fa-money
+              input.form-control(name='sibling{{$index}}-revenue',type='number', placeholder='รวมรายได้...บาท', data-ng-model='sibling.revenue', validator='number', message-id='sibling{{$index}}-revenue')
+              .required-icon
+                .text *
+            span(id='sibling{{$index}}-revenue')
+    .clearfix
+    hr
+    //- UserAdoption SUBSECTION
+    .row
+      .form-group.col-sm-12
+        label บิดา-มาดา มีภาระต้องอุปการะเลี้ยงดูผู้อื่น (นอกเหนือจากบุตร-ธิดา)
+        .checkbox
+          label.checkbox-inline
+            input(type='checkbox', name='adoption', data-ng-model='familyCtrl.hasMember.adoption', data-ng-click='familyCtrl.sanitizeMember("adoption")')
+            | มีผู้ต้องอุปการะ
+    div(data-ng-if='familyCtrl.hasMember.adoption')      
+      .row
+        .form-group.col-sm-6
+          label จำนวจคน
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-user
+            input.form-control(name='adoption-number', type='number', placeholder='บิดา-มาดา มีภาระต้องอุปการะเลี้ยงดูผู้อื่น...คน', min='0', max='15', data-ng-model='familyCtrl.adoption.number', validator='number', message-id='adoption-number')
+            .required-icon
+              .text *
+          span#adoption-number
+        .form-group.col-sm-6
+          label บุคคลอื่นที่ต้องอุปการะเลี้ยงดูคือ
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-user
+            input.form-control(name='adoption-person', type='text', placeholder='บุคคลอื่นที่ต้องอุปการะเลี้ยงดูคือ', maxlength='50', data-ng-model='familyCtrl.adoption.person', validator='required', message-id='adoption-person')
+            .required-icon
+              .text *
+          span#adoption-person
+      .row
+        .form-group.col-sm-6
+          label มีภาระหนี้สินในปัจจุบันเป็นจำนวน
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-money
+            input.form-control(name='adoption-debt', type='number', placeholder='มีภาระหนี้สินในปัจจุบันเป็นจำนวน...บาท', min='0', data-ng-model='familyCtrl.adoption.debt', validator='number', message-id='adoption-debt')
+            .required-icon
+              .text *
+          span#adoption-debt
+        .form-group.col-sm-6
+          label เนื่องจาก
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-file-text
+            input.form-control(name='adoption-reason', type='text', maxlength='150', placeholder='เนื่องจาก', data-ng-model='familyCtrl.adoption.reason', validator='required', message-id='adoption-reason')
+            .required-icon
+              .text *
+          span#adoption-reason
+      .row
+        .form-group.col-sm-6
+          label การผ่อนชำระเดือนละ
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-money
+            input.form-control(name='adoption-payment', type='number', placeholder='การผ่อนชำระเดือนละ...บาท', min='0', data-ng-model='familyCtrl.adoption.payment', validator='number', message-id='adoption-payment')
+            .required-icon
+              .text *
+          span#adoption-payment
+        .form-group.col-sm-6
+          label ปัจจุบันนิสิตอาศัยอยู่กับ
+          .input-group.required-field-block
+            span.input-group-addon
+              i.fa.fa-users
+            input.form-control(name='profile-stayWith', type='text', placeholder='ปัจจุบันนิสิตอาศัยอยู่กับ', maxlength='50', data-ng-model='familyCtrl.profile.stayWith', validator='required', message-id='profile-stayWith')
+            .required-icon
+              .text *
+          span#profile-stayWith
+      .clearfix
+    button.btn.btn-primary.pull-right(data-ng-click='familyCtrl.upsertFamily()', validation-submit='familyCtrl.form',  data-ng-disabled='familyCtrl.isSubmit')
+      i.fa.fa-save
+      | &nbsp;บันทึกข้อมูล

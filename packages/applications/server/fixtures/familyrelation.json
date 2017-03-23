@@ -1,0 +1,37 @@
+[
+	{
+	    "model": "FamilyRelation",
+	    "data": {
+	        "name": "บิดา"
+	    }
+	},
+
+	{
+	    "model": "FamilyRelation",
+	    "data": {
+	        "name": "มารดา"
+	    }
+	},
+
+	{
+	    "model": "FamilyRelation",
+	    "data": {
+	        "name": "ผู้อุปการะ"
+	    }
+	},
+
+	{
+	    "model": "FamilyRelation",
+	    "data": {
+	        "name": "สามีใหม่หรือภรรยาใหม่"
+	    }
+	},
+
+	{
+	    "model": "FamilyRelation",
+	    "data": {
+	        "name": "อื่นๆ"
+	    }
+	}
+	
+]

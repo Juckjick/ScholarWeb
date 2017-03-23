@@ -1,0 +1,55 @@
+[
+  {
+    "model": "Api",
+    "data": {
+      "link": "/systems/users/create",
+      "ApisSubSystems": [1]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/systems/users/list",
+      "ApisSubSystems": [2]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/users/load",
+      "ApisSubSystems": [1]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/users/load-roles",
+      "ApisSubSystems": [
+        1,
+        2,
+        4
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/users/create",
+      "ApisSubSystems": [1]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/users/edit",
+      "ApisSubSystems": [2]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/users/delete",
+      "ApisSubSystems": [2]
+    }
+  }
+]

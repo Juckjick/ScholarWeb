@@ -1,0 +1,41 @@
+// Font
+// -------------------------
+$font-family-base: "ThaiSansNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-size-base:  20px;
+// Brand colors
+// -------------------------
+$brand-primary:         #E493A5;
+
+// Authentication
+// -------------------------
+$auth-default-bg:		#F7F7F7;
+
+// Navbar
+// -------------------------
+
+// Basics of a navbar
+$navbar-default-bg:		$brand-primary;
+$navbar-default-color:	#fff;
+
+// Navbar links
+$navbar-default-link-color:                $navbar-default-color;
+$navbar-default-link-hover-color:          darken($navbar-default-link-color, 5%);
+$navbar-default-link-active-color:         darken($navbar-default-link-color, 5%);
+$navbar-default-link-active-bg:            darken($navbar-default-bg, 6.5%);
+$navbar-default-link-disabled-color:       #ccc;
+$navbar-default-link-disabled-bg:          transparent;
+
+// Navbar brand label
+$navbar-default-brand-color:               $navbar-default-link-color;
+$navbar-default-brand-hover-color:         darken($navbar-default-brand-color, 5%);
+$navbar-default-brand-hover-bg:            transparent;
+
+// Navbar toggle
+$navbar-default-toggle-hover-bg:           darken($brand-primary, 5%);
+$navbar-default-toggle-icon-bar-bg:        $navbar-default-color;
+$navbar-default-toggle-border-color:       #ddd;
+
+// Sidebar
+// -------------------------
+$sidebar-default-bg:					   #f5f5f5;
+$sidebar-default-border-color:	           darken($sidebar-default-bg, 5%);

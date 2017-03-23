@@ -1,0 +1,48 @@
+section(data-ng-controller='ScholarshipSettingsController as settingCtrl')
+  alert(data-ng-show='settingCtrl.isSuccess', type='success')
+    i.fa.fa-check-circle-o
+    | &nbsp;ระบบทำการบันทึกข้อมูลเสร็จสิ้น
+  alert(data-ng-show='settingCtrl.isError', type='danger')
+    i.fa.fa-warning
+    | &nbsp;ระบบไม่สามารถบันทึกข้อมูล กรุณารอสักครู่ และทดลองใหม่อีกครั้ง
+  h2
+    i.fa.fa-gear
+    | &nbsp;ตั้งค่าระบบ
+  hr
+  .row
+    .col-sm-12
+      form(role='form', name='settingCtrl.form', method='post')
+        //- .form-group.col-sm-12
+          //- label เปิด/ปิด รับสมัครทุนการศึกษา
+          //- .input-group
+          //-   input(bs-switch='', ng-model='settingCtrl.setting.isOpen', type='checkbox', switch-size='normal', switch-icon='fa fa-graduation-cap', switch-on-color='success', switch-off-color='danger', switch-on-text='เปิด', switch-off-text='ปิด', ng-true-value='true', ng-false-value='false')
+        .row
+          .form-group.col-sm-12
+            label ปีการศึกษา
+            .input-group.required-field-block
+              span.input-group-addon
+                i.fa.fa-university
+              select.form-control(name='setting-AcademicYearId', data-ng-model='settingCtrl.setting.AcademicYearId', data-ng-options='AcademicYear.id as AcademicYear.name for AcademicYear in settingCtrl.AcademicYears', validator='required', message-id='setting-AcademicYearId')
+              .required-icon
+                .text *
+            span#setting-AcademicYearId    
+        .row
+          .form-group.col-sm-6
+            label วันเริ่มต้นรับสมัครทุนการศึกษา
+            p.input-group
+              input.form-control(type='text', datepicker-popup='dd/MM/yyyy', data-ng-model='settingCtrl.setting.startDate', is-open='settingCtrl.openedStartDate', current-text='วันนี้', clear-text='ลบ', close-text='ปิด', disabled)
+              span.input-group-btn
+                button.btn.btn-default.btn-not-responsive(type='button', ng-click='settingCtrl.openStartDate($event)')
+                  i.fa.fa-calendar
+            span.control-label.has-error(data-ng-if='!settingCtrl.setting.startDate && settingCtrl.isSubmit') กรุณาเลือกวันที่เปิดรับสมัครทุนการศึกษา
+          .form-group.col-sm-6
+            label วันสิ้นสุดรับสมัครทุนการศึกษา
+            p.input-group
+              input.form-control(type='text', datepicker-popup='dd/MM/yyyy', data-ng-model='settingCtrl.setting.endDate', is-open='settingCtrl.openedEndDate', min-date='settingCtrl.setting.startDate', current-text='วันนี้', clear-text='ลบ', close-text='ปิด', disabled)
+              span.input-group-btn
+                button.btn.btn-default.btn-not-responsive(type='button', ng-click='settingCtrl.openEndDate($event)')
+                  i.fa.fa-calendar
+            span.control-label.has-error(data-ng-if='!settingCtrl.setting.endDate && settingCtrl.isSubmit') กรุณาเลือกวันที่ปิดรับสมัครทุนการศึกษา
+        button.btn.btn-primary.pull-right(data-ng-click='settingCtrl.upsertSetting()', validation-submit='settingCtrl.form')
+          i.fa.fa-save
+          | &nbsp;บันทึก

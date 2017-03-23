@@ -1,0 +1,37 @@
+extends ../../../../cores/public/views/layouts/cores.table.view.jade
+
+block variable
+  - var controller = 'SettingAcademicYearController as ayCtrl'
+  - var controllerAs = 'ayCtrl'
+  - var stTable = 'ayCtrl.displayedAy'
+  - var stSafeSrc = 'ayCtrl.ayList'
+  - var stSearch = 'name'
+
+block title
+  i.fa.fa-pencil-square-o
+  | รายชื่อปีการศึกษา
+
+block table
+  table.table.table-striped.table-bordered.table-hover.table-responsive.dataTable.no-footer
+    thead
+      tr(role='row')
+        th.vtop #
+        th.vtop.st-sortable(st-sort='name') ชื่อปีการศึกษา
+        th.vtop วันเริ่มต้น
+        th.vtop วันสิ้นสุด
+        th.vtop แก้ไข / ลบ
+    tbody
+      tr(data-ng-repeat='ay in ayCtrl.displayedAy track by $index')
+        td {{ ayCtrl.startPage + $index }}
+        td {{ ay.name }}
+        td {{ ay.startDate | buddhistYear | date: 'dd MMMM yyyy' }}
+        td {{ ay.endDate | buddhistYear | date: 'dd MMMM yyyy' }}
+        td
+          a.btn-space.btn.btn-warning(data-ng-click='ayCtrl.openEditModal(ay)')
+            span
+              i.fa.fa-pencil-square
+            | &nbsp;แก้ไข
+          a.btn-space.btn.btn-danger(data-ng-click='ayCtrl.openDeleteModal(ay)')
+            span
+              i.fa.fa-trash
+            | &nbsp;ลบ&nbsp;&nbsp;

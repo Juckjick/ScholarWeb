@@ -1,0 +1,154 @@
+[
+  {
+    "model": "Api",
+    "data": {
+      "link": "/budgets/main/create",
+      "ApisSubSystems": [10]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/budgets/main/list",
+      "ApisSubSystems": [11]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/budgets/sub/create",
+      "ApisSubSystems": [12]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/budgets/sub/list",
+      "ApisSubSystems": [13]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/budgets/transactions/edit",
+      "ApisSubSystems": [14]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/budgets/graphs/chart",
+      "ApisSubSystems": [15]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/budgets/graphs/table",
+      "ApisSubSystems": [16]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/budgets/load/main-budgets",
+      "ApisSubSystems": [
+        10,
+        11,
+        12,
+        13
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/budgets/load/sub-budgets",
+      "ApisSubSystems": [
+        12,
+        13
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/budgets/load/main-sub-budgets",
+      "ApisSubSystems": [
+        7,
+        8,
+        14,
+        15
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/budgets/load/main-sub-budgets/current-academicyear",
+      "ApisSubSystems": [
+        7,
+        8,
+        14,
+        15
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/budgets/upsert",
+      "ApisSubSystems": [
+        10,
+        11,
+        12,
+        13
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/budgets/delete",
+      "ApisSubSystems": [
+        11,
+        13
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/budgets/create/transaction",
+      "ApisSubSystems": [14]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/budgets/load/transaction-graph-academicyear",
+      "ApisSubSystems": [15]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/budgets/load/transaction-graph-main",
+      "ApisSubSystems": [15]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/budgets/load/transaction-graph-sub",
+      "ApisSubSystems": [15]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/budgets/load/transaction-table",
+      "ApisSubSystems": [16]
+    }
+  }
+]

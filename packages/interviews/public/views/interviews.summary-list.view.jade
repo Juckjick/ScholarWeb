@@ -1,0 +1,45 @@
+extends ../../../cores/public/views/layouts/cores.table.view.jade
+
+block variable
+  - var controller = 'InterviewsSummaryListController as summaryListCtrl'
+  - var controllerAs = 'summaryListCtrl'
+  - var stTable = 'summaryListCtrl.displayedStudents'
+  - var stSafeSrc = 'summaryListCtrl.students'
+  - var stSearch = 'firstnameTh'
+
+block title
+  i.fa.fa-file-text
+  | &nbsp;สรุปผลทุนการศึกษา
+
+block searchField
+  input.form-control.input-sm(type='search', placeholder='รหัสนิสิต', st-search='"studentId"')
+
+block table
+  table.table.table-striped.table-bordered.table-hover.table-responsive.dataTable.no-footer
+    thead
+      tr(role='row')
+        th.vtop #
+        th.vtop.st-sortable(st-sort='studentId') รหัสนิสิต
+        th.vtop ชื่อ
+        th.vtop นามสกุล
+        th.vtop.st-sortable(st-sort='hasEvaluated') สถานะ
+        th.vtop.st-sortable(st-sort='isGetScholarship') ผลการประเมิน
+        th.vtop ประเมินนิสิต
+    tbody
+      tr(data-ng-repeat='student in summaryListCtrl.displayedStudents track by $index')
+        td {{ summaryListCtrl.startPage + $index }}
+        td {{ student.studentId }}
+        td {{ student.firstnameTh }}
+        td {{ student.lastnameTh }}
+        td
+          div(data-ng-if='student.hasEvaluated')
+            i.fa.fa-check-circle-o.text-success
+            | &nbsp;ประเมินเสร็จสิ้น
+          div(data-ng-if='!student.hasEvaluated')
+            i.fa.fa-clock-o.text-warning
+            | &nbsp;รอการประเมิน
+        td {{ student.isGetScholarship ? 'ได้รับทุนการศึกษา' : 'ไม่ได้รับทุนการศึกษา' }}
+        td.center
+          a.btn.btn-warning.btn-xs.btn-responsive(ng-href='#!/scholarships/interview/summary/{{ student.UserId }}/{{ student.AcademicYearId }}')
+            i.fa.fa-file-text
+            | &nbsp;สรุปผล

@@ -1,0 +1,79 @@
+div(data-ng-controller='ScholarshipsReasonController as reasonCtrl')
+  accordion-heading
+    i.fa.fa-star
+    | &nbsp;ความจำเป็นในการขอรับทุน
+    span(data-ng-if='(reasonCtrl.form.$valid && reasonCtrl.form.$pristine) || reasonCtrl.isSaved') &nbsp;
+      i.fa.fa-check-circle-o.text-success
+    i.pull-right.fa(ng-class='{"fa-angle-down": eighth.open, "fa-angle-right": !eighth.open}')
+
+  alert(data-ng-if='reasonCtrl.isSuccess', type='success')
+    i.fa.fa-check-circle-o
+    | &nbsp;ระบบทำการบันทึกข้อมูลเสร็จสิ้น
+  alert(data-ng-if='reasonCtrl.isError', type='danger')
+    i.fa.fa-warning
+    | &nbsp;ระบบไม่สามารถบันทึกข้อมูล กรุณารอสักครู่ และทดลองใหม่อีกครั้ง
+  form(role='form', name='reasonCtrl.form', method='post')
+    h4
+      | ความจำเป็นในการขอรับทุน
+      small
+        | (พร้อมทั้งให้เขียนสรุปข้อมูลเกี่ยวกับการดำเนินชีวิตของผู้ขอรับทุน ซึ่งแสดงถึงสภาวะความยากลำบากของครอบครัว ตลอดจนปัญหาต่าง ๆ ที่มี พร้อมทั้งความคาดหวังในการศึกษา หรือ การประกอบอาชีพในอนาคต)
+    .form-group.col-sm-12
+      label เหตุผลที่ต้องสมัครขอรับทุน
+      .input-group.required-field-block
+        span.input-group-addon
+          i.fa.fa-file-text
+        textarea.form-control(name='reason-reason', placeholder='ระบุเหตุผลที่ต้องสมัครขอรับทุน', maxlength='2000', data-ng-model='reasonCtrl.reason.reason', validator='required', message-id='reason-reason', required-error-message='กรุณากรอกข้อมูลให้ถูกต้อง (สูงสุด 2000 ตัวอักษร)')
+        .required-icon
+          .text *
+      span#reason-reason
+    .form-group.col-sm-12
+      label หากไม่ได้รับทุน ผู้สมัครจะมีวิธีการแก้ปัญหาคือ
+      .input-group.required-field-block
+        span.input-group-addon
+          i.fa.fa-file-text
+        textarea.form-control(name='reason-solution', placeholder='ระบุวิธีการแก้ไขปัญหา', maxlength='2000', data-ng-model='reasonCtrl.reason.solution', validator='required', message-id='reason-solution', required-error-message='กรุณากรอกข้อมูลให้ถูกต้อง (สูงสุด 2000 ตัวอักษร)')
+        .required-icon
+          .text *
+      span#reason-solution
+    .clearfix
+    hr
+    h4 ขณะนี้ผู้สมัครกำลังสมัครขอรับทุนอื่นอยู่
+    a.btn.btn-default.btn-xs(data-ng-click='reasonCtrl.addCurrentScholarship()') 
+      i.fa.fa-plus-square
+      | &nbsp;เพิ่มทุนการศึกษา    
+    div(data-ng-repeat='scholarship in reasonCtrl.scholarships')
+      a.btn.btn-danger.btn-xs.pull-right(data-ng-click='reasonCtrl.deleteCurrentScholarship($index)', style='margin-right:15px;')
+        i.fa.fa-minus-square
+        | &nbsp;ลบทุนการศึกษา        
+      .clearfix
+      .form-group.col-sm-6
+        label ชื่อทุนการศึกษา
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-file
+          input.form-control(name='reason-scholarship-name{{$index}}', type='text', placeholder='ชื่อทุนการศึกษา', maxlength='50' ,data-ng-model='scholarship.name', validator='required', message-id='reason-scholarship-name{{$index}}')
+          .required-icon
+            .text *
+        span(id='reason-scholarship-name{{$index}}')
+      .form-group.col-sm-6
+        label ประเภท
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-file
+          input.form-control(name='reason-scholarship-type{{$index}}', type='text', placeholder='ประเภท', maxlength='50' ,data-ng-model='scholarship.type', validator='required', message-id='reason-scholarship-type{{$index}}')
+          .required-icon
+            .text *            
+        span(id='reason-scholarship-type{{$index}}')
+      .form-group.col-sm-6
+        label จำนวนเงิน
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-money
+          input.form-control(name='reason-scholarship-total{{$index}}', type='number', placeholder='จำนวนเงิน...บาท', min='0', data-ng-model='scholarship.total', validator='number', message-id='reason-scholarship-total{{$index}}')
+          .required-icon
+            .text *
+        span(id='reason-scholarship-total{{$index}}')
+    .clearfix
+    button.btn.btn-primary.pull-right(data-ng-click='reasonCtrl.upsertReason()', validation-submit='reasonCtrl.form',  data-ng-disabled='reasonCtrl.isSubmit')
+      i.fa.fa-save
+      | &nbsp;บันทึกข้อมูล

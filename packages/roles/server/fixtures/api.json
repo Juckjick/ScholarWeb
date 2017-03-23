@@ -1,0 +1,57 @@
+[
+  {
+    "model": "Api",
+    "data": {
+      "link": "/systems/roles/create",
+      "ApisSubSystems": [3]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/systems/roles/list",
+      "ApisSubSystems": [4]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/roles/load",
+      "ApisSubSystems": [
+        1,
+        2
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/roles/load-subsystems",
+      "ApisSubSystems": [
+        3,
+        4
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/roles/create",
+      "ApisSubSystems": [3]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/roles/edit",
+      "ApisSubSystems": [4]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/roles/delete",
+      "ApisSubSystems": [4]
+    }
+  }
+]

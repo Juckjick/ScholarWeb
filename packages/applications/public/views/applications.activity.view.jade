@@ -1,0 +1,48 @@
+div(data-ng-controller='ScholarshipsActivityController as activityCtrl')
+  accordion-heading
+    i.fa.fa-trophy
+    | &nbsp;กิจกรรมนอกหลักสูตรภายในและภายนอกมหาวิทยาลัย
+    span(data-ng-if='(activityCtrl.form.$valid && activityCtrl.form.$pristine) || activityCtrl.isSaved') &nbsp;
+      i.fa.fa-check-circle-o.text-success
+    i.pull-right.fa(ng-class='{"fa-angle-down": sixth.open, "fa-angle-right": !sixth.open}')
+      
+  alert(data-ng-if='activityCtrl.isSuccess', type='success')
+    i.fa.fa-check-circle-o
+    | &nbsp;ระบบทำการบันทึกข้อมูลเสร็จสิ้น
+  alert(data-ng-if='activityCtrl.isError', type='danger')
+    i.fa.fa-warning
+    | &nbsp;ระบบไม่สามารถบันทึกข้อมูล กรุณารอสักครู่ และทดลองใหม่อีกครั้ง
+  form(role='form', name='activityCtrl.form', method='post')
+    .row
+      .form-group.col-sm-12
+        label กิจกรรมของมหาวิทยาลัย
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-university
+          textarea.form-control(name='activity-university', placeholder='กิจกรรมของมหาวิทยาลัย', maxlength='500', data-ng-model='activityCtrl.activity.university', validator='required', message-id='activity-university', required-error-message='กรุณากรอกข้อมูลให้ถูกต้อง (สูงสุด 500 ตัวอักษร)')
+          .required-icon
+            .text *
+        span#activity-university
+    .row
+      .form-group.col-sm-12
+        label กิจกรรมของคณะ
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-gear
+          textarea.form-control(name='activity-faculty', placeholder='กิจกรรมของคณะ', maxlength='500', data-ng-model='activityCtrl.activity.faculty', validator='required', message-id='activity-faculty', required-error-message='กรุณากรอกข้อมูลให้ถูกต้อง (สูงสุด 500 ตัวอักษร)')
+          .required-icon
+            .text *
+        span#activity-faculty
+    .row
+      .form-group.col-sm-12
+        label กิจกรรมภายนอกมหาวิทยาลัย
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-home
+          textarea.form-control(name='activity-outside', placeholder='กิจกรรมภายนอกมหาวิทยาลัย', maxlength='500', data-ng-model='activityCtrl.activity.outside', validator='required', message-id='activity-outside', required-error-message='กรุณากรอกข้อมูลให้ถูกต้อง (สูงสุด 500 ตัวอักษร)')
+          .required-icon
+            .text *
+        span#activity-outside
+    button.btn.btn-primary.pull-right(data-ng-click='activityCtrl.upsertActivity()', validation-submit='activityCtrl.form', data-ng-disabled='activityCtrl.isSubmit')
+      i.fa.fa-save
+      | &nbsp;บันทึกข้อมูล

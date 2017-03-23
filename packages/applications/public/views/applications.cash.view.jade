@@ -1,0 +1,107 @@
+div(data-ng-controller='ScholarshipsCashController as cashCtrl')
+  accordion-heading
+    i.fa.fa-money
+    | &nbsp;รายรับ / รายจ่ายในภาคการศึกษาที่ผ่านมา
+    span(data-ng-if='(cashCtrl.form.$valid && cashCtrl.form.$pristine) || cashCtrl.isSaved') &nbsp;
+      i.fa.fa-check-circle-o.text-success
+    i.pull-right.fa(ng-class='{"fa-angle-down": fourth.open, "fa-angle-right": !fourth.open}')
+      
+  alert(data-ng-if='cashCtrl.isSuccess', type='success')
+    i.fa.fa-check-circle-o
+    | &nbsp;ระบบทำการบันทึกข้อมูลเสร็จสิ้น
+  alert(data-ng-if='cashCtrl.isError', type='danger')
+    i.fa.fa-warning
+    | &nbsp;ระบบไม่สามารถบันทึกข้อมูล กรุณารอสักครู่ และทดลองใหม่อีกครั้ง
+  form(role='form', name='cashCtrl.form', method='post')
+    h4 รายรับ
+    .row
+      .form-group.col-sm-6
+        label รับเงินค่าอาหาร เดือนละ
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-money
+          input.form-control(name='foodIncome-total', type='number', placeholder='เดือนละ...บาท', min='0', data-ng-model='cashCtrl.foodIncome.total', validator='number', message-id='foodIncome-total')
+          .required-icon
+            .text *
+        span#foodIncome-total
+      .form-group.col-sm-6          
+        label จาก
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-list-alt
+          input.form-control(name='foodIncome-source', type='text', placeholder='ระบุที่มาของเงิน', maxlength='50', data-ng-model='cashCtrl.foodIncome.source', validator='required', message-id='foodIncome-source')
+          .required-icon
+            .text *          
+        span#foodIncome-source
+    .row
+      .form-group.col-sm-6
+        label รับทุนการศึกษา เดือนละ (ถ้าไม่มีให้ใส่ 0)
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-money
+          input.form-control(name='cash-scholarship-total', type='number', placeholder='เดือนละ...บาท', min='0', data-ng-model='cashCtrl.scholarship.total', validator='number', message-id='cash-scholarship-total')
+          .required-icon
+            .text *
+        span#cash-scholarship-total
+      .form-group.col-sm-6          
+        label จาก (ถ้าไม่มีให้ใส่ขีดกลาง)
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-list-alt
+          input.form-control(name='cash-scholarship-source', type='text', placeholder='ระบุที่มาของเงิน', maxlength='50', data-ng-model='cashCtrl.scholarship.source', validator='required', message-id='cash-scholarship-source')
+          .required-icon
+            .text *   
+        span#cash-scholarship-source       
+    .row
+      .form-group.col-sm-6
+        label รับเงินจากงานพิเศษ เดือนละ (ถ้าไม่มีให้ใส่ 0)
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-money
+          input.form-control(name='cash-extra-total', type='number', placeholder='เดือนละ...บาท', min='0', data-ng-model='cashCtrl.extra.total', validator='number', message-id='cash-extra-total')
+          .required-icon
+            .text *     
+        span#cash-extra-total     
+      .form-group.col-sm-6
+        label อธิบายลักษณะงานที่ทำ (ถ้าไม่มีให้ใส่ขีดกลาง)
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-list-alt
+          textarea.form-control(name='cash-extra-source', placeholder='รายละเอียดงานที่ทำ', maxlength='255', data-ng-model='cashCtrl.extra.source', validator='required', message-id='cash-extra-source')
+          .required-icon
+            .text *      
+        span#cash-extra-source  
+    hr
+    h4 รายจ่าย
+    .row
+      .form-group.col-sm-6
+        label ค่าใช้จ่ายในการรับประทานอาหาร เดือนละ
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-money
+          input.form-control(name='cash-foodExpense-total', type='number', placeholder='เดือนละ...บาท', min='0', data-ng-model='cashCtrl.foodExpense.total', validator='number', message-id='cash-foodExpense-total')
+          .required-icon
+            .text *
+        span#cash-foodExpense-total
+      .form-group.col-sm-6
+        label ค่าใช้จ่ายในการเดินทาง เดือนละ
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-money
+          input.form-control(name='cash-travelling-total', type='number', placeholder='เดือนละ...บาท', min='0', data-ng-model='cashCtrl.travelling.total', validator='number', message-id='cash-travelling-total')
+          .required-icon
+            .text *
+        span#cash-travelling-total
+    .row
+      .form-group.col-sm-6
+        label ค่าใช้จ่ายในการศึกษา เดือนละ
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-money
+          input.form-control(name='cash-education-total', type='number', placeholder='เดือนละ...บาท', min='0', data-ng-model='cashCtrl.education.total', validator='number', message-id='cash-education-total')
+          .required-icon
+            .text *          
+        span#cash-education-total      
+    button.btn.btn-primary.pull-right(data-ng-click='cashCtrl.upsertCash()', validation-submit='cashCtrl.form',  data-ng-disabled='cashCtrl.isSubmit')
+      i.fa.fa-save
+      | &nbsp;บันทึกข้อมูล

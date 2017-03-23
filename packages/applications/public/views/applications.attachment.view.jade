@@ -1,0 +1,13 @@
+accordion-heading
+  i.fa.fa-file
+  | &nbsp;เอกสารแนบ
+  i.pull-right.fa(ng-class='{"fa-angle-down": eleventh.open, "fa-angle-right": !eleventh.open}')
+.row
+  .col-sm-12
+    h4
+      | ดาวน์โหลดและพิมพ์เอกสารแนบฉบับนี้เพื่อนำไปกรอกข้อมูลให้ถูกต้อง
+      small
+        | (หลังจากนั้นนิสิตจะต้องสแกนเอกสารในทุกๆส่วน และทำการอัพโหลดเอกสารทั้งหมดเข้าสู่ระบบในส่วน <strong>เอกสารอื่นๆ</strong> ต่อไป)
+    a.btn.btn-primary.pull-right(target='_blank', href="/docs/เอกสารแนบ.pdf")
+      i.fa.fa-download
+      | &nbsp;ดาวน์โหลด   

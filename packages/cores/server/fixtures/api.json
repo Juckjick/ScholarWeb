@@ -1,0 +1,74 @@
+[
+  {
+    "model": "Api",
+    "data": {
+      "link": "/systems",
+      "ApisSubSystems": [
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/scholarships",
+      "ApisSubSystems": [
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/budgets",
+      "ApisSubSystems": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/reports",
+      "ApisSubSystems": [
+        17,
+        18,
+        19,
+        20
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/settings",
+      "ApisSubSystems": [
+        21,
+        22
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/systems/load",
+      "ApisSubSystems": [
+        3,
+        4
+      ]
+    }
+  }
+]

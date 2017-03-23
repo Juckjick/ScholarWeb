@@ -1,0 +1,46 @@
+.modal-header
+  h3.modal-title 
+    i.fa.fa-pencil-square-o
+    | &nbsp;แก้ไขปีการศึกษา
+.modal-body
+  alert(data-ng-show='ayCtrl.isSuccess', type='success')
+    i.fa.fa-check-circle-o
+    | &nbsp;ระบบทำการบันทึกข้อมูลเสร็จสิ้น
+  alert(data-ng-show='ayCtrl.isError', type='danger')
+    i.fa.fa-warning
+    | &nbsp;ระบบไม่สามารถบันทึกข้อมูล กรุณารอสักครู่ และทดลองใหม่อีกครั้ง    
+  form(role='form', name='ayCtrl.form', method='post')
+    .row
+      .form-group.col-sm-12
+        label ชื่อปีการศึกษา
+        .input-group.required-field-block
+          span.input-group-addon
+            i.fa.fa-archive
+          input.form-control(name='ay-edit-name', type='text', placeholder='ชื่อปีการศึกษา', maxlength='50', data-ng-model='ayCtrl.editAy.name' validator='required', message-id='ay-edit-name')
+          .required-icon
+            .text *
+        span#ay-edit-name
+    .row
+      .form-group.col-sm-6
+        label วันเริ่มต้นปีการศึกษา
+        p.input-group
+          input.form-control(type='text', datepicker-popup='dd/MM/yyyy', data-ng-model='ayCtrl.editAy.startDate', is-open='ayCtrl.openedStartDate', current-text='วันนี้', clear-text='ลบ', close-text='ปิด', disabled)
+          span.input-group-btn
+            button.btn.btn-default.btn-not-responsive(type='button', ng-click='ayCtrl.openStartDate($event)')
+              i.fa.fa-calendar
+        span.control-label.has-error(data-ng-if='!ayCtrl.editAy.startDate && ayCtrl.isSubmit') กรุณาเลือกวันเริ่มต้นปีการศึกษา
+      .form-group.col-sm-6
+        label วันสิ้นสุดปีการศึกษา
+        p.input-group
+          input.form-control(type='text', datepicker-popup='dd/MM/yyyy', data-ng-model='ayCtrl.editAy.endDate', is-open='ayCtrl.openedEndDate', min-date='ayCtrl.editAy.startDate', current-text='วันนี้', clear-text='ลบ', close-text='ปิด', disabled)
+          span.input-group-btn
+            button.btn.btn-default.btn-not-responsive(type='button', ng-click='ayCtrl.openEndDate($event)')
+              i.fa.fa-calendar
+        span.control-label.has-error(data-ng-if='!ayCtrl.editAy.endDate && ayCtrl.isSubmit') กรุณาเลือกวันสิ้นสุดปีการศึกษา
+.modal-footer
+  button.btn.btn-primary(data-ng-click='ayCtrl.edit()', validation-submit='ayCtrl.form')
+    i.fa.fa-save
+    | &nbsp;บันทึก
+  button.btn.btn-warning(data-ng-click='ayCtrl.cancelEditModal()')
+    i.fa.fa-reply
+    | &nbsp;ยกเลิก

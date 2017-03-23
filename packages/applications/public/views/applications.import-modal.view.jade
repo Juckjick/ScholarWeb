@@ -1,0 +1,22 @@
+div(data-ng-controller='ScholarshipsController')
+  div.modal-header
+    h3.modal-title
+      i.fa.fa-download
+      | &nbsp;เติมข้อมูลใบสมัคร
+  div.modal-body
+    alert(data-ng-show='isSuccess', type='success')
+      i.fa.fa-check-circle-o
+      | &nbsp;ระบบทำการนำเข้าข้อมูลเสร็จสิ้น
+    alert(data-ng-show='isError', type='danger')
+      i.fa.fa-warning
+      | &nbsp;ไม่พบข้อมูลการสมัครทุนในปีก่อนหน้า 
+    p การเติมข้อมูลใบสมัคร คือการนำเข้าข้อมูลที่นิสิตได้ใช้ในการสมัครทุนการศึกษาในปีก่อนๆ มาเติมในช่องต่างๆให้อัตโนมัติ
+    p
+      strong.bg-danger ข้อมูลที่นิสิตกรอกอยู่ในขณะนี้ทั้งหมด จะถูกลบและแทนที่ด้วยข้อมูลที่นำเข้า ดังนั้นการนำเข้าข้อมูลควรจะทำก่อนนิสิตจะเริ่มทำการกรอกข้อมูล
+  div.modal-footer
+    button.btn.btn-danger(data-ng-click='importData()', data-ng-disabled='isSubmit')
+      i.fa.fa-download
+      | &nbsp;เติมข้อมูล
+    button.btn.btn-warning(data-ng-click='cancelImportModal()', data-ng-disabled='isSubmit')
+      i.fa.fa-reply
+      | &nbsp;ยกเลิก

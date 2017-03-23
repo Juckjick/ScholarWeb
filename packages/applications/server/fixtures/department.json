@@ -1,0 +1,58 @@
+[
+  {
+    "model": "Department",
+    "data": {
+      "name": "วิทยาการเภสัชกรรมและเภสัชอุตสาหกรรม",
+      "FacultyId": 1
+    }
+  },
+  {
+    "model": "Department",
+    "data": {
+      "name": "เภสัชกรรมปฏิบัติ",
+      "FacultyId": 1
+    }
+  },
+  {
+    "model": "Department",
+    "data": {
+      "name": "อาหารและเภสัชเคมี",
+      "FacultyId": 1
+    }
+  },
+  {
+    "model": "Department",
+    "data": {
+      "name": "เภสัชเวทและเภสัชพฤกษศาสตร์",
+      "FacultyId": 1
+    }
+  },
+  {
+    "model": "Department",
+    "data": {
+      "name": "เภสัชวิทยาและสรีรวิทยา",
+      "FacultyId": 1
+    }
+  },
+  {
+    "model": "Department",
+    "data": {
+      "name": "ชีวเคมีและจุลชีววิทยา",
+      "FacultyId": 1
+    }
+  },
+  {
+    "model": "Department",
+    "data": {
+      "name": "เภสัชศาสตร์สังคมและบริหาร",
+      "FacultyId": 1
+    }
+  },
+  {
+    "model": "Department",
+    "data": {
+      "name": "ไม่มีภาควิชา",
+      "FacultyId": 1
+    }
+  }
+]

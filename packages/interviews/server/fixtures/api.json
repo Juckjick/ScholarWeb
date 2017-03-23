@@ -1,0 +1,121 @@
+[
+  {
+    "model": "Api",
+    "data": {
+      "link": "/scholarships/interview/evaluation/list",
+      "ApisSubSystems": [7]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/scholarships/interview/summary/list",
+      "ApisSubSystems": [8]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/scholarships/interview/evaluation/:StudentId/:AcademicYearId",
+      "ApisSubSystems": [7]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/scholarships/interview/summary/:StudentId/:AcademicYearId",
+      "ApisSubSystems": [8]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/scholarships/load/criteria",
+      "ApisSubSystems": [
+        7,
+        8
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/scholarships/load/student-profiles",
+      "ApisSubSystems": [
+        5,
+        6,
+        7,
+        8
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/scholarships/load/evaluation",
+      "ApisSubSystems": [7]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/scholarships/load/all-evaluation-by-evaluatorid",
+      "ApisSubSystems": [7]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/scholarships/load/all-evaluation-by-studentid-academicyearid",
+      "ApisSubSystems": [8]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/scholarships/load/summary",
+      "ApisSubSystems": [8]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/scholarships/load/all-summaries",
+      "ApisSubSystems": [8]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/scholarships/load/all-old-summary-by-studentid-academicyearid",
+      "ApisSubSystems": [
+        7,
+        8
+      ]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/scholarships/upsert/evaluation",
+      "ApisSubSystems": [7]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/scholarships/upsert/summary",
+      "ApisSubSystems": [8]
+    }
+  },
+  {
+    "model": "Api",
+    "data": {
+      "link": "/api/interviews/load/profile-pic",
+      "ApisSubSystems": [
+        7,
+        8
+      ]
+    }
+  }
+]

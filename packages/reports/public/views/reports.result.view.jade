@@ -1,0 +1,35 @@
+extends layouts/reports.default.view
+
+block variable
+  - var controller = 'ReportsResultController as resultCtrl'
+  - var controllerAs = 'resultCtrl'
+
+block title
+  i.fa.fa-file-text
+  | &nbsp;รายงานสรุปรวมทุน
+
+block body
+  .row(data-ng-if='resultCtrl.results.length')
+    div.table-responsive.col-sm-12
+      table.table.table-hover
+        thead
+          tr
+            th ลำดับ
+            th รหัสประจำตัวนิสิต
+            th ชื่อ - นามสกุล
+            th ประเภททุนที่ได้รับ
+            th จำนวน (บาท)
+            th วันที่สมัคร
+
+        tbody
+          tr(data-ng-repeat='result in resultCtrl.results')
+            td {{ $index + 1 }}
+            td {{ result.StudentId }}
+            td {{ result.firstNameTh }} {{ result.lastNameTh }}
+            td {{ result.scholarship }}
+            td {{ result.amount }}
+            td {{ result.updatedAt | buddhistYear | date: 'd MMMM yyyy'}}
+
+    button.btn.btn-primary.pull-right(data-ng-click='resultCtrl.exportToExcel()')
+      i.fa.fa-file-excel-o
+      | &nbsp;นำออกรายงาน

@@ -1,0 +1,93 @@
+div(data-ng-controller='ScholarshipsLoanController as loanCtrl')
+  accordion-heading
+    i.fa.fa-money
+    | &nbsp;การกู้ยืมเงินรัฐบาล (ถ้ามี)
+    span(data-ng-if='(loanCtrl.form.$valid && loanCtrl.form.$pristine) || loanCtrl.isSaved') &nbsp;
+      i.fa.fa-check-circle-o.text-success
+    i.pull-right.fa(ng-class='{"fa-angle-down": tenth.open, "fa-angle-right": !tenth.open}')
+      
+  alert(data-ng-if='loanCtrl.isSuccess', type='success')
+    i.fa.fa-check-circle-o
+    | &nbsp;ระบบทำการบันทึกข้อมูลเสร็จสิ้น
+  alert(data-ng-if='loanCtrl.isError', type='danger')
+    i.fa.fa-warning
+    | &nbsp;ระบบไม่สามารถบันทึกข้อมูล กรุณารอสักครู่ และทดลองใหม่อีกครั้ง
+  form(role='form', name='loanCtrl.form', method='post')
+    .form-group.col-sm-12
+      label นิสิตเคยทำการกู้ยืมเงินรัฐบาลประเภท
+      .col-sm-12(data-ng-if='!loanCtrl.isDataCorrect')
+        span.has-error กรุณาเลือกตัวเลือกให้ถูกต้อง
+      //- First type loan (กยศ)
+      .col-sm-12
+        ul
+          li.checkbox
+            label.checkbox-inline
+              input(type='checkbox', name='firstType', data-ng-model='loanCtrl.checkbox.firstType', data-ng-click='loanCtrl.sanitizeLoanCheckbox("firstType")')
+              | กยศ.
+          ul
+            li.checkbox(data-ng-if='loanCtrl.checkbox.firstType')
+              label 
+                input(type='checkbox', name='firstType-firstGoal', data-ng-true-value='1', data-ng-model='loanCtrl.firstTypeFirstGoal.goalId', data-ng-click='loanCtrl.sanitizeLoanCheckbox("firstTypeFirstGoal")')
+                | ค่าเล่าเรียน
+            ul
+              li.checkbox(data-ng-if='loanCtrl.firstTypeFirstGoal.goalId')
+                label.checkbox-inline
+                  input(type='checkbox', name='firstType-firstGoal-firstSemester', data-ng-model='loanCtrl.firstTypeFirstGoal.firstSemester')
+                  | ภาคต้น
+                label.checkbox-inline
+                  input(type='checkbox', name='firstType-firstGoal-secondSemester', data-ng-model='loanCtrl.firstTypeFirstGoal.secondSemester')
+                  | ภาคปลาย
+
+          ul
+            li.checkbox(data-ng-if='loanCtrl.checkbox.firstType')
+              label
+                input(type='checkbox', name='firstType-secondGoal', data-ng-true-value='2', data-ng-model='loanCtrl.firstTypeSecondGoal.goalId', data-ng-click='loanCtrl.sanitizeLoanCheckbox("firstTypeSecondGoal")')
+                | ค่าใช้จ่ายรายเดือน
+            ul
+              li.checkbox(data-ng-if='loanCtrl.firstTypeSecondGoal.goalId')
+                label.checkbox-inline
+                  input(type='checkbox', name='firstType-secondGoal-firstSemester', data-ng-model='loanCtrl.firstTypeSecondGoal.firstSemester')
+                  | ภาคต้น
+                label.checkbox-inline
+                  input(type='checkbox', name='firstType-secondGoal-secondSemester', data-ng-model='loanCtrl.firstTypeSecondGoal.secondSemester')
+                  | ภาคปลาย
+
+      //- First type loan (กรอ.)
+      .col-sm-12
+        ul
+          li.checkbox
+            label.checkbox-inline
+              input(type='checkbox', name='secondType', data-ng-model='loanCtrl.checkbox.secondType', data-ng-click='loanCtrl.sanitizeLoanCheckbox("secondType")')
+              | กรอ.
+          ul
+            li.checkbox(data-ng-if='loanCtrl.checkbox.secondType')
+              label 
+                input(type='checkbox', name='secondType-firstGoal', data-ng-true-value='1', data-ng-model='loanCtrl.secondTypeFirstGoal.goalId', data-ng-click='loanCtrl.sanitizeLoanCheckbox("secondTypeFirstGoal")')
+                | ค่าเล่าเรียน
+            ul
+              li.checkbox(data-ng-if='loanCtrl.secondTypeFirstGoal.goalId')
+                label.checkbox-inline
+                  input(type='checkbox', name='secondType-firstGoal-firstSemester', data-ng-model='loanCtrl.secondTypeFirstGoal.firstSemester')
+                  | ภาคต้น
+                label.checkbox-inline
+                  input(type='checkbox', name='secondType-firstGoal-secondSemester', data-ng-model='loanCtrl.secondTypeFirstGoal.secondSemester')
+                  | ภาคปลาย
+
+          ul
+            li.checkbox(data-ng-if='loanCtrl.checkbox.secondType')
+              label
+                input(type='checkbox', name='secondType-secondGoal', data-ng-true-value='2', data-ng-model='loanCtrl.secondTypeSecondGoal.goalId', data-ng-click='loanCtrl.sanitizeLoanCheckbox("secondTypeSecondGoal")')
+                | ค่าใช้จ่ายรายเดือน
+            ul
+              li.checkbox(data-ng-if='loanCtrl.secondTypeSecondGoal.goalId')
+                label.checkbox-inline
+                  input(type='checkbox', name='secondType-secondGoal-firstSemester', data-ng-model='loanCtrl.secondTypeSecondGoal.firstSemester')
+                  | ภาคต้น
+                label.checkbox-inline
+                  input(type='checkbox', name='secondType-secondGoal-secondSemester', data-ng-model='loanCtrl.secondTypeSecondGoal.secondSemester')
+                  | ภาคปลาย
+
+    .clearfix
+    button.btn.btn-primary.pull-right(data-ng-click='loanCtrl.upsertLoan()', validation-submit='loanCtrl.form',  data-ng-disabled='loanCtrl.isSubmit')
+      i.fa.fa-save
+      | &nbsp;บันทึกข้อมูล

@@ -1,0 +1,14 @@
+section(data-ng-controller='ScholarshipsCompleteController as completeCtrl')
+  h2
+    i.fa.fa-pencil
+    | &nbsp;สมัครทุนการศึกษา
+  hr
+  .row
+    .col-sm-12
+      blockquote
+        i.fa.fa-check-circle-o
+        | &nbsp;นิสิตได้ทำการส่งใบสมัครทุนการศึกษาเสร็จสิ้น นิสิตสามารถดาวน์โหลดและพิมพ์ใบสมัคร พร้อมทั้งแนบสำเนาเอกสารทั้งหมด (พร้อมเซ็นต์สำเนาถูกต้อง) เพื่อส่งให้กิจการนิสิตค่ะ
+      button.btn.btn-primary.pull-right(data-ng-click='completeCtrl.exportPdf()')
+        i.fa.fa-download
+        | &nbsp;ดาวน์โหลดใบสมัคร    
+

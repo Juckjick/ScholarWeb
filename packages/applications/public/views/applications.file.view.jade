@@ -1,0 +1,122 @@
+div(data-ng-controller='ScholarshipFileController as fileCtrl')
+  accordion-heading
+    i.fa.fa-file-pdf-o
+    | &nbsp;เอกสารอื่นๆ
+    span(data-ng-if='fileCtrl.uploadedFiles.length') &nbsp;
+      i.fa.fa-check-circle-o.text-success
+    i.pull-right.fa(ng-class='{"fa-angle-down": eleventh.open, "fa-angle-right": !eleventh.open}')
+
+  .row
+    .col-sm-12
+      h3 เอกสารแนบ
+    .col-sm-12
+      p ดาวน์โหลดและพิมพ์เอกสารแนบฉบับนี้เพื่อนำไปกรอกข้อมูลให้ถูกต้อง หลังจากนั้นนิสิตจะต้องสแกนเอกสารในทุกๆส่วน และทำการอัพโหลดเอกสารทั้งหมดเข้าสู่ระบบในรูปแบบไฟล์ Jpeg, JPG, หรือ PDF
+      a.btn.btn-primary.pull-right(target='_blank', href="/docs/เอกสารแนบ.pdf")
+        i.fa.fa-download
+        | &nbsp;ดาวน์โหลด   
+    .clearfix
+    hr
+      
+  .row(data-ng-if='fileCtrl.uploadedFiles.length')
+    .col-sm-12
+      h3 เอกสารที่อัพโหลดเสร็จสิ้น
+      .table-responsive.col-sm-12
+        table.table.table-hover
+          thead
+            tr
+              th #
+              th(width='30%') ชื่อเอกสาร
+              th ประเภท
+              th วันที่อัพโหลด
+              th ดาวน์โหลด
+              th ลบ
+          tbody
+            tr(data-ng-repeat='file in fileCtrl.uploadedFiles')
+              td {{ $index + 1 }}
+              td {{ file.File.name }}
+              td {{ file.mimetype }}
+              td {{ file.createdAt | date}}
+              td
+                a.btn.btn-primary.btn-sm(data-ng-click='fileCtrl.exportFile(file)')
+                  span
+                    i.fa.fa-download
+                  | &nbsp;โหลดเอกสาร                
+              td
+                a.btn.btn-danger.btn-sm(data-ng-click='fileCtrl.openDeleteModal(file)')
+                  span
+                    i.fa.fa-trash
+                  | &nbsp;ลบเอกสาร        
+    .clearfix
+    hr
+  .row
+    .col-sm-12
+      h3 เอกสารที่จะอัพโหลด
+      div.well
+        label นิสิตจะต้องทำการอัพโหลดเอกสารดังต่อไปนี้:
+        ul
+          li(data-ng-repeat='file in fileCtrl.files') {{ file.name }}
+      
+    .col-sm-3(data-ng-show='fileCtrl.uploader.isHTML5', style='margin-top:30px;')
+      div(nv-file-drop='', uploader='fileCtrl.uploader', filters='acceptTypes, numberLimit, acceptSize')
+        .well.file-drop-zone(nv-file-over='', uploader='fileCtrl.uploader')
+          | จุดรับเอกสาร
+      p หรือ
+      input(type='file', nv-file-select='', uploader='fileCtrl.uploader', multiple='', filters='acceptTypes, numberLimit, acceptSize')
+    .col-md-9
+      p จำนวนเอกสาร: {{ fileCtrl.uploader.queue.length }} ไฟล์
+      form(role='form', name='fileCtrl.form')
+        .table-responsive.col-sm-12
+          table.table.table-hover
+            thead
+              tr
+                th(width='25%') ประเภท
+                th(width='35%') ชื่อ
+                th(ng-show='fileCtrl.uploader.isHTML5') ขนาด
+                th(ng-show='fileCtrl.uploader.isHTML5') %
+                th สถานะ
+                th ดำเนินการ
+            tbody
+              tr(ng-repeat='item in fileCtrl.uploader.queue')
+                td 
+                  select.form-control.input-sm(name='FileId{{$index}}', data-ng-model='item.FileId', data-ng-options='file.id as file.name for file in fileCtrl.files',validator='required', message-id='FileId{{$index}}', required-error-message='กรุณาเลือกประเภทของเอกสาร')
+                  span(id='FileId{{$index}}')        
+                td
+                  strong {{ item.file.name }}
+                td(ng-show='fileCtrl.uploader.isHTML5', nowrap='') {{ item.file.size/1024/1024|number:2 }} MB
+                td(ng-show='fileCtrl.uploader.isHTML5')
+                  .progress(style='margin-bottom: 0;')
+                    .progress-bar.progress-bar-success(role='progressbar', ng-style='{ "width": item.progress + "%" }')
+                td.text-center
+                  span(ng-show='item.isSuccess')
+                    i.fa.fa-ok
+                  span(ng-show='item.isCancel')
+                    i.fa.fa-ban
+                  span(ng-show='item.isError')
+                    i.fa.fa-remove
+                td(nowrap='')
+                  button.btn.btn-primary.btn-xs(type='button', validation-submit='fileCtrl.form', ng-click='item.upload()', ng-disabled='item.isReady || item.isUploading || item.isSuccess')
+                    span.fa.fa-upload
+                    | &nbsp;อัพโหลด
+                  button.btn.btn-warning.btn-xs(type='button', ng-click='item.cancel()', ng-disabled='!item.isUploading')
+                    span.fa.fa-ban
+                    | &nbsp;ยกเลิก
+                  button.btn.btn-danger.btn-xs(type='button', ng-click='item.remove()')
+                    span.fa.fa-trash
+                    | &nbsp;ลบ
+      .row.col-sm-12
+        | ความคืบหน้าทั้งหมด:
+        .progress(style='')
+          .progress-bar.progress-bar-primary(role='progressbar', ng-style='{ "width": fileCtrl.uploader.progress + "%" }')
+      .row.col-sm-12
+        label.bg-info **รูปถ่ายนิสิต จะต้องทำการอัพโหลดเป็นไฟล์ JPEG/JPG/PNG เท่านั้น
+        span.has-error 
+          | {{ fileCtrl.errorMessage }}
+      button.btn.btn-primary.btn-sm.btn-responsive(type='button', validation-submit='fileCtrl.form', ng-click='fileCtrl.uploader.uploadAll()', ng-disabled='!fileCtrl.uploader.getNotUploadedItems().length')
+        span.fa.fa-upload
+        | &nbsp;อัพโหลดทั้งหมด
+      button.btn.btn-warning.btn-sm.btn-responsive(type='button', ng-click='fileCtrl.uploader.cancelAll()', ng-disabled='!fileCtrl.uploader.isUploading')
+        span.fa.fa-ban
+        | &nbsp;ยกเลิกทั้งหมด
+      button.btn.btn-danger.btn-sm.btn-responsive(type='button', ng-click='fileCtrl.uploader.clearQueue()', ng-disabled='!fileCtrl.uploader.queue.length')
+        span.fa.fa-trash
+        | &nbsp;ลบทั้งหมด

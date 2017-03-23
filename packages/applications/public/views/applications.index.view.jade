@@ -1,0 +1,64 @@
+section(data-ng-controller='ScholarshipsController')
+  h2
+    i.fa.fa-pencil
+    | &nbsp;สมัครทุนการศึกษา
+  hr
+  .row(data-ng-if='::(!isEditMode())')
+    .col-sm-12
+      button.btn.btn-info.pull-right(data-ng-click='openImportModal()')
+        i.fa.fa-download
+        | &nbsp;เติมข้อมูลใบสมัคร
+  br
+  .row
+    .col-sm-12
+      accordion(close-others='true')
+        accordion-group(is-open='first.open')
+          include applications.profile.view.jade
+
+        //- UserProfile and UserScholars SECTION
+        accordion-group(is-open='second.open')
+          include applications.scholarship.view.jade
+
+        //- UserProfile and UserFamily SECTION
+        accordion-group(is-open='third.open')
+          include applications.family.view.jade
+
+        //- UserCash SECTION
+        accordion-group(is-open='fourth.open')
+          include applications.cash.view.jade
+
+        //- UserHealth SECTION
+        accordion-group(is-open='fifth.open')
+          include applications.health.view.jade
+
+        //- UserActivity SECTION
+        accordion-group(is-open='sixth.open')
+          include applications.activity.view.jade
+
+        //- UserContact SECTION
+        accordion-group(is-open='seventh.open')
+          include applications.contact.view.jade
+
+        //- UserReason SECTION
+        accordion-group(is-open='eighth.open')
+          include applications.reason.view.jade
+
+        //- UserProfile SECTION
+        accordion-group(is-open='ninth.open')
+          include applications.job.view.jade
+
+        //- UserLoan SECTION
+        accordion-group(is-open='tenth.open')
+          include applications.loan.view.jade
+          
+        //- UserFile SECTION
+        accordion-group(is-open='eleventh.open')
+          include applications.file.view.jade
+    
+    //- Show this button only if the application is applied by a Student,
+    //- not being modified by an Admin
+    button.btn.btn-primary.pull-right(type='button', data-ng-if='::(!isEditMode())', data-ng-click='openConfirmModal()', data-ng-disabled='isSubmit')
+      i.fa.fa-send
+      | &nbsp;ส่งใบสมัคร
+
+

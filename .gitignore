@@ -1,0 +1,41 @@
+# iOS / Apple
+# ===========
+.DS_Store
+ehthumbs.db
+Icon?
+Thumbs.db
+
+# Node and related ecosystem
+# ==========================
+node_modules/
+bower_components/
+test/coverage/
+.sass-cache/
+npm-debug.log
+.nodemonignore
+.idea/
+
+# MEAN.js app and assets
+# ======================
+public/dist/
+public/css/
+
+# Sublime editor
+# ==============
+.sublime-project
+*.sublime-project
+*.sublime-workspace
+
+# General
+# =======
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+*.tmp
+*.bak
+*.swp
+logs/
+build/

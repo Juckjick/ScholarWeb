@@ -1,0 +1,35 @@
+extends ../../../cores/public/views/layouts/cores.table.view.jade
+
+block variable
+  - var controller = 'RolesController as roleCtrl'
+  - var controllerAs = 'roleCtrl'
+  - var stTable = 'roleCtrl.displayedRoles'
+  - var stSafeSrc = 'roleCtrl.roles'
+  - var stSearch = 'name'
+
+block title
+  i.fa.fa-pencil-square-o
+  | รายชื่อสิทธิของผู้ใช้งาน
+
+block table
+  table.table.table-striped.table-bordered.table-hover.table-responsive.dataTable.no-footer
+    thead
+      tr(role='row')
+        th.vtop #
+        th.vtop ชื่อสิทธิของผู้ใช้งาน
+        th.vtop รายละเอียด
+        th.vtop แก้ไข / ลบ
+    tbody
+      tr(data-ng-repeat='role in roleCtrl.displayedRoles track by $index')
+        td {{ roleCtrl.startPage + $index }}
+        td {{ role.name }}
+        td {{ role.description }}
+        td
+          a.btn-space.btn.btn-warning.btn-responsive(data-ng-click='roleCtrl.openEditModal(role)')
+            span
+              i.fa.fa-pencil-square
+            | &nbsp;แก้ไขสิทธิ
+          a.btn-space.btn.btn-danger.btn-responsive(data-ng-click='roleCtrl.openDeleteModal(role)')
+            span
+              i.fa.fa-trash
+            | &nbsp;ลบสิทธิ&nbsp;&nbsp;
