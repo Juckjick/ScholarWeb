@@ -61,7 +61,7 @@ section(data-ng-controller='UsersController as userCtrl')
           .form-group.col-sm-12
             label สิทธิของผู้ใช้งาน
             select.form-control(multiple='', data-ng-model='userCtrl.newUser.roles', data-ng-options='role.name for role in userCtrl.roles track by role.id')
-        //- .row
+        .row
           .form-group.col-sm-6
             label วันเริ่มต้นการใช้งาน
             .input-group
