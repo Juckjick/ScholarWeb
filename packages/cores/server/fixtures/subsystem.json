@@ -103,7 +103,7 @@
 	    "model": "SubSystem",
 	    "data": {
 	    	"id": 9,
-	        "name": "ตั้งค่าระบบ",
+	        "name": "ปรับเวลารับสมัครทุนการศึกษา",
 	        "description": "ตั้งค่าต่างๆให้แก่ระบบทุนการศึกษา",
 	        "link": "scholarships/setting",
 	        "icon": "fa fa-gear",

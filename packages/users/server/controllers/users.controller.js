@@ -45,12 +45,13 @@ exports.loadRoles = function(req, res) {
  */
 exports.create = function(req, res) {
     
+    console.log("create");
     console.log(req.body);
     if(req.body.roles.id == 3) {
         var today = new Date();
         req.body.startDate = today.toString();
         req.body.endDate = new Date(today.setFullYear(today.getFullYear() + 1)).toISOString();
-        console.log("---- in 3 loop ----")
+        // console.log("---- in 3 loop ----");
     } else {
         var today = new Date();
         req.body.startDate = today.toString();
@@ -89,9 +90,60 @@ exports.create = function(req, res) {
                     res.json(user);
 
             });
-        } else
-            res.json(user);
+        } else {
 
+            res.json(user);
+        }
+
+    }).catch(function(err) {
+        console.error(err);
+        res.sendStatus(500);
+    });
+};
+
+/**
+ * Create a user by register page
+ */
+exports.create_x = function(req, res) {
+    
+    console.log("create_x");
+    console.log(req.body);
+    if(req.body.roles == 3) {
+        var today = new Date();
+        req.body.startDate = today.toString();
+        req.body.endDate = new Date(today.setFullYear(today.getFullYear() + 1)).toISOString();
+        // console.log("---- in 3 loop ----");
+    } else {
+        var today = new Date();
+        req.body.startDate = today.toString();
+    }
+
+    console.log(req.body.roles);
+    var user = db.User.build(req.body);
+
+    // Set user properties
+    user.provider = 'local';
+    user.salt = user.makeSalt();
+    user.hashedPassword = user.encryptPassword(req.body.password, user.salt);
+
+    // Persist the user
+    user.save().then(function(user) {
+        // Verify whether the user has assigned roles or not
+        db.Role.find({
+                    where: {
+                        id: 3
+                    }
+                }).then(function(role) {
+                    user.addRole(role).then(function() {
+                        res.json(user);
+                    }).catch(function(err) {
+                        console.log(err);
+                        // callback(err);
+                        // res.json(user);
+                        res.sendStatus(500);
+                    });
+                });
+            // res.json(user);
     }).catch(function(err) {
         console.error(err);
         res.sendStatus(500);

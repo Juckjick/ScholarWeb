@@ -24,6 +24,7 @@
         vm.openStartDate = openStartDate;
         vm.openEndDate = openEndDate;
         vm.create = create;
+        vm.create_x = create_x;
         vm.edit = edit;
         vm.del = del;
         vm.openEditModal = openEditModal;
@@ -113,6 +114,40 @@
                 }, 5000);
             });
         }
+
+        // Create a new user by register page
+        function create_x() {
+            console.log("--");
+            vm.isSubmit = true;
+
+            $http.post('/api/users/create_x', vm.newUser).success(function (user) {
+                vm.isSuccess = true;
+                // Scroll to #top, and then reset the route back to normal,
+                // without #top, by setting $location.hash(null)
+                $location.hash('top');
+                $anchorScroll();
+                $location.hash(null);
+
+                $timeout(function () {
+                    vm.isSuccess = false;
+                    vm.newUser = {}; // To delete optional field
+                    $validation.reset(vm.form);
+                    vm.isSubmit = false;
+                }, 5000);
+            }).error(function (err) {
+                vm.isError = true;
+                // Scroll to #top, and then reset the route back to normal,
+                // without #top, by setting $location.hash(null)
+                $location.hash('top');
+                $anchorScroll();
+                $location.hash(null);
+                $timeout(function () {
+                    vm.isError = false;
+                    vm.isSubmit = false;
+                }, 5000);
+            });
+        }
+
 
         // Edit a user
         function edit() {

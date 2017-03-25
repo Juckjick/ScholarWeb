@@ -60,7 +60,7 @@ block auth
                 .required-icon
                   .text *        
               span#create-user-password-confirm
-          input(type="hidden", data-ng-model='userCtrl.newUser.roles',data-ng-init="userCtrl.newUser.roles = 3")
+          input(type="hidden", data-ng-model='userCtrl.newUser.roles', data-ng-init="userCtrl.newUser.roles = 3")
           //- .row
             .form-group.col-sm-12
               label สิทธิของผู้ใช้งาน
@@ -81,6 +81,6 @@ block auth
                   button.btn.btn-default.btn-not-responsive(type='button', ng-click='userCtrl.openEndDate($event)')
                     i.fa.fa-calendar
 
-          button.btn.btn-primary.pull-right(type='submit', data-ng-click='userCtrl.create()',  validation-submit='userCtrl.form',  data-ng-disabled='userCtrl.isSubmit')
+          button.btn.btn-primary.pull-right(type='submit', data-ng-click='userCtrl.create_x()',  validation-submit='userCtrl.form',  data-ng-disabled='userCtrl.isSubmit')
             i.fa.fa-user
             | &nbsp;สมัครสมาชิก

@@ -81,21 +81,21 @@
                     "link": "systems/users/list",
                     "icon": "fa fa-pencil-square-o"
                 }]
-            }, {
-                "parentId": 1,
-                "groupName": "สิทธิผู้ใช้งาน",
-                "groupIcon": "fa fa-eye",
-                "menus": [{
-                    "id": 3,
-                    "title": "เพิ่มสิทธิ",
-                    "link": "systems/roles/create",
-                    "icon": "fa fa-plus-square-o"
-                }, {
-                    "id": 4,
-                    "title": "แก้ไขสิทธิ",
-                    "link": "systems/roles/list",
-                    "icon": "fa fa-pencil-square-o"
-                }]
+            // }, {
+            //     "parentId": 1,
+            //     "groupName": "สิทธิผู้ใช้งาน",
+            //     "groupIcon": "fa fa-eye",
+            //     "menus": [{
+            //         "id": 3,
+            //         "title": "เพิ่มสิทธิ",
+            //         "link": "systems/roles/create",
+            //         "icon": "fa fa-plus-square-o"
+            //     }, {
+            //         "id": 4,
+            //         "title": "แก้ไขสิทธิ",
+            //         "link": "systems/roles/list",
+            //         "icon": "fa fa-pencil-square-o"
+            //     }]
             }];
 
             var scholarshipSubMenus = [{
@@ -197,16 +197,16 @@
                     "title": "รายงานข้อมูลนิสิต",
                     "link": "reports/student",
                     "icon": "fa fa-child"
-                }, {
-                    "id": 18,
-                    "title": "รายงานเงินกู้ยืมรัฐบาล",
-                    "link": "reports/loan",
-                    "icon": "fa fa-money"
-                }, {
-                    "id": 19,
-                    "title": "รายงานทุนอุดหนุน",
-                    "link": "reports/scholarship",
-                    "icon": "fa fa-money"
+                // }, {
+                //     "id": 18,
+                //     "title": "รายงานเงินกู้ยืมรัฐบาล",
+                //     "link": "reports/loan",
+                //     "icon": "fa fa-money"
+                // }, {
+                //     "id": 19,
+                //     "title": "รายงานทุนอุดหนุน",
+                //     "link": "reports/scholarship",
+                //     "icon": "fa fa-money"
                 }, {
                     "id": 20,
                     "title": "รายงานสรุปรวมทุน",
