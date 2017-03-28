@@ -1,7 +1,7 @@
 div(data-ng-controller='ScholarshipsScholarshipController as scholarshipCtrl')
   accordion-heading
     i.fa.fa-graduation-cap
-    | &nbsp;ประวัติการศึกษาและการรับทุนการศึกษา
+    | &nbsp;ประวัติการศึกษา
     span(data-ng-if='(scholarshipCtrl.form.$valid && scholarshipCtrl.form.$pristine) || scholarshipCtrl.isSaved') &nbsp;
       i.fa.fa-check-circle-o.text-success
     i.pull-right.fa(ng-class='{"fa-angle-down": second.open, "fa-angle-right": !second.open}')
@@ -60,7 +60,7 @@ div(data-ng-controller='ScholarshipsScholarshipController as scholarshipCtrl')
         
 
     //- In case of a new comming student (Freshman)
-    div(data-ng-if='scholarshipCtrl.profile.isNewStudent')
+    //- div(data-ng-if='scholarshipCtrl.profile.isNewStudent')
       .row
         .form-group.col-sm-6
           label ผลการเรียนระดับมัธยมปลาย เกรดเฉลี่ยสะสม
