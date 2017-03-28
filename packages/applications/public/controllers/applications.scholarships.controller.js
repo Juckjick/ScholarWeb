@@ -115,11 +115,11 @@
             // Clear some profile attributes 
             // which are used only for a current student
             // not for a freshman
-            if (vm.profile.isNewStudent) {
+            // if (vm.profile.isNewStudent) {
                 vm.profile.advisor = null;
                 vm.profile.gpa = null;
                 vm.profile.academicYear = null;
-            }
+            // }
         }
 
         // Filter the departments field based on faculties field
