@@ -2,7 +2,7 @@
 # ===========
 .DS_Store
 ehthumbs.db
-Icon?
+# Icon?
 Thumbs.db
 
 # Node and related ecosystem
@@ -18,7 +18,7 @@ npm-debug.log
 # MEAN.js app and assets
 # ======================
 public/dist/
-public/css/
+# public/css/
 
 # Sublime editor
 # ==============
