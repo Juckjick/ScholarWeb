@@ -40,11 +40,11 @@ section(data-ng-controller='UsersController as userCtrl')
             span#create-user-username   
         .row
           .form-group.col-sm-6
-            label เลขรบัตรประชาชนผู้ใช้งาน
+            label เลขบัตรประชาชนผู้ใช้งาน
             .input-group.required-field-block
               span.input-group-addon
                 i.fa.fa-key
-              input.form-control(name='create-user-password', type='password', placeholder='เลขรบัตรประชาชนผู้ใช้งาน', minlength='8', maxlength='150', data-ng-model='userCtrl.newUser.password', validator='password', message-id='create-user-password')
+              input.form-control(name='create-user-password', type='password', placeholder='เลขบัตรประชาชนผู้ใช้งาน', minlength='8', maxlength='150', data-ng-model='userCtrl.newUser.password', validator='password', message-id='create-user-password')
               .required-icon
                 .text *        
             span#create-user-password   

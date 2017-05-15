@@ -39,26 +39,31 @@
             menus = [{
                 "id": 1,
                 "title": "ผู้ใช้งาน",
+                "description" : "ส่วนของการจัดการผู้ใช้งานโดย ...",
                 "link": "systems",
                 "icon": 'fa fa-users'
             }, {
                 "id": 2,
                 "title": "ทุนการศึกษา",
+                "description" : "ส่วนของการจัดการทุนการศึกษาโดย ...",
                 "link": "scholarships",
                 "icon": 'fa fa-graduation-cap'
             }, {
                 "id": 3,
                 "title": "เงินทุน",
+                "description" : "ส่วนของการจัดการเงินทุนโดย ...",
                 "link": "budgets",
                 "icon": 'fa fa-bank'
             }, {
                 "id": 4,
                 "title": "รายงาน",
+                "description" : "ส่วนของการจัดการรายงานโดย ...",
                 "link": "reports",
                 "icon": 'fa fa-file-o'
             }, {
                 "id": 5,
-                "title": "ตั้งค่า",
+                "title": "ปีการศึกษา",
+                "description" : "ส่วนของการจัดการกำหนดปีการศึกษาโดย ...",
                 "link": "settings",
                 "icon": 'fa fa-gear'
             }];

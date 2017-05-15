@@ -5,3 +5,17 @@ section(data-ng-controller='IndexController as indexCtrl')
   h2(data-ng-if='!indexCtrl.currentMainMenu')
     | ระบบจัดการทุนการศึกษา ฝ่ายกิจการนิสิต
   hr
+
+  .panel.panel-info(data-ng-if='indexCtrl.currentMainMenu')
+    .panel-heading ระบบการจัดการ{{ indexCtrl.currentMainMenu.title }}
+    .panel-body {{ indexCtrl.currentMainMenu.description }}
+
+  .panel.panel-info(data-ng-if='!indexCtrl.currentMainMenu')
+    .panel-heading ทุนอุดหนุนการศึกษา
+    .panel-body เป็นทุนสนับสนุนภายในมหาวิทยาลัย แบ่งประเภทของทุนได้ ดังนี้
+    .panel-body ทุนประเภท ก เป็นทุนค่าเล่าเรียน และค่าใช้จ่ายรายเดือน
+    .panel-body ทุนประเภท ข (1) เป็นทุนค่าเล่าเรียน
+    .panel-body ทุนประเภท ข (2) เป็นทุนช่วยเหลือเฉพาะค่าใช้จ่ายรายเดือน
+
+
+  

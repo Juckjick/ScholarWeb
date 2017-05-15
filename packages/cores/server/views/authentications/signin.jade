@@ -3,8 +3,8 @@ extends auth
 block auth
   form.signin(action="/users/session", method="post")
     .form-group
-      label(for='username') ชื่อผู้ใช้งาน
-      input.form-control#username(type='text', name="username", placeholder='ชื่อผู้ใช้งาน')
+      label(for='username') รหัสบัตรประจำตัวประชาชน
+      input.form-control#username(type='text', name="username", placeholder='รหัสบัตรประจำตัวประชาชน')
 
     .form-group
       label(for='password') รหัสผ่าน
