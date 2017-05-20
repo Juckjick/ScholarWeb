@@ -37,6 +37,7 @@ require(path.join(config.root, 'packages/cores/server/routes/cores.route.js'))(a
 
 //Start the app by listening on <port>
 var port = process.env.PORT || config.port;
+// var port = 80;
 app.listen(port);
 console.log('Express app started on port ' + port);
 

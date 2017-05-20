@@ -3,11 +3,11 @@
   "description": "SMS - Scholarship Management System",
   "version": "1.0.0",
   "private": false,
-  "author": "Varayut Lerdkanlayanawat",
-  "contact": "l.varayut@gmail.com",
+  "author": "CU Student Affair",
+  "contact": "juckjick14@gmail.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lvarayut/sms.git"
+    "url": "https://github.com/Juckjick/ScholarWeb.git"
   },
   "engines": {
     "node": "0.10.x",
