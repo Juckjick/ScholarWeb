@@ -28,11 +28,11 @@
             i.fa.fa-envelope
           input.form-control(name='edit-user-email', type='text', maxlength='150', placeholder='อีเมลล์', data-ng-model='userCtrl.editUser.email')
       .form-group.col-sm-6
-        label ชื่อผู้ใช้งาน
+        label เลขบัตรประจำตัวประชาชน
         .input-group.required-field-block
           span.input-group-addon
             i.fa.fa-tag
-          input.form-control(name='edit-user-username', type='text', maxlength='20', placeholder='ชื่อผู้ใช้งาน', data-ng-model='userCtrl.editUser.username', validator='username', message-id='edit-user-username')
+          input.form-control(name='edit-user-username', type='text', maxlength='20', placeholder='เลขบัตรประจำตัวประชาชน', data-ng-model='userCtrl.editUser.username', validator='username', message-id='edit-user-username')
           .required-icon
             .text *        
         span#edit-user-username   

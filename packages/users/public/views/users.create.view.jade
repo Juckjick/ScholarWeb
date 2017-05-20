@@ -30,21 +30,21 @@ section(data-ng-controller='UsersController as userCtrl')
                 i.fa.fa-envelope
               input.form-control(name='create-user-email', type='text', maxlength='150', placeholder='อีเมลล์', data-ng-model='userCtrl.newUser.email')
           .form-group.col-sm-6
-            label ชื่อผู้ใช้งาน
+            label เลขบัตรประชาชนผู้ใช้งาน
             .input-group.required-field-block
               span.input-group-addon
                 i.fa.fa-tag
-              input.form-control(name='create-user-username', type='text', maxlength='20', placeholder='ชื่อผู้ใช้งาน', data-ng-model='userCtrl.newUser.username', validator='username', message-id='create-user-username')
+              input.form-control(name='create-user-username', type='text', maxlength='20', placeholder='เลขบัตรประชาชนผู้ใช้งาน', data-ng-model='userCtrl.newUser.username', validator='username', message-id='create-user-username')
               .required-icon
                 .text *        
             span#create-user-username   
         .row
           .form-group.col-sm-6
-            label เลขบัตรประชาชนผู้ใช้งาน
+            label ระบุรหัสผู้ใช้งาน
             .input-group.required-field-block
               span.input-group-addon
                 i.fa.fa-key
-              input.form-control(name='create-user-password', type='password', placeholder='เลขบัตรประชาชนผู้ใช้งาน', minlength='8', maxlength='150', data-ng-model='userCtrl.newUser.password', validator='password', message-id='create-user-password')
+              input.form-control(name='create-user-password', type='password', placeholder='ระบุรหัสผู้ใช้งาน', minlength='8', maxlength='150', data-ng-model='userCtrl.newUser.password', validator='password', message-id='create-user-password')
               .required-icon
                 .text *        
             span#create-user-password   

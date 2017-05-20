@@ -12,7 +12,7 @@ div.container(data-ng-controller='HeaderController')
     ul.nav.navbar-nav.navbar-right(data-ng-show='global.authenticated')
       li.dropdown
         a.dropdown-toggle(href='#', data-toggle='dropdown')
-          | {{global.user.username}}
+          | {{global.user.fullname}}
           b.caret
         ul.dropdown-menu
           li
