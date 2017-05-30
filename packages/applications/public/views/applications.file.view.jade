@@ -1,7 +1,7 @@
 div(data-ng-controller='ScholarshipFileController as fileCtrl')
   accordion-heading
     i.fa.fa-file-pdf-o
-    | &nbsp;เอกสารอื่นๆ
+    | &nbsp;เอกสารแนบที่ต้องใช้ในการสมัครทุน
     span(data-ng-if='fileCtrl.uploadedFiles.length') &nbsp;
       i.fa.fa-check-circle-o.text-success
     i.pull-right.fa(ng-class='{"fa-angle-down": eleventh.open, "fa-angle-right": !eleventh.open}')

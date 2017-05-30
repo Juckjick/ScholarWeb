@@ -212,11 +212,11 @@
                 //     "title": "รายงานทุนอุดหนุน",
                 //     "link": "reports/scholarship",
                 //     "icon": "fa fa-money"
-                }, {
-                    "id": 20,
-                    "title": "รายงานสรุปรวมทุน",
-                    "link": "reports/result",
-                    "icon": "fa fa-file-text"
+                // }, {
+                //     "id": 20,
+                //     "title": "รายงานสรุปรวมทุน",
+                //     "link": "reports/result",
+                //     "icon": "fa fa-file-text"
                 }]
             }];
 

@@ -55,19 +55,19 @@ exports.getStatus = function (data) {
 
     status.text = [
         '3.' + sectionNumber.toString() + ' สถานภาพครอบครัว\n',
-        'สถานะ\t',
+        'สถานะ: ',
         data.UserProfile[0].FamilyStatus.name
     ];
 
     // In case of 'อื่นๆ'
     if (data.UserProfile[0].FamilyStatusId === 4) {
         status.text = status.text.concat([
-            '\t(โปรดระบุ)\t',
+            '\t(โปรดระบุ): ',
             data.UserProfile[0].familyStatusNote
         ]);
     } else if (data.UserProfile[0].FamilyStatusId !== 1) {
         status.text = status.text.concat([
-            '\tผู้ส่งเสีย\t',
+            '\tผู้ส่งเสีย: ',
             data.UserProfile[0].ChildCare.name
         ]);
     }
@@ -89,17 +89,17 @@ exports.getStepParent = function (data) {
 
             step.text = [
                 '3.' + sectionNumber.toString() + ' กรณีบิดา มารดามีครอบครัวใหม่\n',
-                'สามีใหม่ / ภรรยาใหม่ ชื่อ - สกุล\t',
+                'สามีใหม่ / ภรรยาใหม่ ชื่อ - สกุล: ',
                 data.UserFamily[i].fullname,
-                '\tอายุ\t',
+                '\tอายุ: ',
                 data.UserFamily[i].age.toString(),
-                '\tอาชีพ\t',
+                '\tอาชีพ: ',
                 data.UserFamily[i].job,
-                '\nรายได้ประมาณปีละ\t',
+                '\nรายได้ประมาณปีละ: ',
                 data.UserFamily[i].revenueYear.toString(),
-                '\nสถานที่ติดต่อ\t',
+                '\nสถานที่ติดต่อ: ',
                 data.UserFamily[i].place,
-                '\nโทรศัพท์\t',
+                '\nโทรศัพท์: ',
                 data.UserFamily[i].phone ? data.UserFamily[i].phone : '-'
             ];
             step.style = 'linespace';
@@ -122,8 +122,8 @@ exports.getSibling = function (data) {
     sectionNumber += 1;
 
     header.text = [
-        '3.' + sectionNumber.toString() + ' ข้าพเจ้ามีพี่น้อง\t',
-        data.UserProfile[0].numberSibling.toString() + '\tคน',
+        '3.' + sectionNumber.toString() + ' ข้าพเจ้ามีพี่น้อง: ',
+        data.UserProfile[0].numberSibling.toString() + ' คน',
         '\tผู้ขอทุนเป็นบุตร-ธิดา คนที่ ',
         data.UserProfile[0].birthOrder.toString(),
     ];
@@ -138,7 +138,7 @@ exports.getSibling = function (data) {
 
         // Print header text
         header.text = header.text.concat([
-            '\n\t\t\t - พี่น้องร่วมบิดา มารดา ที่กำลังศึกษา / ที่สำเร็จการศึกษา (มีงานทำ / ไม่มีงานทำ)'
+            '\n          - พี่น้องร่วมบิดา มารดา ที่กำลังศึกษา / ที่สำเร็จการศึกษา (มีงานทำ / ไม่มีงานทำ)'
         ]);
 
         sibling.table = {};
@@ -186,17 +186,17 @@ exports.getAdoption = function (data) {
         sectionNumber += 1;
 
         adoption.text = [
-            '3.' + sectionNumber.toString() + ' บิดา - มารดา มีภาระต้องอุปการะเลี้ยงดูผู้อื่น (นอกเหนือจากบุตร - ธิดา)\t',
-            data.UserAdoption[0].number.toString() + '\tคน',
-            '\nบุคคลอื่นที่ต้องอุปการะเลี้ยงดูคือ\t',
+            '3.' + sectionNumber.toString() + ' บิดา - มารดา มีภาระต้องอุปการะเลี้ยงดูผู้อื่น (นอกเหนือจากบุตร - ธิดา): ',
+            data.UserAdoption[0].number.toString() + ' คน',
+            '\nบุคคลอื่นที่ต้องอุปการะเลี้ยงดูคือ ',
             data.UserAdoption[0].person,
-            '\nมีภาระหนี้สินในปัจจุบันเป็นจำนวน\t',
-            data.UserAdoption[0].debt.toString() + '\tบาท',
-            '\tเนื่องจาก\t',
+            '\nมีภาระหนี้สินในปัจจุบันเป็นจำนวน: ',
+            data.UserAdoption[0].debt.toString() + ' บาท',
+            '\tเนื่องจาก ',
             data.UserAdoption[0].reason,
-            '\nการผ่อนชำระเดือนละ\t',
-            data.UserAdoption[0].payment.toString() + '\tบาท',
-            '\nปัจจุบันนิสิตอาศัยอยู่กับ\t',
+            '\nการผ่อนชำระเดือนละ ',
+            data.UserAdoption[0].payment.toString() + ' บาท',
+            '\nปัจจุบันนิสิตอาศัยอยู่กับ ',
             data.UserProfile[0].stayWith
 
         ];
@@ -222,8 +222,8 @@ function generateFamilyInfo(member) {
     if (member.isAlive) {
         person.text = person.text.concat([
             '\t มีชีวิตอยู่',
-            {text: '\t อายุ \t', style: 'structure'},
-            '\t' + member.age + '\t ',
+            {text: ' อายุ ', style: 'structure'},
+            '\t' + member.age + ' ',
             {text: '\t ปี', style: 'structure'}
         ]);
     } else {
@@ -233,15 +233,15 @@ function generateFamilyInfo(member) {
     }
 
     person.text = person.text.concat([
-        {text: '\t วุฒิการศึกษาสูงสุด \t', style: 'structure'},
+        {text: '\t วุฒิการศึกษาสูงสุด ', style: 'structure'},
         member.education,
-        {text: '\n อาชีพ \t', style: 'structure'},
+        {text: '\n อาชีพ ', style: 'structure'},
         member.job,
-        {text: '\t สถานที่ทำงาน \t', style: 'structure'},
+        {text: '\t สถานที่ทำงาน ', style: 'structure'},
         member.place,
-        {text: '\t โทรศัพท์ \t', style: 'structure'},
+        {text: '\t โทรศัพท์ ', style: 'structure'},
         member.phone ? member.phone : '-',
-        {text: '\t โทรศัพท์มือถือ \t', style: 'structure'},
+        {text: '\t โทรศัพท์มือถือ ', style: 'structure'},
         member.mobile,
         {text: '\n รายได้ต่อเดือน (ยังไม่หักค่าใช้จ่าย) \t', style: 'structure'},
         member.revenue.toString(),

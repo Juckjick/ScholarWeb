@@ -31,7 +31,7 @@ passport.use(new LocalStrategy({
   function(username, password, done) {
     db.User.find({ where: { username: username }}).success(function(user) {
       if (!user) {
-        done(null, false, { message: 'ชื่อผู้ใช้งานไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง'});
+        done(null, false, { message: 'รหัสประจำตัวประชาชนไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง'});
       } else if (!user.authenticate(password)) {
         done(null, false, { message: 'รหัสผ่านไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง'});
       } else {

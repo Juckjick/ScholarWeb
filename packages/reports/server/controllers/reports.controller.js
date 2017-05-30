@@ -226,9 +226,21 @@ function loadScholarship(req, res) {
  * @param  {Response} res
  */
 function loadAllStudents(req, res) {
-    var query = 'SELECT * FROM UserProfiles WHERE AcademicYearId IS NOT NULL  GROUP BY UserId ORDER BY studentId';
-    db.sequelize.query(query).success(function(students) {
-        res.json(students);
+    // var query = 'SELECT * FROM UserProfiles WHERE AcademicYearId IS NOT NULL  GROUP BY UserId ORDER BY studentId';
+    // db.sequelize.query(query).success(function(students) {
+    //     res.json(students);
+    // }).error(function(err) {
+    //     console.log(err);
+    //     res.sendStatus(500);
+    // });
+    db.UserProfile.findAll({
+        where: {
+            AcademicYearId: !null
+        },
+        include: [db.Faculty, db.Department, db.AcademicYear],
+        order: 'FacultyId'
+    }).success(function(profiles) {
+        res.json(profiles);
     }).error(function(err) {
         console.log(err);
         res.sendStatus(500);

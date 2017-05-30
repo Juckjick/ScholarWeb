@@ -20,9 +20,9 @@ exports.getReason = function(data) {
     // Generate reason
     reason = {};
     reason.text = [
-        '\t\t\t- เหตุผลที่ต้องสมัครขอรับทุน\t',
+        '- เหตุผลที่ต้องสมัครขอรับทุน: ',
         data.UserReason[0].reason,
-        '\n\n\t\t\t- หากไม่ได้รับทุน ผู้สมัครจะมีวิธีการแก้ปัญหาคือ\t',
+        '\n\n- หากไม่ได้รับทุน ผู้สมัครจะมีวิธีการแก้ปัญหาคือ ',
         data.UserReason[0].solution
     ];
 
@@ -43,7 +43,7 @@ exports.getScholarship = function(data) {
         i, header, hasScholarship, scholarship;
 
     header = {
-        text: '\n\t\t\t- ขณะนี้ผู้สมัครกำลังสมัครขอรับทุนอื่นอยู่\t'
+        text: '\n- ขณะนี้ผู้สมัครกำลังสมัครขอรับทุนอื่นอยู่ '
     };
 
     // Verify if the user are applying to another scholarship
@@ -56,7 +56,7 @@ exports.getScholarship = function(data) {
     // Scholarship
     if (gotScholarship) {
         scholarship = {};
-        hasScholarship = { text: '\t\t\t\tเคยได้รับทุนการศึกษา\n'};
+        hasScholarship = { text: 'เคยได้รับทุนการศึกษา\n'};
         scholarship.table = {};
         scholarship.table.widths = ['*', '*', '*']; 
         scholarship.table.body = [[{ text: 'ประเภท', style: 'tableHeader'}, { text: 'ชื่อทุนการศึกษา', style : 'tableHeader' }, {text:'จำนวนเงิน',style:'tableHeader' }]];
@@ -70,7 +70,7 @@ exports.getScholarship = function(data) {
             }
         }
     } else {
-        hasScholarship = { text: '\t\t\t\tไม่เคยได้รับทุนการศึกษา\n'};
+        hasScholarship = { text: 'ไม่เคยได้รับทุนการศึกษา\n'};
     }
 
     contents.push(header);

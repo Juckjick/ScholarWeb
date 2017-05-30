@@ -15,21 +15,21 @@ exports.getHealth = function(data) {
     health = {};
     health.style = 'linespace';
     health.text = [
-        '\t\t\t- ข้าพเจ้าเคยเจ็บป่วยครั้งสุดท้ายเมื่อปี\t',
+        ' - ข้าพเจ้าเคยเจ็บป่วยครั้งสุดท้ายเมื่อปี ',
         data.UserHealth[0].lastYear.toString(),
-        '\tด้วยโรค\t',
+        '\tด้วยโรค ',
         data.UserHealth[0].lastDisease,
-        '\tรวมระยะเวลาที่ต้องรักษา\t',
+        '\tรวมระยะเวลาที่ต้องรักษา ',
         data.UserHealth[0].lastDay.toString() + ' วัน',
-        '\n\t\t\t- ข้าพเจ้าเคยรับการรักษาและต้องอยู่โรงพยาบาลเมื่อปี\t',
+        '\n- ข้าพเจ้าเคยรับการรักษาและต้องอยู่โรงพยาบาลเมื่อปี ',
         data.UserHealth[0].admitYear? data.UserHealth[0].admitYear.toString() : '-',
-        '\tด้วยโรค\t',
+        '\tด้วยโรค: ',
         data.UserHealth[0].admitDisease? data.UserHealth[0].admitDisease: '-',
-        '\n\t\t\t  รวมเวลาที่รับการรักษา\t',
+        '\n  รวมเวลาที่รับการรักษา: ',
         data.UserHealth[0].admitDay? data.UserHealth[0].admitDay.toString() + ' วัน' : '-',
-        '\tค่าใช้จ่ายในการรักษา\t',
+        '  ค่าใช้จ่ายในการรักษา: ',
         data.UserHealth[0].admitMoney? data.UserHealth[0].admitMoney.toString() + ' บาท': '-',
-        '\n\t\t\t- โรคที่ข้าพเจ้าเจ็บป่วยบ่อยที่สุด คือ\t',
+        '\n- โรคที่ข้าพเจ้าเจ็บป่วยบ่อยที่สุด คือ ',
         data.UserHealth[0].frequentlySick,
     ];
 

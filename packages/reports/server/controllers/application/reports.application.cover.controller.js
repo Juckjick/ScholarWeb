@@ -25,17 +25,17 @@ exports.getCover = function(data) {
     };
 
     underphoto = {
-        text: 'เลขประจำตัวนิสิต: ' + data.UserProfile[0].studentId,
-        alignment: 'right',
-        margin: [0, 0, 0, 20]
+        // text: 'เลขประจำตัวนิสิต: ' + data.UserProfile[0].studentId,
+        // alignment: 'right',
+        // margin: [0, 0, 0, 20]
     };
 
 
     body = {
         stack: [
-            'ข้าพเจ้าชื่อ (ภาษาไทย) \t' + data.UserProfile[0].Title.nameTh + ' ' + data.UserProfile[0].firstnameTh + ' ' + data.UserProfile[0].lastnameTh,
-            '(ภาษาอังกฤษ) \t' + data.UserProfile[0].Title.nameEn + ' ' + data.UserProfile[0].firstnameEn + ' ' + data.UserProfile[0].lastnameEn,
-            'เลขที่บัตรประจำตัวประชาชน \t' + data.UserProfile[0].identityCard
+            'ข้าพเจ้าชื่อ (ภาษาไทย): ' + data.UserProfile[0].Title.nameTh + ' ' + data.UserProfile[0].firstnameTh + ' ' + data.UserProfile[0].lastnameTh,
+            '(ภาษาอังกฤษ): ' + data.UserProfile[0].Title.nameEn + ' ' + data.UserProfile[0].firstnameEn + ' ' + data.UserProfile[0].lastnameEn,
+            'เลขที่บัตรประจำตัวประชาชน: ' + data.UserProfile[0].identityCard
         ],
         margin: [0, 0, 0, 20]
     };

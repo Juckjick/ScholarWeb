@@ -4,7 +4,7 @@ section(data-ng-controller='IndexController as indexCtrl')
       | &nbsp;ระบบการจัดการ{{ indexCtrl.currentMainMenu.title }}
   h2(data-ng-if='!indexCtrl.currentMainMenu')
     | ระบบจัดการทุนการศึกษา ฝ่ายกิจการนิสิต
-  hr
+  hr 
 
   //- .panel.panel-info(data-ng-if='indexCtrl.currentMainMenu')
   //-   .panel-heading {{ indexCtrl.currentMainMenu.title }}
@@ -17,8 +17,10 @@ section(data-ng-controller='IndexController as indexCtrl')
     .panel-body **กรณีที่มีความจำเป็นฉุกเฉิน นิสิตสามารถติดต่อฝ่ายกิจการนิสิตคณะที่นิสิตสังกัด หรือฝ่ายทุนการศึกษาและบริการนิสิต สำนักบริหารงานกิจการนิสิต 
 
   .panel.panel-info(data-ng-if='!indexCtrl.currentMainMenu')
-    .panel-heading.center พระราชบัญญัติทุนการศึกษา
-    .panel-body 
+    .panel-heading.center พระราชบัญญัติ จุฬาลงกรณ์มหาวิทยาลัน พ.ศ.๒๕๕๑
+    .panel-body.center ให้ไว้ ณ วันที่ ๓๑ มกราคม พ.ศ. ๒๕๕๑
+    .panel-body.center มาตราที่ ๑๕ "มหาวิทยาลัยต้องส่งเสริมและสนับสนุนผู้ที่มหาวิทยาลัยเข้ารับศึกษาในมหาวิทยาลัยและนิสิตที่ขาดแคลนทุนทรัพย์อย่างแท้จริงให้มีโอกาสเรียนจนสำเร็จปริญญาตรี"
+
     
 
 

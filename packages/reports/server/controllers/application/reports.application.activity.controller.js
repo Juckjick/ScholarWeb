@@ -16,12 +16,12 @@ exports.getActivity = function(data) {
     activity.style = 'linespace';
     activity.text = [
         '6.1 ภายในมหาวิทยาลัย\n',
-        '\t\t\t- กิจกรรมของมหาวิทยาลัย\t',
+        '- กิจกรรมของมหาวิทยาลัย: ',
         data.UserActivity[0].university,
-        '\n\t\t\t- กิจจกรมของคณะ\t',
+        '\n- กิจจกรมของคณะ: ',
         data.UserActivity[0].faculty,
         '\n\n6.2 ภายนอกมหาวิทยาลัย\n',
-        '\t\t\t' + data.UserActivity[0].outside
+        data.UserActivity[0].outside
     ];
 
 

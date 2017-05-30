@@ -10,21 +10,21 @@ exports.getEducation = function(data) {
     // Education
     education = {};
     education.text = [
-        '\n2.1 ผู้สมัครผ่านการสอบคัดเลือกเข้าศึกษาในคณะ \t',
+        '\n2.1 ผู้สมัครผ่านการสอบคัดเลือกเข้าศึกษาในคณะ: ',
         data.UserProfile[0].Faculty.name,
-        '\tภาควิชา\t',
+        '\tภาควิชา: ',
         data.UserProfile[0].Department.name
     ];
 
     // A new student data
     if (data.UserProfile[0].isNewStudent) {
         education.text = education.text.concat([
-            '\tผลการเรียนระดับมัธยมปลาย เกรดเฉลี่ยสะสม \t',
+            '\tผลการเรียนระดับมัธยมปลาย เกรดเฉลี่ยสะสม: ',
             data.UserProfile[0].gradeAvg.toString(),
-            '\t สายการศึกษา \t',
-            data.UserProfile[0].major,
-            '\t หน่วยกิตที่ลงทะเบียนจนถึงขณะนี้ รวม \t',
-            data.UserProfile[0].credit.toString()
+            '\t สายการศึกษา: ',
+            data.UserProfile[0].major
+            // '\t หน่วยกิตที่ลงทะเบียนจนถึงขณะนี้ รวม \t',
+            // data.UserProfile[0].credit.toString()
         ]);
     } else {
         education.text = education.text.concat([

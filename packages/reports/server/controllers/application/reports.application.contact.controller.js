@@ -40,14 +40,14 @@ function generateContactInfo(contact) {
     }
 
     data.text = data.text.concat([
-        ' ชื่อ\t',
+        ' ชื่อ: ',
         contact.fullname,
-        contact.academicYear ? '\tปี\t' + contact.academicYear : '',
-        '\tคณะ\t',
+        contact.academicYear ? '\tปี ' + contact.academicYear : '',
+        '\tคณะ: ',
         contact.faculty,
-        '\tภาควิชา\t',
+        '\tภาควิชา: ',
         contact.department,
-        '\tที่อยู่\t',
+        '\tที่อยู่: ',
         contact.address
     ]);
 

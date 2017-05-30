@@ -12,21 +12,22 @@ block title
   | &nbsp;รายงานข้อมูลนิสิต
 
 block searchField
-  input.form-control.input-sm(type='search',  placeholder='รหัสนิสิต', st-search='"studentId"')
+  input.form-control.input-sm(type='search',  placeholder='คณะ', st-search='Faculty.name')
 
 block table
   table.table.table-striped.table-bordered.table-hover.table-responsive.dataTable.no-footer
     thead
       tr(role='row')
         th.vtop #
-        th.vtop.st-sortable(st-sort='studentId') รหัสนิสิต
+        th.vtop.st-sortable(st-sort='FacultyId') คณะ
         th.vtop ชื่อ
         th.vtop นามสกุล
         th.vtop รายละเอียด
     tbody
       tr(data-ng-repeat='student in studentCtrl.displayedStudents track by $index')
         td {{ studentCtrl.startPage + $index }}
-        td {{ student.studentId }}
+        //td {{ student.FacultyId+20 }}
+        td {{ student.Faculty.name }}
         td {{ student.firstnameTh }}
         td {{ student.lastnameTh }}
         td.center

@@ -52,8 +52,8 @@ function generateCashInfo(cash) {
     var data;
 
     data = [
-        '\t\t\t- ' + cash.typeName + ' เดือนละ\t',
-        cash.total.toString() + '\tบาท'
+        '          - ' + cash.typeName + ' เดือนละ: ',
+        cash.total.toString() + ' บาท'
     ];
 
     // Income has a source field,
@@ -61,12 +61,12 @@ function generateCashInfo(cash) {
     if (cash.isIncome) {
         if(cash.typeId === 3) {
             data = data.concat([
-                '\tลักษณะงานที่ทำ\t',
+                '\tลักษณะงานที่ทำ: ',
                 cash.source
             ]);
         } else {
             data = data.concat([
-                '\tจาก\t',
+                '\tจาก: ',
                 cash.source
             ]);
         }
@@ -86,8 +86,8 @@ function calculateTotal(total) {
     var data;
 
     data = [
-        '\t\t\tรวมทั้งสิ้น เดือนละ\t',
-        total.toString() + '\tบาท'
+        '          รวมทั้งสิ้น เดือนละ: ',
+        total.toString() + ' บาท'
     ];
 
     return data;

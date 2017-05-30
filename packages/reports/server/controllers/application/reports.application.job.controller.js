@@ -10,7 +10,7 @@ exports.getJob = function(data) {
     };
 
     job.text = [
-        '\t\t\t- ' + data.UserProfile[0].Job.name
+        '- ' + data.UserProfile[0].Job.name
     ];
 
     // In case of 'อื่นๆ'

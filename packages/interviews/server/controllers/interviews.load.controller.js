@@ -38,7 +38,8 @@ exports.loadStudents = function(req, res) {
             where: {
                 AcademicYearId: setting.AcademicYearId
             },
-            order: 'studentId'
+            include: [db.Faculty, db.Department, db.AcademicYear],
+            order: 'FacultyId'
         }).success(function(students) {
             res.json(students);
         }).error(function(err) {

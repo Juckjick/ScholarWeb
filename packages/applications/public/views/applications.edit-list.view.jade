@@ -12,7 +12,7 @@ block title
   | &nbsp;แก้ไขใบสมัครทุนการศึกษานิสิต
 
 block searchField
-  input.form-control.input-sm(type='search', placeholder='รหัสนิสิต', st-search='"studentId"')
+  input.form-control.input-sm(type='search', placeholder='คณะ', st-search='Faculty.name')
 
 
 block table
@@ -20,14 +20,15 @@ block table
     thead
       tr(role='row')
         th.vtop #
-        th.vtop.st-sortable(st-sort='studentId') รหัสนิสิต
+        th.vtop.st-sortable(st-sort='FacultyId') คณะ
         th.vtop ชื่อ
         th.vtop นามสกุล
         th.vtop แก้ไขใบสมัครทุนนิสิต
     tbody
       tr(data-ng-repeat='student in editCtrl.displayedStudents track by $index')
         td {{ editCtrl.startPage + $index }}
-        td {{ student.studentId }}
+        //td {{ student.FacultyId+20 }}
+        td {{student.Faculty.name}}
         td {{ student.firstnameTh }}
         td {{ student.lastnameTh }}
         td.center
