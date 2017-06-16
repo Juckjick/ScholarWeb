@@ -32,13 +32,13 @@ function generateLoanInfo(loan) {
     var data = {};
 
     data.text = [
-        '\t\t\t- ชื่อทุน\t',
+        '- ชื่อทุน ',
         loan.typeName,
-        '\tประเภททุน\t',
+        'ประเภททุน ',
         loan.goalName,
-        '\tภาคการศึกษา\t',
-        loan.firstSemester? '\tภาคต้น\t': '',
-        loan.secondSemester? '\tภาคปลาย\t': ''
+        'ภาคการศึกษา :',
+        loan.firstSemester? ' ภาคต้น': '',
+        loan.secondSemester? ' ภาคปลาย': ''
     ];
 
     return data;

@@ -6,7 +6,7 @@ exports.getBackCover = function(data) {
         header, criteria, policy, footer;
 
     header = {
-        text: '\n10. หลักฐานหรือเอกสารประกอบการขอรับทุนที่แนบมาพร้อมแบบใบสมัคร',
+        text: '\n11. หลักฐานหรือเอกสารประกอบการขอรับทุนที่แนบมาพร้อมแบบใบสมัคร',
         style: 'header'
     };
 
